@@ -1,0 +1,111 @@
+#ulid{
+    list-style-type: none;
+    float: left;
+    margin-top: 100;
+}
+
+li:hover{
+    scale:1.3;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#topnav li:hover{
+    background-color: #188ec1;
+    color: aliceblue;
+}
+
+#ulid li{
+    margin-left: 5px;
+    margin-right: 0;
+    margin-top: 50px;
+    margin-bottom: 0;
+    padding: 12px 18px;
+    text-align: center;
+    background: #dadada;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    transition-duration: 0.4s;
+}
+
+#navdiv{
+    background: #45b1e1;
+    width: 200px;
+    height: 1100px;
+}
+
+#quantemid{
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    /*background-color: aqua;*/
+
+}
+
+#topnav li{
+    list-style-type: none;
+    margin-left: 80px;
+    margin-top: 10px;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding: 12px 18px;
+    text-align: center;
+    background: #dadada;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    float: left;
+    transition-duration: 0.4s;
+}
+
+.frame1 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 225px;
+    background-color: aliceblue;
+    height: 1000px;
+}
+
+#div1{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#font1{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+select{
+    padding: 10px 15px;
+    background-color: azure;
+}
+
+input{
+    margin-top: 10px;
+    padding: 10px 510px;
+    background-color: azure;
+    border-color: #dadada;
+}
+
+.hoverlow{
+    background-color: aqua;
+}
+
+textarea{
+    margin-top: 10px;
+    background-color: azure;
+    border-color: #dadada;
+}
