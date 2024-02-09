@@ -143,5 +143,33 @@ th{
     height: 1900px;
 }
 
+.frame6 {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+#actionnav2 li{
+    list-style-type: none;
+    margin-left: 50px;
+    margin-top: -55px;
+    margin-right: 10;
+    margin-bottom: 0;
+    padding: 15px 30px 15px 30px;
+    text-align: center;
+    background: #dadada;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    float: right;
+    transition-duration: 0.4s;
+}
+
+.frame7{
+    background-color: aliceblue;
+        display: flex;
+    flex-direction: row;
+    margin-left: 225px;
+}
+
 
 
