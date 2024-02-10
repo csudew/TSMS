@@ -194,5 +194,23 @@ textarea{
 }
 
 
+/* Footer CSS */
 
+footer{
+    display: flex;
+    flex-direction: row;
+    background-color: #f6fcff;
+    margin-left: 225px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    height: 70px;
+    width: 1225px;
+    position:relative;
+    left: 0;
+    bottom: 0;
+}
 
+footer a{
+    color:#45b1e1
+}
