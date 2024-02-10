@@ -11,10 +11,10 @@
     <div class="container">
         <div id="navdiv"> <!--side navigation-->
             <ul id="ulid">
-                <li><a href="../admin.html">Tickets</a></li>
-                <li>Category</li>
-                <li>Knowladge</li>
-                <li>Team</li>
+                <a href="../admin.php"><li>Tickets</li></a>
+                <a href="category.php"><li>Category</li></a>
+                <a href="knowledge.php"><li>Knowladge</li></a>
+                <a href="team.php"><li>Team</li></a>
             </ul>
         </div>
     
@@ -25,7 +25,7 @@
     
             <div style="margin-left: 380;">
                 <ul id="topnav">  <!-- top nav-->
-                    <li><a href="tickets.html">Create Ticket</a></li>
+                    <li><a href="tickets.php">Create Ticket</a></li>
                     <li>Massages</li>
                     <li>Account</li>
                 </ul>
@@ -36,6 +36,13 @@
         <div id="div1">
 
         </div>
+    </div>
+    
+    <div>
+        <footer>
+            <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
+              <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
+        </footer>
     </div>
     
     

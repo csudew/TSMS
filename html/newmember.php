@@ -11,10 +11,10 @@
     <div class="container">
         <div id="navdiv" style="height: 1050px;"> <!--side navigation-->
             <ul id="ulid">
-                <a href="../admin.html"><li>Tickets</li></a>
-                <a href="category.html"><li>Category</li></a>
-                <a href="knowledge.html"><li>Knowladge</li></a>
-                <a href="team.html"><li>Team</li></a>
+                <a href="../admin.php"><li>Tickets</li></a>
+                <a href="category.php"><li>Category</li></a>
+                <a href="knowledge.php"><li>Knowladge</li></a>
+                <a href="team.php"><li>Team</li></a>
             </ul>
         </div>
     
@@ -25,7 +25,7 @@
     
             <div style="margin-left: 380;">
                 <ul id="topnav">  <!-- top nav-->
-                    <li><a href="tickets.html">Create Ticket</a></li>
+                    <li><a href="tickets.php">Create Ticket</a></li>
                     <li>Massages</li>
                     <li>Account</li>
                 </ul>
