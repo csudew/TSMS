@@ -32,6 +32,7 @@
             </div>
     </div>
 
+    <form action="../php/newadminhandler.php" method="post">
     <div class="frame7" style="height: 850px;">
         <div id="div1">
             <form action="">
@@ -45,7 +46,7 @@
                 </div>
 
                 <div style="margin-top: 30px;">
-                    Admin User Name<font style="color: red;">*</font> : <br><input type="text" name="AName"placeholder="Admin User Name">
+                    Admin User Name<font style="color: red;">*</font> : <br><input type="text" name="AUName"placeholder="Admin User Name">
                 </div>
 
                 <div style="margin-top: 30px;">
@@ -54,7 +55,7 @@
                 </div>
 
                 <div style="margin-top: 30px;">
-                    Email<font style="color: red;">*</font> : <br><input type="text" name="AEmail" placeholder="Admin Email">
+                    Email<font style="color: red;">*</font> : <br><input type="text" name="Aemail" placeholder="Admin Email">
                 </div>
 
                 <div style="margin-top: 30px;">
@@ -63,7 +64,7 @@
     
                 <div style="margin-top: 30px;">
                     Expert Category<font style="color: red;">*</font> : 
-                    <select name="Category" id="">
+                    <select name="Acategory" id="">
                         <option value="general">General</option>
                         <option value="support">support</option>
                         <option value="ads">Advertising</option>
@@ -72,11 +73,11 @@
                 </div>
     
                 <div style="margin-top: 30px;">
-                    Password<font style="color: red;">*</font> : <br><input type="text" name="pw" placeholder="Enter Admin Password">
+                    Password<font style="color: red;">*</font> : <br><input type="text" name="Apw" placeholder="Enter Admin Password">
                 </div>
 
                 <div style="margin-top: 30px;">
-                    Re-Enter Password<font style="color: red;">*</font> : <br><input type="text" name="rpw" placeholder="Re-Enter Admin Password">
+                    Re-Enter Password<font style="color: red;">*</font> : <br><input type="text" name="ARpw" placeholder="Re-Enter Admin Password">
                 </div>
     
                 <div style="margin-top: 30px;">
@@ -86,6 +87,7 @@
             </form>
         </div>
     </div>
+    </form>
     
     <div>
         <footer >
