@@ -37,7 +37,6 @@
     <form name="adminForm" action="../php/newadminhandler.php" method="post" onsubmit="return validateForm()">
     <div class="frame7" style="height: 850px;">
         <div id="div1">
-            <form action="">
                 <div>
                     <font id="font1" style="font-size: x-large;font-weight: bold;">Add New Admin</font><br>
                     <font style="font-size: 12px;">Required fields are marked with <font style="color: red;">*</font></font>
@@ -86,7 +85,6 @@
                     <input type="submit" value="save" name="save" style="padding: 10px 5%;">
                 </div>
     
-            </form>
         </div>
     </div>
     </form>

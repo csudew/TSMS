@@ -23,6 +23,9 @@ function validateForm(){
     }else if (phoneNumber == "") {
         alert("Phone Number must be filled out");
         return false;
+    }else if (phoneNumber.length !== 10) {
+        alert("Phone number must be 10 digits long");
+        return false;
     }else if (category == "") {
         alert("Expert category must be filled out");
         return false;
@@ -39,5 +42,19 @@ function validateForm(){
 
     return true;
 }
+
+function customersearchvalidation(event) {
+    if (event.submitter && event.submitter.name === "CPNsearch") {
+        var phoneNumber = document.forms["customerSearch"]["CPnum"].value;
+
+        if (phoneNumber.length !== 10) {
+            alert("Phone number must be 10 digits long");
+            return false; 
+        }
+    }
+
+    return true; 
+}
+
 
 
