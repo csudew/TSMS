@@ -56,5 +56,25 @@ function customersearchvalidation(event) {
     return true; 
 }
 
+function faqvalidation() {
+    var category = document.forms["faqvali"]["category"].value;
+    var subject = document.forms["faqvali"]["ksubject"].value;
+    var message = document.forms["faqvali"]["kcontent"].value; // Corrected typo here
+
+    if (category == "") {
+        alert("Category must be selected");
+        return false;
+    } else if (subject == "") {
+        alert("Subject must be filled out");
+        return false;
+    } else if (message == "") {
+        alert("Message must be filled out");
+        return false;
+    }
+    return true;
+}
+
+
+
 
 

@@ -5,6 +5,7 @@
         Quatem Mobile - Admin
     </title>
     <link rel="stylesheet" href="../css/adminstyle.css">
+    <script src="../js/validate.js"></script>
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif;">
@@ -33,9 +34,9 @@
             </div>
     </div>
 
+    <form name="faqvali" action="../php/newfaqhandler.php"  method="post" onsubmit="return faqvalidation()">
     <div class="frame7" style="height: 700;">
         <div id="div1">
-            <form action="">
                 <div>
                     <font id="font1" style="font-weight: bold;font-size: x-large;">Insert a new FAQ</font><br>
                     <font style="font-size: 12px;">Required fields are marked with <font style="color: red;">*</font></font>
@@ -43,7 +44,7 @@
     
                 <div style="margin-top: 30px;">
                     Select Category<font style="color: red;">*</font> : 
-                    <select name="Category" id="">
+                    <select name="category" id="">
                         <option value="general">General</option>
                         <option value="support">support</option>
                         <option value="ads">Advertising</option>
@@ -60,16 +61,15 @@
                 </div>
     
                 <div style="margin-top: 30px;">
-                    Files :<input type="file" name="file" style="padding: 10px 5px;">
+                    Files :<input type="file" name="kfile" style="padding: 10px 5px;">
                 </div>
     
                 <div style="margin-top: 30px;">
                     <input type="submit" value="submit" name="submit" style="padding: 10px 5%;">
                 </div>
-    
-            </form>
         </div>
     </div>
+    </form>
 
     <div>
         <footer>
