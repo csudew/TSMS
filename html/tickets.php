@@ -11,7 +11,8 @@
     <div class="container">
         <div id="navdiv" style="height: 1100px;"> <!--side navigation-->
             <ul id="ulid">
-                <a href="../admin.php"><li>Tickets</li></a>
+                <a href="admin.php"><li>Tickets</li></a>
+                <a style="text-decoration: none;color: black;" href="searchcustomer.php"><li>Search<br>Customer</li></a>
                 <a href="category.php"><li>Category</li></a>
                 <a href="knowledge.php"><li>Knowladge</li></a>
                 <a href="team.php"><li>Team</li></a>
@@ -25,7 +26,7 @@
     
             <div style="margin-left: 380;">
                 <ul id="topnav">
-                    <li>Create Ticket</li>
+                <a href="html/tickets.php"><li>Create Ticket</li></a>
                     <li>Massages</li>
                     <li>Account</li>
                 </ul>

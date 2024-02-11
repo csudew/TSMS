@@ -5,6 +5,7 @@
         Quatem Mobile - Admin
     </title>
     <link rel="stylesheet" href="../css/adminstyle.css">
+    <script src="../js/validate.js"></script>
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif;">
@@ -12,6 +13,7 @@
         <div id="navdiv" style="height: 1050px;"> <!--side navigation-->
             <ul id="ulid">
                 <a href="../admin.php"><li>Tickets</li></a>
+                <a style="text-decoration: none;color: black;" href="searchcustomer.php"><li>Search<br>Customer</li></a>
                 <a href="category.php"><li>Category</li></a>
                 <a href="knowledge.php"><li>Knowladge</li></a>
                 <a href="team.php"><li>Team</li></a>
@@ -25,14 +27,14 @@
     
             <div style="margin-left: 380;">
                 <ul id="topnav">  <!-- top nav-->
-                    <li><a href="tickets.php">Create Ticket</a></li>
+                <a href="html/tickets.php"><li>Create Ticket</li></a>
                     <li>Massages</li>
                     <li>Account</li>
                 </ul>
             </div>
     </div>
 
-    <form action="../php/newadminhandler.php" method="post">
+    <form name="adminForm" action="../php/newadminhandler.php" method="post" onsubmit="return validateForm()">
     <div class="frame7" style="height: 850px;">
         <div id="div1">
             <form action="">
@@ -73,11 +75,11 @@
                 </div>
     
                 <div style="margin-top: 30px;">
-                    Password<font style="color: red;">*</font> : <br><input type="text" name="Apw" placeholder="Enter Admin Password">
+                    Password<font style="color: red;">*</font> : <br><input type="password" name="Apw" placeholder="Enter Admin Password">
                 </div>
 
                 <div style="margin-top: 30px;">
-                    Re-Enter Password<font style="color: red;">*</font> : <br><input type="text" name="ARpw" placeholder="Re-Enter Admin Password">
+                    Re-Enter Password<font style="color: red;">*</font> : <br><input type="password" name="ARpw" placeholder="Re-Enter Admin Password">
                 </div>
     
                 <div style="margin-top: 30px;">

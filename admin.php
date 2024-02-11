@@ -12,6 +12,7 @@
         <div id="navdiv"> <!--side navigation-->
             <ul id="ulid">
                 <a style="text-decoration: none;color: black;" href="admin.php"><li>Tickets</li></a>
+                <a style="text-decoration: none;color: black;" href="html/searchcustomer.php"><li>Search<br>Customer</li></a>
                 <a style="text-decoration: none;color: black;" href="html/category.php"><li>Category</li></a>
                 <a href="html/knowledge.php"><li>Knowladge</li></a>
                 <a href="html/team.php"><li>Team</li></a>
