@@ -206,7 +206,7 @@ footer{
     margin-top: 30px;
     height: 70px;
     width: 1225px;
-    position:relative;
+    position:fixed;
     left: 0;
     bottom: 0;
 }

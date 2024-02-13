@@ -38,8 +38,6 @@
             <font style="font-size: 20px;">Admin Name - POST</font><br>
             <font style="font-size: 10px;">Last Loging Date - Time</font>
         </div>
-
-        
     </div>
     <div class="frame2">
         <ul id="actionnav">
@@ -56,8 +54,9 @@
             <tr>
                 <th>Tracking Id</th>
                 <th style="padding: 10px 30px;">Date</th>
-                <th style="padding: 10px 90px;">Name</th>
-                <th style="padding: 10px 230px;">Subject </th>
+                <th style="padding: 10px 80px;">Name</th>
+                <th style="padding: 10px 200px;">Subject </th>
+                <th style="padding: 10px 30px;">Type </th>
                 <th>Status</th>
                 <th>Assign Admin</th>
             </tr>
@@ -72,7 +71,8 @@
         <div><br><br>
             <font style="margin-left:-75px;font-size: 15px;">Search for</font>
         </div>
-        <div>
+        
+        <div style="position:relative;left: 0;bottom: 0;">
             <input type="text" style="margin-top: 35px;"><br>
             <div>
                 <p style="margin-left:-75px;margin-top: 15px; font-size: 15px;">Search in</font>

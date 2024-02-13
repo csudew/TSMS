@@ -33,13 +33,24 @@
             </div>
     </div>
 
+    <form action="../php/adminticket.php" method="post">
     <div class="frame1" style="background-color: aliceblue;">
         <div id="div1">
-            <form action="">
+        
                 <div>
                     <font id="font1" style="font-size: x-large;font-weight: bold;">Insert a new ticket</font><br>
                     <font style="font-size: 12px;">Required fields are marked with <font style="color: red;">*</font></font>
                 </div>
+
+                <?php
+                    session_start();
+
+                    if (isset($_SESSION['success_message'])) {
+                        echo "<p style='color: blue;'>".$_SESSION['success_message']."</p>";
+                        unset($_SESSION['success_message']);
+                    }
+                    session_abort();
+                ?>
     
                 <div style="margin-top: 30px;">
                     Select Category<font style="color: red;">*</font> : 
@@ -54,6 +65,15 @@
                 <div style="margin-top: 30px;">
                     Customer Name<font style="color: red;">*</font> : <br><input type="text" name="CName"placeholder="Customer's Name">
                 </div>
+                <?php
+                    session_start();
+
+                    if (isset($_SESSION['error_message'])) {
+                        echo "<p style='color: red;'>".$_SESSION['error_message']."</p>";
+                        unset($_SESSION['error_message']);
+                    }
+                ?>
+
     
                 <div style="margin-top: 30px;">
                     Email<font style="color: red;">*</font> : <br><input type="text" name="CEmail" placeholder="Customer's Email">
@@ -91,16 +111,17 @@
                 
     
                 <div style="margin-top: 30px;">
-                    Attachment<font style="color: red;">*</font> :<input type="file" name="file" style="padding: 10px 5px;">
+                    Attachment :<input type="file" name="file" style="padding: 10px 5px;">
                 </div>
     
                 <div style="margin-top: 30px;">
                     <input type="submit" value="Send" name="send" style="padding: 10px 5%;">
                 </div>
     
-            </form>
+            
         </div>
     </div>
+    </form>
 
     <div>
         <footer>
