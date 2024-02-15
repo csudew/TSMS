@@ -1,12 +1,14 @@
 <?php
-    include_once ('php/connection.php');
+    include_once ('../php/connection.php');
     $query = "SELECT ticket.*, customer.name 
               FROM ticket 
               INNER JOIN customer ON ticket.customerId = customer.customerId
+              WHERE ticket.status = 'waitingreply'
               ORDER BY ticket.ticketId;"; 
     $stmt = $pdo->query($query);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 
 
@@ -17,7 +19,7 @@
     <title>
         Quatem Mobile - Admin
     </title>
-    <link rel="stylesheet" href="css/adminstyle.css">
+    <link rel="stylesheet" href="../css/adminstyle.css">
     <script src="../js/validate.js"></script>
 </head>
 
@@ -25,11 +27,11 @@
     <div class="container">
         <div id="navdiv"> <!--side navigation-->
             <ul id="ulid">
-                <a style="text-decoration: none;color: black;" href="admin.php"><li>Tickets</li></a>
-                <a style="text-decoration: none;color: black;" href="html/searchcustomer.php"><li>Search<br>Customer</li></a>
-                <a style="text-decoration: none;color: black;" href="html/category.php"><li>Category</li></a>
-                <a href="html/knowledge.php"><li>Knowladge</li></a>
-                <a href="html/team.php"><li>Team</li></a>
+                <a style="text-decoration: none;color: black;" href="../admin.php"><li>Tickets</li></a>
+                <a style="text-decoration: none;color: black;" href="searchcustomer.php"><li>Search<br>Customer</li></a>
+                <a style="text-decoration: none;color: black;" href="category.php"><li>Category</li></a>
+                <a href="knowledge.php"><li>Knowladge</li></a>
+                <a href="team.php"><li>Team</li></a>
             </ul>
         </div>
     
@@ -40,7 +42,7 @@
     
             <div style="margin-left: 380;">
                 <ul id="topnav">
-                    <a href="html/tickets.php"><li>Create Ticket</li></a>
+                    <a href="tickets.php"><li>Create Ticket</li></a>
                     <li>Massages</li>
                     <li>Account</li>
                 </ul>
@@ -55,10 +57,10 @@
     </div>
     <div class="frame1" style="margin-left:280px;">
         <ul id="actionnav">
-            <a href="admin.php"><li>All Ticket</li></a>
+            <a href="../admin.php"><li>All Ticket</li></a>
             <li style="background-color:#188ec1;color:black;">Sign to Me</li>
-            <a href="html/newfilterticket.php"><li>New Messages</li></a>
-            <li>Waiting for Reply</li>
+            <a href="newfilterticket.php"><li>New Messages</li></a>
+            <a href="waitfilterticket.php"><li>Waiting for Reply</li></a>
         </ul>
     </div>
 

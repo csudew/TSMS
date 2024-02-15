@@ -9,7 +9,7 @@
 
 <body style="font-family: Arial, Helvetica, sans-serif;">
     <div class="container">
-        <div id="navdiv"> <!--side navigation-->
+        <div id="navdiv" style="height: 1000px;"> <!--side navigation-->
             <ul id="ulid">
                 <a href="../admin.php"><li>Tickets</li></a>
                 <a style="text-decoration: none;color: black;" href="searchcustomer.php"><li>Search<br>Customer</li></a>
@@ -25,7 +25,7 @@
             </div>
     
             <div style="margin-left: 380;">
-                <ul id="topnav">  <!-- top nav-->
+                <ul id="topnav">
                 <a href="tickets.php"><li>Create Ticket</li></a>
                     <li>Massages</li>
                     <li>Account</li>
@@ -33,25 +33,34 @@
             </div>
     </div>
 
-    <div class="frame1" style="background-color: whi;">
-        <font style="font-size: x-large;margin-top: 30px;font-weight: bold;">Manage Team</font>
-    </div>
+   <div>
 
-    <div class="frame6">
-        <ul id="actionnav2">
-            <li><a href="newmember.php">Add New Member</a></li>
-        </ul>
-    </div>
+        <div class="frame1" style="background-color: whi;">
+           <font style="font-size: x-large;margin-top: 30px;font-weight: bold;">User Details</font>
+        </div>
 
-    <div class="frame2">
+        <div class="frame2">
+            User Name :  <font id="cname"></font><br>
+        </div>
+
+        <div class="frame2">
+            User Email :  <font id="cemail"></font><br>
+        </div>
+
+        <div class="frame2">
+            User Phone Number :  <font id="cpnum"></font><br>
+        </div>
+
+        <div class="frame2">
+            Number of the Tickets :  <font id="tnum"></font><br>
+        </div>
+
+        <div class="frame4">
         <table>
             <tr>
-                <th>Admin Id</th>
-                <th style="padding: 10px 110px;">Name</th>
-                <th style="padding: 10px 150px;">Email</th>
-                <th style="padding: 10px 45px;">User Name</th>
-                <th style="padding: 10px 80px;">Roll</th>
-                <th style="padding: 10px 35px;">Modify</th>
+                <th>Ticket Id</th>
+                <th style="padding: 10px 300px;">subject</th>
+                <th>Category</th>
             </tr>
             <tr>
                 <!-- values of the table-->
@@ -59,13 +68,17 @@
         </table>
     </div>
 
+
+   </div>
+
+
+
     <div>
-        <footer style="position:fixed;">
-            <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
+        <footer>
+            <p style="text-align: center;margin-left: 410px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
               <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
-    
     
 </body>
 

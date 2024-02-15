@@ -42,21 +42,15 @@
                     <font style="font-size: 12px;">Required fields are marked with <font style="color: red;">*</font></font>
                 </div>
 
-                <div id="message">
                 <?php
                     session_start();
 
-                    if (isset($_GET['msg'])) {
-                        echo "<p style='color: blue;'>"."Ticket add to database successfully"."</p>"."
-                        <script>
-                            setTimeout(()=> {var msg = document.getElementById('message').style.display = 'none';
-                            }, 5000);
-                        </script>";
-                        //unset($_SESSION['success_message']);
+                    if (isset($_GET['success_message'])) {
+                        echo "<p style='color: blue;'>".$_GET['success_message']."</p>";
+                        unset($_GET['success_message']);
                     }
                     session_abort();
                 ?>
-                </div>
     
                 <div style="margin-top: 30px;">
                     Select Category<font style="color: red;">*</font> : 
@@ -69,24 +63,16 @@
                 </div>
     
                 <div style="margin-top: 30px;">
-                    Customer Name<font style="color: red;">*</font> : <br><textarea name="CName"placeholder="Customer's Name" rows="2" cols="159"></textarea>
+                    Customer Name<font style="color: red;">*</font> : <br><input type="text" name="CName"placeholder="Customer's Name">
                 </div>
-
-                <div id="fmessage">
                 <?php
                     session_start();
 
-                    if (isset($_GET['fmsg'])) {
-                        echo "<p style='color: red;'>"."Customer not found in the database. Please make sure the customer exists."."</p>"."
-                        <script>
-                            setTimeout(()=> {var msg = document.getElementById('fmessage').style.display = 'none';
-                            }, 5000);
-                        </script>";
-                        //unset($_SESSION['success_message']);
+                    if (isset($_SESSION['error_message'])) {
+                        echo "<p style='color: red;'>".$_SESSION['error_message']."</p>";
+                        unset($_SESSION['error_message']);
                     }
-                    session_abort();
                 ?>
-                </div>
 
                 
     
@@ -104,7 +90,7 @@
                     Select Status<font style="color: red;">*</font> :
                     <select name="status">
                         <option value="new" style="color: rgb(255, 0, 0);">New</option>
-                        <option value="waiting-reply" style="color: rgb(252, 142, 16);">Waiting for reply</option>
+                        <option value="waitingreply" style="color: rgb(252, 142, 16);">Waiting for reply</option>
                         <option value="replied" style="color: blue;">Replied</option>
                         <option value="inprogress" style="color: blueviolet;">Inprogress</option>
                         <option value="onhold" style="color:saddlebrown;">Onhold</option>
@@ -112,12 +98,11 @@
                 </div>
     
                 <div style="margin-top: 30px;">
-                    Subject<font style="color: red;">*</font> : <br>
-                    <textarea name="subject"placeholder="Enter the Subject" rows="2" cols="159"></textarea>
+                    Subject<font style="color: red;">*</font> : <br><input type="text" name="subject" placeholder="Enter the Subject">
                 </div>
     
                 <div style="margin-top: 30px;">
-                    Message<font style="color: red;">*</font> : <br><textarea  name="message" rows="10" cols="159" placeholder="Enter the description"></textarea>
+                    Message<font style="color: red;">*</font> : <br><textarea  name="message" rows="10" cols="159"></textarea>
                 </div>
     
                 
@@ -141,8 +126,6 @@
               <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
-
-
     
 </body>
 

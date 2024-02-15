@@ -1,7 +1,10 @@
 <?php
 session_start();
 
-        // Sanitize input data
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    try {
+        require_once "connection.php";
+    
         $category = $_POST['Category'];
         $cname = $_POST['CName'];
         $cemail = $_POST['CEmail'];
@@ -10,27 +13,20 @@ session_start();
         $subject = $_POST['subject'];
         $message = $_POST['message'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    try {
-        require_once "connection.php";
-
-        // Check if the customer exists
-        $sql = "SELECT * FROM customer WHERE name = :cname AND email = :cemail";
+        $sql = "SELECT * FROM customer WHERE name = :cname";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':cname', $cname);
-        $stmt->bindParam(':cemail', $cemail);
         $stmt->execute();
         $customer = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    
         if (!$customer) {
             $_SESSION['error_message'] = "Customer not found in the database. Please make sure the customer exists.";
-            header("Location: ../html/tickets.php");
+
+            header("Location: ../html/tickets.php?fmsg=failed");
             exit();
         } else {
             $customer_id = $customer['customerId']; 
-
-            // Insert ticket into the database
+    
             $query = "INSERT INTO ticket (category, customerid, priority, status, subject, message) 
                       VALUES (:category, :customerid, :priority, :status, :subject, :message)";
             $stmt = $pdo->prepare($query);
@@ -41,18 +37,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(':subject', $subject);
             $stmt->bindParam(':message', $message);
             $stmt->execute();
+    
+            //$_SESSION['success_message'] = "Ticket added to the database.";
 
-            $_SESSION['success_message'] = "Ticket add to database.";
-            header("Location: ../html/tickets.php");
-            exit();
         }
+
+        $pdo = null;
+
+
+        header("Location: ../html/tickets.php?msg=successs");
+        exit();
     } catch(PDOException $e) {
         $_SESSION['error_message'] = "Error: " . $e->getMessage();
         header("Location: ../html/tickets.php");
         exit();
+    } finally {
+        $pdo = null;
     }
-
-    // Close connection
-    $pdo = null;
 }
 ?>

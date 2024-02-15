@@ -74,6 +74,17 @@ function faqvalidation() {
     return true;
 }
 
+function newmsgfilter(status){
+    var tableRows = document.querySelectorAll('#ttable table tbody tr');
+    tableRows.forEach(function(row) {
+        var statusCell = row.querySelector('td:nth-child(7)'); // Assuming status cell is the 7th cell
+        if (statusCell && statusCell.textContent.trim().toLowerCase() !== status) {
+            row.style.display = 'none'; // Hide rows with status other than 'New'
+        } else {
+            row.style.display = ''; // Show rows with status 'New'
+        }
+    });
+}
 
 
 

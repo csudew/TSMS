@@ -10,7 +10,7 @@
 
 <body style="font-family: Arial, Helvetica, sans-serif;">
     <div class="container">
-        <div id="navdiv" style="height: 900;"> <!--side navigation-->
+        <div id="navdiv" style="height: 1000;"> <!--side navigation-->
             <ul id="ulid">
                 <a href="../admin.php"><li>Tickets</li></a>
                 <a style="text-decoration: none;color: black;" href="searchcustomer.php"><li>Search<br>Customer</li></a>
@@ -27,7 +27,7 @@
     
             <div style="margin-left: 380;">
                 <ul id="topnav">  <!-- top nav-->
-                <a href="html/tickets.php"><li>Create Ticket</li></a>
+                <a href="tickets.php"><li>Create Ticket</li></a>
                     <li>Massages</li>
                     <li>Account</li>
                 </ul>
