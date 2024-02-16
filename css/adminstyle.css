@@ -114,12 +114,10 @@ td{
     border-bottom: 1px solid #ddd;
 }
 
-th{
-}
 
 #ttable{
-    overflow-y: scroll; 
     max-height: 400px;
+    overflow-y: auto;
 }
 
 #ttable table {

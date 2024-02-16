@@ -44,15 +44,17 @@
     </div>
 
     <div class="frame2">
-        <table>
+        <table id="ttable">
+            <thead>
             <tr>
-                <th>Admin Id</th>
+                <th style="padding: 10px 20px;">Admin Id</th>
                 <th style="padding: 10px 110px;">Name</th>
                 <th style="padding: 10px 150px;">Email</th>
                 <th style="padding: 10px 45px;">User Name</th>
                 <th style="padding: 10px 80px;">Roll</th>
                 <th style="padding: 10px 35px;">Modify</th>
             </tr>
+            </thead>
             <tr>
                 <!-- values of the table-->
             </tr>

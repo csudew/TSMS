@@ -8,9 +8,6 @@
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-
-
-
 <html>
 
 <head>
@@ -19,13 +16,19 @@
     </title>
     <link rel="stylesheet" href="css/adminstyle.css">
     <script src="../js/validate.js"></script>
+    <style>
+        #ulid li.active {
+            background-color: #188ec1;
+            color: black;
+        }
+    </style>
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif;">
     <div class="container">
         <div id="navdiv"> <!--side navigation-->
             <ul id="ulid">
-                <a style="text-decoration: none;color: black;" href="admin.php"><li>Tickets</li></a>
+                <a style="text-decoration: none;color: black;" href="admin.php"><li >Tickets</li></a>
                 <a style="text-decoration: none;color: black;" href="html/searchcustomer.php"><li>Search<br>Customer</li></a>
                 <a style="text-decoration: none;color: black;" href="html/category.php"><li>Category</li></a>
                 <a href="html/knowledge.php"><li>Knowladge</li></a>

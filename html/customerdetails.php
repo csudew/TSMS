@@ -1,3 +1,29 @@
+<?php
+// customerdetails.php
+include_once('../php/connection.php');
+
+// Retrieve data from URL parameters
+$CName = $_GET['CName'] ?? '';
+$CUName = $_GET['CUName'] ?? '';
+$Cemail = $_GET['Cemail'] ?? '';
+$CPnum = $_GET['CPnum'] ?? '';
+
+// Prepare the query
+$query = "SELECT * FROM customer WHERE name = :CName OR userName = :CUName OR email = :Cemail OR phonenumber = :CPnum";
+$stmt = $pdo->prepare($query);
+
+// Bind parameters
+$stmt->bindParam(':CName', $CName);
+$stmt->bindParam(':CUName', $CUName);
+$stmt->bindParam(':Cemail', $Cemail);
+$stmt->bindParam(':CPnum', $CPnum);
+
+// Execute the query
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+?>
+
+
 <html>
 
 <head>
@@ -56,12 +82,14 @@
         </div>
 
         <div class="frame4">
-        <table>
+        <table id="ttable">
+            <thead>
             <tr>
-                <th>Ticket Id</th>
+                <th style="padding: 10px 30px;">Ticket Id</th>
                 <th style="padding: 10px 300px;">subject</th>
-                <th>Category</th>
+                <th style="padding: 10px 30px;">Category</th>
             </tr>
+            </thead>
             <tr>
                 <!-- values of the table-->
             </tr>
