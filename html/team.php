@@ -51,7 +51,7 @@
         </ul>
     </div>
 
-    <div class="frame2" id="ttable" style="overflow-y: auto;">
+    <div class="frame2" id="ttable" style="overflow-y: auto;max-height=200px">
         <table id="ttable">
             <thead>
             <tr>
@@ -85,7 +85,7 @@
     </div>
 
     <div>
-        <footer style="position:fixed;">
+        <footer style="position:relative;">
             <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
               <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>

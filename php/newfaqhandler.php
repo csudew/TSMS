@@ -31,7 +31,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             
         }
 
-        header("Location:../html/faq.php");
+        header("Location:../html/knowledge.php?msg=add");
+        exit();
 
         die();
     } catch (PDOException $e) {

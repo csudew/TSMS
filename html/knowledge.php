@@ -1,3 +1,12 @@
+<?php
+    include_once ('../php/connection.php');
+    $query = "SELECT * 
+              FROM faq;"; 
+    $stmt = $pdo->query($query);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
+
 <html>
 
 <head>
@@ -43,7 +52,23 @@
         </ul>
     </div>
 
-    <div class="frame2">
+    <div id="message" class="frame1">
+                <?php
+                    session_start();
+
+                    if (isset($_GET['msg'])) {
+                        echo "<p style='color: blue;'>"."New FAQ added to database"."</p>"."
+                        <script>
+                            setTimeout(()=> {var msg = document.getElementById('message').style.display = 'none';
+                            }, 5000);
+                        </script>";
+                        //unset($_SESSION['success_message']);
+                    }
+                    session_abort();
+                ?>
+    </div>
+
+    <div class="frame2" id="ttable" style="overflow-y: auto;max-height:300px;">
         <table id="ttable">
             <thead>
             <tr>
@@ -53,9 +78,18 @@
                 <th style="padding: 10px 30px;">Function</th>
             </tr>
             </thead>
-            <tr>
-                <!-- values of the table-->
+            <?php
+                foreach ($result as $row){
+            ?>
+            <tr style="text-align:center;">
+                <td><?php echo $row['faqId']?></td>
+                <td><?php echo $row['title']?></td>
+                <td><?php echo $row['type']?></td>
+                <td>Function</td>
             </tr>
+            <?php
+                }
+            ?>
         </table>
     </div>
     
@@ -65,6 +99,14 @@
               <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
+
+    <script>
+    window.onload = function() {
+        var pageHeight = document.body.offsetHeight;
+
+        document.getElementById('navdiv').style.height = pageHeight + 'px';
+        };
+    </script>
     
 </body>
 
