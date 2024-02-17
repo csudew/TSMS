@@ -60,7 +60,7 @@
             <a href="admin.php"><li>All Ticket</li></a>
             <li style="background-color:#188ec1;color:black;">Sign to Me</li>
             <a href="html/newfilterticket.php"><li>New Messages</li></a>
-            <li>Waiting for Reply</li>
+            <a href="html/waitfilterticket.php"><li>Waiting for Reply</li></a>
         </ul>
     </div>
 
@@ -71,10 +71,11 @@
                 <th>Tracking Id</th>
                 <th style="padding: 10px 80px;">Date</th>
                 <th style="padding: 10px 70px;">User Name</th>
-                <th style="padding: 10px 140px;">Subject </th>
+                <th style="padding: 10px 110px;">Subject </th>
                 <th style="padding: 10px 30px;">category </th>
                 <th style="padding: 10px 20px;">Priority </th>
                 <th style="padding: 10px 30px;">Status</th>
+                <th style="padding: 10px 30px;">Function</th>
             </tr>
             </thead>
 
@@ -89,6 +90,9 @@
                 <td><?php echo $row['category']?></td>
                 <td><?php echo $row['priority']?></td>
                 <td><?php echo $row['status']?></td>
+                <td>
+                    <button onclick="viewTicket(<?php echo $row['ticketId']; ?>)">View</button>
+                </td>
             
             </tr>
             <?php
@@ -112,6 +116,13 @@
         document.getElementById('navdiv').style.height = pageHeight + 'px';
         };
     </script>
+
+<script>
+    function viewTicket(ticketId) {
+        window.location = 'html/view.php?ticketId=' + ticketId;
+    }
+</script>
+
 
 
 </body>
