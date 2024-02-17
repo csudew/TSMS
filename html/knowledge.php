@@ -44,13 +44,15 @@
     </div>
 
     <div class="frame2">
-        <table>
+        <table id="ttable">
+            <thead>
             <tr>
                 <th>FAQ Id</th>
                 <th style="padding: 10px 380px;">Subject</th>
                 <th style="padding: 10px 65px;">Type</th>
                 <th style="padding: 10px 30px;">Function</th>
             </tr>
+            </thead>
             <tr>
                 <!-- values of the table-->
             </tr>

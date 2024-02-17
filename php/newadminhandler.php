@@ -22,7 +22,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $pdo=NULL;
         $stmt=NULL;
 
-        header("Location:../html/newmember.php");
+        header("Location:../html/newmember.php?msg=add");
+        exit();
+
+        
 
         die();
     } catch (PDOException $e) {

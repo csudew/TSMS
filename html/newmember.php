@@ -1,3 +1,4 @@
+
 <html>
 
 <head>
@@ -40,6 +41,22 @@
                 <div>
                     <font id="font1" style="font-size: x-large;font-weight: bold;">Add New Admin</font><br>
                     <font style="font-size: 12px;">Required fields are marked with <font style="color: red;">*</font></font>
+                </div>
+
+                <div id="message">
+                <?php
+                    session_start();
+
+                    if (isset($_GET['msg'])) {
+                        echo "<p style='color: blue;'>"."New admin added to database."."</p>"."
+                        <script>
+                            setTimeout(()=> {var msg = document.getElementById('message').style.display = 'none';
+                            }, 5000);
+                        </script>";
+                        //unset($_SESSION['success_message']);
+                    }
+                    session_abort();
+                ?>
                 </div>
 
                 <div style="margin-top: 30px;">

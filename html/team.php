@@ -1,3 +1,11 @@
+<?php
+    include_once ('../php/connection.php');
+    $query = "SELECT *
+              FROM admin ;"; 
+    $stmt = $pdo->query($query);
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <html>
 
 <head>
@@ -43,21 +51,36 @@
         </ul>
     </div>
 
-    <div class="frame2">
+    <div class="frame2" id="ttable" style="overflow-y: auto;">
         <table id="ttable">
             <thead>
             <tr>
                 <th style="padding: 10px 20px;">Admin Id</th>
                 <th style="padding: 10px 110px;">Name</th>
-                <th style="padding: 10px 150px;">Email</th>
                 <th style="padding: 10px 45px;">User Name</th>
+                <th style="padding: 10px 150px;">Email</th>
                 <th style="padding: 10px 80px;">Roll</th>
-                <th style="padding: 10px 35px;">Modify</th>
             </tr>
+
             </thead>
-            <tr>
-                <!-- values of the table-->
+
+            <?php
+                foreach ($result as $row){
+            ?>
+
+            <tr style="text-align:center;">
+                <td><?php echo $row['adminId']?></td>
+                <td><?php echo $row['name']?></td>
+                <td><?php echo $row['userName']?></td>
+                <td><?php echo $row['email']?></td>
+                <td><?php echo $row['category']?></td>
+            
             </tr>
+
+            <?php
+                }
+            ?>
+
         </table>
     </div>
 
@@ -67,6 +90,14 @@
               <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
+
+    <script>
+    window.onload = function() {
+        var pageHeight = document.body.offsetHeight;
+
+        document.getElementById('navdiv').style.height = pageHeight + 'px';
+        };
+    </script>
     
     
 </body>

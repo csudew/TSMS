@@ -137,7 +137,7 @@
             if (isset($ticket_rows)) {
                 foreach ($ticket_rows as $row) {
             ?>
-                    <tr>
+                    <tr style="text-align:center;">
                         <td><?php echo $row['ticketId']; ?></td>
                         <td><?php echo $row['subject']; ?></td>
                         <td><?php echo $row['category']; ?></td>
