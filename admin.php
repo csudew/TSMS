@@ -3,7 +3,7 @@
     $query = "SELECT ticket.*, customer.name 
               FROM ticket 
               INNER JOIN customer ON ticket.customerId = customer.customerId
-              ORDER BY ticket.ticketId;"; 
+              ORDER BY ticket.ticketId DESC;"; 
     $stmt = $pdo->query($query);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -117,11 +117,11 @@
         };
     </script>
 
-<script>
-    function viewTicket(ticketId) {
-        window.location = 'html/view.php?ticketId=' + ticketId;
-    }
-</script>
+    <script>
+        function viewTicket(ticketId) {
+            window.location = 'html/view.php?ticketId=' + ticketId;
+        }
+    </script>
 
 
 

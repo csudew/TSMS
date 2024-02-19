@@ -102,11 +102,7 @@
                 <div style="margin-top: 30px;">
                     Select Status<font style="color: red;">*</font> :
                     <select name="status">
-                        <option value="new" style="color: rgb(255, 0, 0);">New</option>
-                        <option value="waiting-reply" style="color: rgb(252, 142, 16);">Waiting for reply</option>
-                        <option value="replied" style="color: blue;">Replied</option>
-                        <option value="inprogress" style="color: blueviolet;">Inprogress</option>
-                        <option value="onhold" style="color:saddlebrown;">Onhold</option>
+                        <option value="New" style="color: rgb(255, 0, 0);">New</option>
                     </select>
                 </div>
     

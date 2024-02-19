@@ -20,14 +20,6 @@
             </ul>
         </div>
 
-        <script>
-            window.onload = function() {
-            var pageHeight = document.body.offsetHeight;
-
-            document.getElementById('navdiv').style.height = pageHeight + 'px';
-            };
-        </script>
-    
             <div id="quantemid">
                 <font style="font-size: 30px;font-weight: bold;">Quantem Mobile</font>
                 <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>

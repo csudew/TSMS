@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <html>
 
 <head>
@@ -48,19 +52,14 @@
             </div>
     </div>
 
+
+    <!--show ticket details-->
     <?php
-    // Check if the ticketId is provided in the URL
     if(isset($_GET['ticketId'])) {
-        // Retrieve the ticketId from the URL
         $ticketId = $_GET['ticketId'];
         
-        // Now, you can use $ticketId to fetch ticket details from your database
-        // For demonstration purposes, let's assume you have a function to fetch ticket details
-        
-        // Include your database connection file
         include_once ('../php/connection.php');
 
-        // Prepare a query to fetch ticket details based on ticketId
         $query = "SELECT ticket.*, customer.name AS customer_name, customer.email, customer.phonenumber
                   FROM ticket 
                   INNER JOIN customer ON ticket.customerId = customer.customerId
@@ -69,9 +68,17 @@
         $stmt->execute([$ticketId]);
         $ticket = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Check if ticket details are found 
         if ($ticket) {
-            // Display ticket details
+            echo "<div class='frame1' style='margin-top:10px'>";
+            echo "<font style='font-weight:bold;font-size:20px;'>
+                    Ticket ID : 
+                 ".$ticket['ticketId'].
+                " </font></div>";
+            echo "<div class='frame1' style='margin-top:10px'>"; 
+            echo "<font style='font-weight:bold;font-size:20px;'>
+                        Status : 
+                     ".$ticket['status'].
+                    " </font></div>";
             echo "<div class='frame1' style='margin-top:10px'>";
             echo "<font style='font-weight:bold;font-size:20px;'>
                     User Name : 
@@ -87,6 +94,45 @@
                 User Phone Number : 
              ".$ticket['phonenumber'].
             " </font></div>";   
+            
+            ?>
+
+            <?php
+            if($ticket){
+                if($ticket['status']!=='Replied'){
+                    ?>
+                    
+            <div class='frame1' style='margin-top: 30px; margin-right:20px'>
+            <form action='../php/updatePriority.php' method='post'>
+                <label for='priority'>Priority:</label>
+                <select name='priority' id='priority'>
+                    <option value='low'>Low</option>
+                    <option value='medium'>Medium</option>
+                    <option value='high'>High</option>
+                    <option value='Criticle'>Criticle</option>
+                </select>
+            <div style='margin-top: 20px;'>
+                <input type='submit' value='Update Priority' name='upbutton' style='padding: 10px 5%;'>
+            </div>
+            <input type="hidden" name="ticketId" value="<?php echo $ticketId; ?>">
+            </form>
+            </div>
+
+            <?php
+                }
+            }
+            ?>
+
+           
+        <!--
+            <div class="frame1">
+                <form action="">
+                Already sent reply <input type='submit' value='View Reply' name='Vreply' style='padding: 10px 5%;margin-left:20px'>
+                </form>
+            </div>
+        -->
+            
+            <?php
             echo "<div class='frame1' style='margin-top:10px'>"; 
             echo "<font style='font-weight:bold;font-size:20px;'>
                     Issue : 
@@ -95,7 +141,7 @@
             echo "<div class='frame1'>
                 <p>
                     <font style='font-weight:bold;font-size:20px;'>
-                        Content: 
+                        Description: 
                     </font>
                     <br>
                     </div>
@@ -109,28 +155,87 @@
                         </p>";
             echo "</div>";
         } else {
-            // Handle the case where ticket details are not found
             echo "<div class='frame1'>";
             echo "<p>Ticket details not found.</p>";
             echo "</div>";
         }
     } else {
-        // Handle the case where ticketId is not provided in the URL
         echo "<div class='frame1'>";
         echo "<p>No ticketId provided.</p>";
         echo "</div>";
     }
     ?>
 
+
+        <?php
+            if($ticket){
+                if($ticket['status']!=='Replied'){
+                    ?>
+                    
+                    <!-- Add Reply form -->
+        <div class="frame1" style="margin-top:40px;">
+        <form action="../php/addreply.php" method="post">
+            <font style='font-weight:bold;font-size:30px;margin-bottom:30px'>Reply</font>
+
+            <div id="fmessage">
+                <?php
+
+                    if (isset($_GET['msg'])) {
+                        echo "<p style='color: blue;'>"."Reply Sent"."</p>"."
+                        <script>
+                            setTimeout(()=> {var msg = document.getElementById('fmessage').style.display = 'none';
+                            }, 5000);
+                        </script>";
+                        //unset($_SESSION['success_message']);
+                    }
+
+                ?>
+                </div>
+
+            <div style="margin-top:20px">
+            <input type="hidden" name="ticketId" value="<?php echo $ticketId; ?>">
+            </div>
+            <font style="font-weight:bold;font-size:20px;">Subject</font><br>
+            <textarea name="subject" placeholder="Enter subject here..." rows="2" cols="161" required></textarea><br>
+            <div style="margin-top: 30px;">
+            <font style='font-weight:bold;font-size:20px;'>Content</font><br>
+            <textarea name="reply" placeholder="Enter your reply here..." rows="20" cols="161" required></textarea><br>
+            <div style="margin-top: 30px;">
+                    <input type="submit" value="Send Reply" name="replybutton" style="padding: 10px 5%;">
+                </div>
+                </form>
+            </div>
+
+            <?php
+                }else{
+                    $queryReplies = "SELECT * FROM reply WHERE ticketId = ?";
+                    $stmtReplies = $pdo->prepare($queryReplies);
+                    $stmtReplies->execute([$ticketId]);
+                    $replies = $stmtReplies->fetchAll(PDO::FETCH_ASSOC);
+        
+                    foreach ($replies as $reply) {
+                        echo "<div class='frame1' style='margin-top: 30px; margin-right:20px'>";
+                        echo "<font style='font-weight:bold;font-size:20px;'>Subject: ".$reply['subject']."</font></div>";
+                        echo "<div class='frame1' style='margin-top: 30px; margin-right:20px'>";
+                        echo "<font style='font-weight:bold;font-size:20px;'>Message:</font></div>";
+                        echo "<div class='frame7' style='margin-top: 10px;'>";
+                        echo "<div style='margin-left:20px; margin-right:20px;'>";
+                        echo "<p style='font-size:18px;text-align:justify'>".$reply['message']."</p>";
+                        echo "</div></div>";
+                        echo "</div>";
+                    }
+                }
+            }
+            ?>
+
     <div>
-        <footer>
+        <footer style="position:relative"> 
             <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
               <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
 
     <script>
-        // Dynamically adjust frame7 height based on content
         window.onload = function() {
             var contentFrame = document.getElementById('contentFrame');
             var frame7 = document.querySelector('.frame7');
@@ -138,5 +243,16 @@
             frame7.style.height = contentHeight + 'px';
         };
     </script>
+
+    <script>
+    window.onload = function() {
+        var pageHeight = document.body.offsetHeight;
+
+        document.getElementById('navdiv').style.height = pageHeight + 'px';
+        };
+    </script>
+
 </body>
 </html>
+
+

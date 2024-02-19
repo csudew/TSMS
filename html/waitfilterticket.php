@@ -4,7 +4,7 @@
               FROM ticket 
               INNER JOIN customer ON ticket.customerId = customer.customerId
               WHERE ticket.status = 'waitingreply'
-              ORDER BY ticket.ticketId;"; 
+              ORDER BY ticket.ticketId DESC;"; 
     $stmt = $pdo->query($query);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -70,10 +70,11 @@
                 <th>Tracking Id</th>
                 <th style="padding: 10px 80px;">Date</th>
                 <th style="padding: 10px 70px;">User Name</th>
-                <th style="padding: 10px 140px;">Subject </th>
+                <th style="padding: 10px 110px;">Subject </th>
                 <th style="padding: 10px 30px;">category </th>
                 <th style="padding: 10px 20px;">Priority </th>
                 <th style="padding: 10px 30px;">Status</th>
+                <th style="padding: 10px 30px;">Function</th>
             </tr>
             </thead>
 
@@ -88,7 +89,9 @@
                 <td><?php echo $row['category']?></td>
                 <td><?php echo $row['priority']?></td>
                 <td><?php echo $row['status']?></td>
-            
+                <td>
+                    <button onclick="viewTicket(<?php echo $row['ticketId']; ?>)">View</button>
+                </td>
             </tr>
             <?php
                 }
@@ -110,6 +113,12 @@
 
         document.getElementById('navdiv').style.height = pageHeight + 'px';
         };
+    </script>
+
+<script>
+        function viewTicket(ticketId) {
+            window.location = 'view.php?ticketId=' + ticketId;
+        }
     </script>
 
 
