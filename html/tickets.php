@@ -19,7 +19,7 @@
         </div>
     
             <div id="quantemid">
-                <font style="font-size: 30px;font-weight: bold;">Quantem Mobile</font>
+                <font style="font-size: 30px;font-weight: bold;"><a href="dashboard.php">Quantem Mobile</a></font>
                 <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>
             </div>
     
@@ -60,10 +60,10 @@
                 <div style="margin-top: 30px;">
                     Select Category<font style="color: red;">*</font> : 
                     <select name="Category" id="">
-                        <option value="general">General</option>
-                        <option value="support">support</option>
-                        <option value="ads">Advertising</option>
-                        <option value="bill">Billing</option>
+                        <option value="Call">Call</option>
+                        <option value="Internet">Internet</option>
+                        <option value="HBB">HBB</option>
+                        <option value="TV">TV</option>
                     </select>
                 </div>
     
@@ -92,9 +92,9 @@
                 <div style="margin-top: 30px;">
                     Select Priority<font style="color: red;">*</font> : 
                     <select name="priority">
-                        <option value="low" style="background-color: aqua;">Low</option>
-                        <option value="med" style="background-color: rgb(53, 245, 62);">Medium</option>
-                        <option value="high" style="background-color: rgb(255, 217, 0)">High</option>
+                        <option value="Low" style="background-color: aqua;">Low</option>
+                        <option value="Medium" style="background-color: rgb(53, 245, 62);">Medium</option>
+                        <option value="High" style="background-color: rgb(255, 217, 0)">High</option>
                         <option value="Criticle" style="background-color: rgb(255, 0, 0)">Criticle</option>
                     </select>
                 </div>
@@ -131,7 +131,7 @@
     </form>
 
     <div>
-        <footer>
+        <footer style="position:relative">
             <p style="text-align: center;margin-left: 410px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
               <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>

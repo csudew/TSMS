@@ -3,7 +3,7 @@
     $query = "SELECT ticket.*, customer.name 
               FROM ticket 
               INNER JOIN customer ON ticket.customerId = customer.customerId
-              WHERE ticket.status = 'waitingreply'
+              WHERE ticket.status = 'Replied'
               ORDER BY ticket.ticketId DESC;"; 
     $stmt = $pdo->query($query);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -35,7 +35,7 @@
         </div>
     
             <div id="quantemid">
-                <font style="font-size: 30px;font-weight: bold;">Quantem Mobile</font>
+                <font style="font-size: 30px;font-weight: bold;"><a href="dashboard.php">Quantem Mobile</a></font>
                 <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>
             </div>
     
@@ -59,7 +59,7 @@
             <a href="../admin.php"><li>All Ticket</li></a>
             <li style="background-color:#188ec1;color:black;">Sign to Me</li>
             <a href="newfilterticket.php"><li>New Messages</li></a>
-            <a href="waitfilterticket.php"><li>Waiting for Reply</li></a>
+            <a href="waitfilterticket.php"><li>Replied</li></a>
         </ul>
     </div>
 

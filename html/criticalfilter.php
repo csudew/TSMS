@@ -3,7 +3,7 @@
     $query = "SELECT ticket.*, customer.name 
               FROM ticket 
               INNER JOIN customer ON ticket.customerId = customer.customerId
-              WHERE ticket.status = 'New'
+              WHERE ticket.priority = 'Critical'
               ORDER BY ticket.ticketId DESC;"; 
     $stmt = $pdo->query($query);
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);

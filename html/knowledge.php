@@ -28,7 +28,7 @@
         </div>
     
             <div id="quantemid">
-                <font style="font-size: 30px;font-weight: bold;">Quantem Mobile</font>
+                <font style="font-size: 30px;font-weight: bold;"><a href="dashboard.php">Quantem Mobile</a></font>
                 <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>
             </div>
     

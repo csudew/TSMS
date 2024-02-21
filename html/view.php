@@ -12,8 +12,8 @@ session_start();
     <script src="../js/validate.js"></script>
     <style>
         .frame7 {
-            overflow-y: auto; /* Add a vertical scrollbar if content overflows */
-            max-height: 300px; /* Set maximum height for the frame */
+            overflow-y: auto; 
+            max-height: 300px; 
         }
     </style>
 </head>
@@ -39,7 +39,7 @@ session_start();
     
     
             <div id="quantemid">
-                <font style="font-size: 30px;font-weight: bold;">Quantem Mobile</font>
+                <font style="font-size: 30px;font-weight: bold;"><a href="dashboard.php">Quantem Mobile</a></font>
                 <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>
             </div>
     
@@ -106,10 +106,10 @@ session_start();
             <form action='../php/updatePriority.php' method='post'>
                 <label for='priority'>Priority:</label>
                 <select name='priority' id='priority'>
-                    <option value='low'>Low</option>
-                    <option value='medium'>Medium</option>
-                    <option value='high'>High</option>
-                    <option value='Criticle'>Criticle</option>
+                    <option value='Low'>Low</option>
+                    <option value='Medium'>Medium</option>
+                    <option value='High'>High</option>
+                    <option value='Critical'>Critical</option>
                 </select>
             <div style='margin-top: 20px;'>
                 <input type='submit' value='Update Priority' name='upbutton' style='padding: 10px 5%;'>
@@ -215,9 +215,11 @@ session_start();
         
                     foreach ($replies as $reply) {
                         echo "<div class='frame1' style='margin-top: 30px; margin-right:20px'>";
-                        echo "<font style='font-weight:bold;font-size:20px;'>Subject: ".$reply['subject']."</font></div>";
+                        echo "<font style='font-weight:bold;font-size:x-large;'>Reply </font></div>";
                         echo "<div class='frame1' style='margin-top: 30px; margin-right:20px'>";
-                        echo "<font style='font-weight:bold;font-size:20px;'>Message:</font></div>";
+                        echo "<font style='font-weight:bold;font-size:20px;'>Title: ".$reply['subject']."</font></div>";
+                        echo "<div class='frame1' style='margin-top: 30px; margin-right:20px'>";
+                        echo "<font style='font-weight:bold;font-size:20px;'>Description:</font></div>";
                         echo "<div class='frame7' style='margin-top: 10px;'>";
                         echo "<div style='margin-left:20px; margin-right:20px;'>";
                         echo "<p style='font-size:18px;text-align:justify'>".$reply['message']."</p>";

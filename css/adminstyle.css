@@ -87,6 +87,21 @@ a{
     list-style-type: none;
     margin-left: 70px;
     margin-top: 10px;
+    margin-right: 30px;
+    margin-bottom: 0;
+    padding: 15px 40px 15px 40px;
+    text-align: center;
+    background: #dadada;
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+    float: left;
+    transition-duration: 0.4s;
+}
+
+#actionnav3 li{
+    list-style-type: none;
+    margin-left: 10px;
+    margin-top: 10px;
     margin-right: 0;
     margin-bottom: 0;
     padding: 15px 40px 15px 40px;
@@ -97,6 +112,7 @@ a{
     float: left;
     transition-duration: 0.4s;
 }
+
 
 .frame2 {
     display: flex;
@@ -112,6 +128,10 @@ table{
 td{
     padding: 15px;
     border-bottom: 1px solid #ddd;
+}
+
+th{
+    padding: 15px;
 }
 
 

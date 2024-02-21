@@ -18,7 +18,7 @@
         </div>
 
         <div id="quantemid">
-            <font style="font-size: 30px;font-weight: bold;">Quantem Mobile</font>
+            <font style="font-size: 30px;font-weight: bold;"><a href="dashboard.php">Quantem Mobile</a></font>
             <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>
         </div>
 
@@ -129,6 +129,9 @@
             <th style="padding: 10px 30px;">Ticket Id</th>
             <th style="padding: 10px 300px;">subject</th>
             <th style="padding: 10px 30px;">Category</th>
+            <th style="padding: 10px 20px;">Priority </th>
+            <th style="padding: 10px 30px;">Status</th>
+            <th style="padding: 10px 30px;">Function</th>
         </tr>
         </thead>
         <tbody>
@@ -140,6 +143,11 @@
                         <td><?php echo $row['ticketId']; ?></td>
                         <td><?php echo $row['subject']; ?></td>
                         <td><?php echo $row['category']; ?></td>
+                        <td><?php echo $row['priority']?></td>
+                        <td><?php echo $row['status']?></td>
+                        <td>
+                            <button onclick="viewTicket(<?php echo $row['ticketId']; ?>)">View</button>
+                        </td>
                     </tr>
             <?php
                 }
@@ -169,6 +177,12 @@
 
         document.getElementById('navdiv').style.height = pageHeight + 'px';
         };
+    </script>
+
+<script>
+        function viewTicket(ticketId) {
+            window.location = 'view.php?ticketId=' + ticketId;
+        }
     </script>
 
 

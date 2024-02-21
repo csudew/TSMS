@@ -36,7 +36,7 @@
         </div>
     
             <div id="quantemid">
-                <font style="font-size: 30px;font-weight: bold;">Quantem Mobile</font>
+                <font style="font-size: 30px;font-weight: bold;"><a href="html/dashboard.php">Quantem Mobile</a></font>
                 <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>
             </div>
     
@@ -55,12 +55,32 @@
             <font style="font-size: 10px;">Last Loging Date - Time</font>
         </div>
     </div>
+
+    <?php
+        include 'php/connection.php';
+
+        $totalQuery = "SELECT COUNT(*) as totalCount FROM ticket";
+        $totalStmt = $pdo->query($totalQuery);
+        $totalResult = $totalStmt->fetch(PDO::FETCH_ASSOC);
+        $totalCount = $totalResult['totalCount'];
+
+        $newQuery = "SELECT COUNT(*) as newCount FROM ticket WHERE status = 'New'";
+        $newStmt = $pdo->query($newQuery);
+        $newResult = $newStmt->fetch(PDO::FETCH_ASSOC);
+        $newCount = $newResult['newCount'];
+
+        $replyQuery = "SELECT COUNT(*) as replyCount FROM ticket WHERE status = 'Replied'";
+        $replyStmt = $pdo->query($replyQuery);
+        $replyResult = $replyStmt->fetch(PDO::FETCH_ASSOC);
+        $replyCount = $replyResult['replyCount'];
+    ?>
+
     <div class="frame1" style="margin-left:280px;">
         <ul id="actionnav">
-            <a href="admin.php"><li>All Ticket</li></a>
+            <a href="admin.php"><li>All Ticket : <?php echo $totalCount; ?></li></a>
             <li style="background-color:#188ec1;color:black;">Sign to Me</li>
-            <a href="html/newfilterticket.php"><li>New Messages</li></a>
-            <a href="html/waitfilterticket.php"><li>Waiting for Reply</li></a>
+            <a href="html/newfilterticket.php"><li>New Messages : <?php echo $newCount; ?></li></a>
+            <a href="html/waitfilterticket.php"><li>Replied : <?php echo $replyCount; ?></li></a>
         </ul>
     </div>
 
