@@ -39,6 +39,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
             <ul id="ulid">
                 <a href="../admin.php"><li>Tickets</li></a>
                 <a style="text-decoration: none;color: black;" href="searchcustomer.php"><li>Search<br>Customer</li></a>
+                <a style="text-decoration: none;color: black;" href="searchticket.php"><li>Search<br>Ticket</li></a>
                 <a href="knowledge.php"><li>Knowladge</li></a>
                 <a href="team.php"><li>Team</li></a>
             </ul>

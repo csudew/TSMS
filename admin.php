@@ -30,6 +30,7 @@
             <ul id="ulid">
                 <a style="text-decoration: none;color: black;" href="admin.php"><li >Tickets</li></a>
                 <a style="text-decoration: none;color: black;" href="html/searchcustomer.php"><li>Search<br>Customer</li></a>
+                <a style="text-decoration: none;color: black;" href="html/searchticket.php"><li>Search<br>Ticket</li></a>
                 <a href="html/knowledge.php"><li>Knowladge</li></a>
                 <a href="html/team.php"><li>Team</li></a>
             </ul>
