@@ -254,6 +254,23 @@
             </div>
     </div>
 
+    <?php
+    // Include the database connection file
+    include '../php/connection.php';
+
+    // Query to get the count of registered users
+    $userCountQuery = "SELECT COUNT(*) as userCount FROM customer";
+    $stmt = $pdo->query($userCountQuery);
+    $userCountResult = $stmt->fetch(PDO::FETCH_ASSOC);
+    $userCount = $userCountResult['userCount'];
+    ?>
+
+    <div class="frame1" style="margin-left:190px;"> 
+        <ul id="actionnav3">
+            <li style="background-color:#45b1e1">Number of registered Users : <?php echo $userCount; ?></li>
+        </ul>
+    </div>
+
     <div class="frame1" id="barchart_div" style="margin-right:20px"></div><!-- bar chart-->
     <div class="frame1" id="columnchart_material" style="margin-right:20px"></div><!--ticket bar chart-->
     <div class="frame1" id="chart_div" ></div><!-- pie chart-->
@@ -273,7 +290,7 @@
 
 
     <div>
-        <footer >
+        <footer style="position:relative">
             <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
               <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>

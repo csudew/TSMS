@@ -85,7 +85,7 @@
     </div>
 
     <div>
-        <footer style="position:relative;">
+        <footer >
             <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
               <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>

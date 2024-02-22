@@ -83,10 +83,10 @@
                 <div style="margin-top: 30px;">
                     Expert Category<font style="color: red;">*</font> : 
                     <select name="Acategory" id="">
-                        <option value="general">General</option>
-                        <option value="support">support</option>
-                        <option value="ads">Advertising</option>
-                        <option value="bill">Billing</option>
+                        <option value="Call">Call</option>
+                        <option value="Internet">Internet</option>
+                        <option value="HBB">HBB</option>
+                        <option value="TV">TV</option>
                     </select>
                 </div>
     
