@@ -50,10 +50,9 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>
             </div>
     
-            <div style="margin-left: 380;">
+            <div style="margin-left: 530px;">
                 <ul id="topnav">
-                <a href="tickets.php"><li>Create Ticket</li></a>
-                    <li>Massages</li>
+                    <a href="tickets.php"><li>Create Ticket</li></a>
                     <li>Account</li>
                 </ul>
             </div>

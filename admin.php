@@ -41,10 +41,9 @@
                 <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>
             </div>
     
-            <div style="margin-left: 380;">
+            <div style="margin-left: 530px;">
                 <ul id="topnav">
                     <a href="html/tickets.php"><li>Create Ticket</li></a>
-                    <li>Massages</li>
                     <li>Account</li>
                 </ul>
             </div>
@@ -92,7 +91,7 @@
                 <th>Tracking Id</th>
                 <th style="padding: 10px 80px;">Date</th>
                 <th style="padding: 10px 70px;">User Name</th>
-                <th style="padding: 10px 110px;">Subject </th>
+                <th style="padding: 10px 100px;">Subject </th>
                 <th style="padding: 10px 30px;">category </th>
                 <th style="padding: 10px 20px;">Priority </th>
                 <th style="padding: 10px 30px;">Status</th>

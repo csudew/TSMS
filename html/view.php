@@ -44,10 +44,9 @@ session_start();
                 <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>
             </div>
     
-            <div style="margin-left: 380;">
-                <ul id="topnav">  <!-- top nav-->
-                <a href="html/tickets.php"><li>Create Ticket</li></a>
-                    <li>Massages</li>
+            <div style="margin-left: 530px;">
+                <ul id="topnav">
+                    <a href="tickets.php"><li>Create Ticket</li></a>
                     <li>Account</li>
                 </ul>
             </div>
