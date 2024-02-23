@@ -45,12 +45,16 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
             </ul>
         </div>
     
-            <div id="quantemid">
-                <font style="font-size: 30px;font-weight: bold;"><a href="dashboard.php">Quantem Mobile</a></font>
-                <font style="margin-left: 3px;font-size: 15px;">Technical Support Team</font>
+            <div>
+                <img src="../icons/logo.png" alt="logo" style="width:70px;height:70px;margin-top:10px;margin-left:20px">
             </div>
+            <div style="width:400px;margin-top:20px;margin-left:-60px">
+                    <font style="font-size: 30px;font-weight: bold;"><a href="dashboard.php">Quantem Mobile</a></font><br>
+                    <font style="font-size: 15px;">Technical Support Team</font>
+            </div>
+
     
-            <div style="margin-left: 530px;">
+            <div style="margin-left: 350px;">
                 <ul id="topnav">
                     <a href="tickets.php"><li>Create Ticket</li></a>
                     <li>Account</li>
