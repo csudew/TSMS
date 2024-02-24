@@ -1,4 +1,32 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['adminId'])) {
+    header('Location: ../login/login.php?154654');
+    exit;
+}
+
+// Include the database connection file
+include '../php/connection.php';
+
+// Get the adminId from the session
+$adminId = $_SESSION['adminId'];
+
+// Query to check if the adminId exists in the database
+$checkAdminQuery = "SELECT * FROM admin WHERE adminId = ?";
+$checkAdminStmt = $pdo->prepare($checkAdminQuery);
+$checkAdminStmt->execute([$adminId]);
+$admin = $checkAdminStmt->fetch(PDO::FETCH_ASSOC);
+$adminName=$admin['name'];
+
+// If adminId does not exist in the database, redirect to the login page
+if (!$admin) {
+    header('Location:../login/login.php');
+    exit;
+}
+?>
+
+<?php
     include_once ('../php/connection.php');
     $query = "SELECT ticket.*, customer.name 
               FROM ticket 
@@ -51,16 +79,35 @@
 
     <div class="frame1">
         <div>
-            <font style="font-size: 20px;">Admin Name - POST</font><br>
-            <font style="font-size: 10px;">Last Loging Date - Time</font>
+            <font style="font-size:x-large;">Low Priority Tickets</font><br> <!--admin name -->
+        
         </div>
     </div>
-    <div class="frame1" style="margin-left:280px;">
+
+    <?php
+        include '../php/connection.php';
+
+        $totalQuery = "SELECT COUNT(*) as totalCount FROM ticket";
+        $totalStmt = $pdo->query($totalQuery);
+        $totalResult = $totalStmt->fetch(PDO::FETCH_ASSOC);
+        $totalCount = $totalResult['totalCount'];
+
+        $newQuery = "SELECT COUNT(*) as newCount FROM ticket WHERE status = 'New'";
+        $newStmt = $pdo->query($newQuery);
+        $newResult = $newStmt->fetch(PDO::FETCH_ASSOC);
+        $newCount = $newResult['newCount'];
+
+        $replyQuery = "SELECT COUNT(*) as replyCount FROM ticket WHERE status = 'Replied'";
+        $replyStmt = $pdo->query($replyQuery);
+        $replyResult = $replyStmt->fetch(PDO::FETCH_ASSOC);
+        $replyCount = $replyResult['replyCount'];
+    ?>
+
+    <div class="frame1" style="margin-left:380px;">
         <ul id="actionnav">
-            <a href="../admin.php"><li>All Ticket</li></a>
-            <li style="background-color:#188ec1;color:black;">Sign to Me</li>
-            <a href="newfilterticket.php"><li>New Messages</li></a>
-            <a href="waitfilterticket.php"><li>Replied</li></a>
+            <a href="../admin.php"><li>All Ticket : <?php echo $totalCount; ?></li></a>
+            <a href="newfilterticket.php"><li>New Messages : <?php echo $newCount; ?></li></a>
+            <a href="waitfilterticket.php"><li>Replied : <?php echo $replyCount; ?></li></a>
         </ul>
     </div>
 

@@ -1,3 +1,67 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['adminId'])) {
+    header('Location: ../login/login.php?154654');
+    exit;
+}
+
+// Include the database connection file
+include '../php/connection.php';
+
+// Get the adminId from the session
+$adminId = $_SESSION['adminId'];
+
+// Query to check if the adminId exists in the database
+$checkAdminQuery = "SELECT * FROM admin WHERE adminId = ?";
+$checkAdminStmt = $pdo->prepare($checkAdminQuery);
+$checkAdminStmt->execute([$adminId]);
+$admin = $checkAdminStmt->fetch(PDO::FETCH_ASSOC);
+$adminName=$admin['name'];
+
+// If adminId does not exist in the database, redirect to the login page
+if (!$admin) {
+    header('Location:../login/login.php');
+    exit;
+}
+
+// Function to logout
+function logout() {
+    // Unset all of the session variables
+    $_SESSION = [];
+
+    // Destroy the session
+    session_destroy();
+
+    // Redirect to login page
+    header('Location: ../login/login.php');
+    exit;
+}
+
+// Check if logout button is clicked
+if (isset($_GET['logout'])) {
+    logout();
+}
+
+// Check if adminId is not set, then redirect to login page
+if (!isset($_SESSION['adminId'])) {
+    header('Location:../login/login.php?154654');
+    exit;
+}
+
+// Include the database connection file
+include '../php/connection.php';
+
+// Get the adminId from the session
+$adminId = $_SESSION['adminId'];
+
+// Query to retrieve admin details based on adminId from session
+$fetchAdminQuery = "SELECT * FROM admin WHERE adminId = ?";
+$fetchAdminStmt = $pdo->prepare($fetchAdminQuery);
+$fetchAdminStmt->execute([$adminId]);
+$adminDetails = $fetchAdminStmt->fetch();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -27,20 +91,22 @@
             <font style="font-size: 15px;">Technical Support Team</font>
         </div>
 
-        <div style="margin-left: 350px;">
+        <div style="margin-left: 150px;">
             <ul id="topnav">
                 <a href="tickets.php"><li>Create Ticket</li></a>
                 <a href="adminaccount.php"><li>Account</li></a>
+                <li><a href="?logout">Logout</a></li>
             </ul>
         </div>
     </div>
 
+
     <div class="frame1">
         <font style="font-size: x-large;margin-top: 30px;font-weight: bold;">Account Details</font>
     </div>
+    
 
     <?php
-    session_start();
     // Include your database connection file
     require_once "../php/connection.php";
 

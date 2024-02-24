@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['adminId'])) {
+    header('Location: ../login/login.php?154654');
+    exit;
+}
+
+// Include the database connection file
+include '../php/connection.php';
+
+// Get the adminId from the session
+$adminId = $_SESSION['adminId'];
+
+// Query to check if the adminId exists in the database
+$checkAdminQuery = "SELECT * FROM admin WHERE adminId = ?";
+$checkAdminStmt = $pdo->prepare($checkAdminQuery);
+$checkAdminStmt->execute([$adminId]);
+$admin = $checkAdminStmt->fetch(PDO::FETCH_ASSOC);
+$adminName=$admin['name'];
+
+// If adminId does not exist in the database, redirect to the login page
+if (!$admin) {
+    header('Location:../login/login.php');
+    exit;
+}
+?>
+
 <html>
 
 <head>
