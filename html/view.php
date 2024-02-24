@@ -51,7 +51,7 @@ session_start();
             <div style="margin-left: 350px;">
                 <ul id="topnav">
                     <a href="tickets.php"><li>Create Ticket</li></a>
-                    <li>Account</li>
+                    <a href="adminaccount.php"><li>Account</li></a>
                 </ul>
             </div>
     </div>
