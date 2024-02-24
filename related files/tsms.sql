@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 21, 2024 at 03:14 PM
+-- Generation Time: Feb 24, 2024 at 03:34 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -34,26 +34,18 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `userName` varchar(10) NOT NULL,
   `email` varchar(50) NOT NULL,
   `gender` varchar(6) NOT NULL,
-  `password` varchar(10) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `category` varchar(20) NOT NULL,
   `phonenumber` int(10) NOT NULL,
   PRIMARY KEY (`adminId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`adminId`, `name`, `userName`, `email`, `gender`, `password`, `category`, `phonenumber`) VALUES
-(2, 'Charitha Sudewa', 'Sudewa', 'charithasudewa@gmail.com', 'male', '123456', 'general', 705799233),
-(3, 'tharusha', 'tharusha', 'tharushanawod777@gmail.com', 'female', '56489', 'ads', 705799233),
-(4, 'asasa', '', '', 'male', '', 'general', 1457),
-(5, 'asasas', 'asaa', 'asass', 'male', '1234', 'ads', 157),
-(6, 'Charitha Sudewa', 'Sudewa', 'charithasudewa@gmail.com', 'female', 'jkh', 'ads', 705799233),
-(7, 'manilka', 'A manilka', 'testmanilka@gmail.com', 'male', 'mani123', 'general', 701564791),
-(8, 'Dilki', 'Ad Dilki', 'testdilki@gmail.com', 'female', 'dilki123', 'ads', 726835015),
-(9, 'Dilki', 'Ad Dilki', 'testdilki@gmail.com', 'female', '123', 'general', 726835015),
-(10, 'hansi', 'Ad Dilki', 'testdilki@gmail.com', 'female', '123', 'general', 726835015);
+(12, 'UOC', 'UOC', 'UOC@gmail.com', 'male', '$2y$10$/346o6yhnM/mbUZ6OXx5juCb2yhjElDX9JOUHu98sao40fOw/Xcze', 'Call', 112581245);
 
 -- --------------------------------------------------------
 
@@ -76,24 +68,25 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
-  `customerId` int(5) NOT NULL,
+  `customerId` int(5) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `userName` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phonenumber` int(10) NOT NULL,
   `Gender` varchar(6) NOT NULL,
+  `password` varchar(200) NOT NULL,
   `regDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`customerId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`customerId`),
+  UNIQUE KEY `userName` (`userName`,`email`,`phonenumber`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`customerId`, `name`, `userName`, `email`, `phonenumber`, `Gender`, `regDate`) VALUES
-(1, 'test name', 'TN', 'testname@test.com', 0, 'male', '2024-02-21 18:17:16'),
-(2, 'Manilka', 'manilka', 'testname@test.com', 701234567, 'male', '2024-02-21 18:17:16'),
-(3, 'charitha', 'sudewa', 'charithasudewa@gmail.com', 705799233, 'male', '2024-02-21 18:21:34');
+INSERT INTO `customer` (`customerId`, `name`, `userName`, `email`, `phonenumber`, `Gender`, `password`, `regDate`) VALUES
+(8, 'dilki hansika', 'dilki', 'dilkihansika97@gmail.com', 726835015, 'female', '$2y$10$6VGss9Ypby.CgKnnQ6bRK.e0D6gW4sFMYXt1wnXCOYw/LMMW.6ZfG', '2024-02-22 21:03:41'),
+(9, 'charitha sudewa', 'sudewa', 'charithasudewa@gmail.com', 705799233, 'male', '$2y$10$qXkW3FclfUDCKyYU4dU9f.TeV72VhA6G9r1yyZUo9mmuH3QXCmJ3e', '2024-02-24 16:23:27');
 
 -- --------------------------------------------------------
 
@@ -162,24 +155,26 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `category` varchar(50) NOT NULL,
   `subject` text NOT NULL,
   `message` text NOT NULL,
-  `priority` varchar(20) NOT NULL,
-  `status` varchar(20) NOT NULL,
+  `priority` varchar(20) NOT NULL DEFAULT 'Low',
+  `status` varchar(20) NOT NULL DEFAULT 'New',
   `adminId` int(11) DEFAULT NULL,
   `customerId` int(5) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ticketId`),
   KEY `adminId` (`adminId`),
   KEY `customerId` (`customerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ticket`
 --
 
 INSERT INTO `ticket` (`ticketId`, `category`, `subject`, `message`, `priority`, `status`, `adminId`, `customerId`, `date`) VALUES
-(51, 'general', 'bjaskjhdSDLASKJDS', 'DASKDLKASJDKASHDASD', 'Critical', 'Replied', NULL, 2, '2024-02-21 12:13:30'),
-(52, 'general', 'asdasdasd', 'asdadfadfdas', 'Low', 'New', NULL, 2, '2024-02-21 13:24:39'),
-(53, 'HBB', 'asdadasd', 'asdasdasdas', 'Low', 'New', NULL, 2, '2024-02-21 14:10:26');
+(51, 'general', 'bjaskjhdSDLASKJDS', 'DASKDLKASJDKASHDASD', 'Critical', 'Replied', NULL, 9, '2024-02-24 12:48:21'),
+(52, 'general', 'asdasdasd', 'asdadfadfdas', 'Low', 'New', NULL, 9, '2024-02-24 12:48:43'),
+(53, 'HBB', 'asdadasd', 'asdasdasdas', 'Low', 'New', NULL, 9, '2024-02-24 12:48:43'),
+(54, 'Call', 'call a friend', 'call a friend', 'Low', 'New', NULL, 9, '2024-02-24 12:48:43'),
+(55, 'Call', 'asdasd', 'asdasdas', 'Medium', 'New', NULL, 9, '2024-02-24 15:31:41');
 
 --
 -- Constraints for dumped tables

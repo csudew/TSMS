@@ -19,6 +19,13 @@ $customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
 $customerName=$customer['name'];
 $customerUName=$customer['userName'];
 
+
+// Query to fetch tickets associated with the customer
+$getTicketsQuery = "SELECT * FROM ticket WHERE customerId = ?";
+$getTicketsStmt = $pdo->prepare($getTicketsQuery);
+$getTicketsStmt->execute([$customerId]);
+$tickets = $getTicketsStmt->fetchAll(PDO::FETCH_ASSOC);
+
 // If adminId does not exist in the database, redirect to the login page
 if (!$customer) {
     header('Location:../login/login.php?321');
@@ -44,7 +51,7 @@ if (!$customer) {
         }
         .account-details,
         .password-reset {
-            width: 48%; /* Adjusted width for better spacing */
+            width: 60%; /* Adjusted width for better spacing */
             padding: 20px;
             background-color: #f9f9f9;
             border-radius: 10px;
@@ -86,6 +93,22 @@ if (!$customer) {
             outline: none;
             margin-left:10px;
         }
+        table{
+            border: 1px solid #dadada;
+        }
+         thead {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            background-color: #6CDDE6;
+            padding: 10px 25px;
+            table-layout: fixed;
+            height: 20px;  
+        }
+        td{
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }   
     </style>
 </head>
 <body>
@@ -103,7 +126,7 @@ if (!$customer) {
             <a href="index.html">Home</a>
             <a href="">Services</a>
             <a href="">Contact us</a>
-            <a href="#team"><u>Our team</u></a>
+            <a href="team"><u>Our team</u></a>
             <a style="--i:2" href="ticket.php">Ticket</a>
             <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? '#' : 'login.php'; ?>">
             <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?>
@@ -114,69 +137,77 @@ if (!$customer) {
 
     <div class="main">
         <div class="content">
-            <div class="footer-links">
-                <h3>Welcome to your account.</h3><br>
-            </div>    
-                <div class="account-container">
-                    <!-- Account details on the left side -->
-                    <div class="account-details">
-                        <h2>Account Details</h2><br>
-                        <!-- Display user's account details here -->
-                        <p>Name: <?php echo $customerName; ?></p><br>
-                        <p>Username: <?php echo $customer['userName']; ?></p><br>
-                        <p>Phone Number: <?php echo $customer['phonenumber']; ?></p><br>
-                        <p>Email: <?php echo $customer['email']; ?></p><br>
-                    </div>
-                    <!-- Password reset form on the right side -->
-                    <div class="password-reset">
-                        <h2>Password Reset</h2><br>
-                        <div class="form-group">
-                        <?php
-                            if (isset($_GET['success'])) {
-                                echo "<p style='color: blue;'>"."Password Changed."."</p>"."
-                                <script>
-                                    setTimeout(()=> {var msg = document.getElementById('message').style.display = 'none';
-                                    }, 5000);
-                                </script>";
-                                //unset($_SESSION['success_message']);
-                            }
-                   
-                        ?>
-                        </div>
+           
+        <div class="password-reset">
+        <h2>Previous Submitted Tickets </h2>
 
-                        <?php
-                            if (isset($_GET['fail'])) {
-                                echo "<p style='color: red;'>"."current password is wrong."."</p>"."
-                                <script>
-                                    setTimeout(()=> {var msg = document.getElementById('message').style.display = 'none';
-                                    }, 5000);
-                                </script>";
-                                //unset($_SESSION['success_message']);
-                            }
-                            
-                        ?>
-                        <!-- Form to reset password -->
-                        <form class="password-reset-form" action="../php/cpwchange.php" method="POST" >
-                            <div class="form-group">
-                                <label for="current-password">Current Password:</label>
-                                <input type="password" id="cpw" name="cpw" placeholder="Current Password" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="new-password">New Password:</label>
-                                <input type="password" id="npw" name="npw" placeholder="New Password" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="confirm-password">Confirm Password:</label>
-                                <input type="password" id="rpw" name="rpw" placeholder="Confirm New Password" required>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" style="">Reset Password</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            
+            <div style="margin-left:20px;margin-top:30px;font-size:large">
+            <table>
+            <thead>
+                <th style="padding: 10px 150px;">Subject</th>
+                <th style="padding: 10px 50px;">Status</th>
+                <th style="padding: 10px 50px;">Function</th>
+            </thead>
+            <tbody>
+            <?php foreach ($tickets as $ticket) { ?>
+                            <tr>
+                                <td style="padding: 10px 150px;"><?php echo $ticket['subject']; ?></td>
+                                <td style="padding: 10px 50px;"><?php echo $ticket['status']; ?></td>
+                                <td style="padding: 10px 50px;">
+                                    <button type="submit" onclick="viewTicket(<?php echo $ticket['ticketId']; ?>)">view</button>
+                                </td>
+                        </tr>
+                        <?php } ?>
+                                
+            </tbody>
+            </table>
+            </div>
+
+           
+           </div>
         </div>
+            <div class="password-reset" style="margin-top:30px">
+            <h2>Add New Ticket</h2>
+
+            <?php
+                
+
+                    if (isset($_GET['msg'])) {
+                        echo "<p style='color: blue;'>"."Ticket Sent."."</p>"."
+                        <script>
+                            setTimeout(()=> {var msg = document.getElementById('message').style.display = 'none';
+                            }, 5000);
+                        </script>";
+                        //unset($_SESSION['success_message']);
+                    }
+                    session_abort();
+                ?>
+
+            <div style="margin-top:30px">
+            <form class="password-reset-form" action=".../php/addticket.php">
+                <div style="margin-top: 30px;">
+                    Select Category<font style="color: red;">*</font> : 
+                    <select name="Category" id="">
+                        <option value="Call">Call</option>
+                        <option value="Internet">Internet</option>
+                        <option value="HBB">HBB</option>
+                        <option value="TV">TV</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-top:20px">
+                Subject
+                    <input type="text" id="subject" name="subject" placeholder="Enter the Subject" required style="margin-top:10px">
+                 </div>
+                 <div class="form-group">
+                Content <br>
+                    <textarea type="text" id="content" name="content" placeholder="Enter the Content" required style="margin-top:10px" rows="10" cols="115"></textarea>
+                 </div>
+                 <div class="form-group">
+                    <button type="submit" >Submit</button>
+                </div>
+            </form>
+            </div>
+           </div>
     </div>
 
     <script>
@@ -192,7 +223,13 @@ if (!$customer) {
         }
     </script>
 
-    <footer>
+    <script>
+        function viewTicket(ticketId) {
+            window.location = 'view.php?ticketId=' + ticketId;
+        }
+    </script>
+
+    <footer style="position:relative">
         <div class="footer-content">
             <!-- Social media icons -->
             <ul class="socials">

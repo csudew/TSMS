@@ -8,6 +8,8 @@
     font-weight: 400;
     transition: .1s;
 }
+
+
 .container{
     display: flex;
     /* justify-content: flex-start; */
@@ -442,3 +444,4 @@ body {
 .login-form p a:hover {
   text-decoration: underline;
 }
+
