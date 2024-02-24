@@ -9,10 +9,6 @@
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-
-
-
-
 <html>
 
 <head>

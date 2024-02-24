@@ -2,23 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-   
-    </style>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>  <!-- menu icons -->
+    <title>Home</title>
+    
 </head>
+
+<?php
+// Include the database connection file
+include '../php/connection.php';
+
+// Query to fetch FAQ titles from the database
+$faqQuery = "SELECT * FROM faq";
+$stmt = $pdo->query($faqQuery);
+$faqItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <body>
     <div class="container">
         <!-- navigation bar -->
         <header class="header">
-             
+
+          
           <a class="logo" href="#">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
-        <a class="logo" href="#" style="margin-left:-500px">Quantum Mobile - About us</a>
 
+            <a class="logo" href="#" style="margin-left:-550px">Quantum Mobile</a>
 
             <!-- click menu -->
             <input type="checkbox" id="check">
@@ -26,38 +38,35 @@
                 <i class='bx bx-menu' id="menu-icon"></i>
                 <i class='bx bx-x' id="close-icon"></i>
             </label>
+
             <nav class="navbar">
-                <a style="--i:0" href="index.html">Home</a>
-                <a style="--i:2" href="#">Support</a>
-                <a class="login" href="login.php">Login</a>
-               
+                <a style="--i:0"href="index.html">Home</a>
+                <a style="--i:1"href="about.php">About</a>
+                <a style="--i:2"href="#">Support</a>
+                <a style="--i:3"class="login" href="login.php">Log In</a>
             </nav>
         </header>
         <!-- main content -->
-        <div class="main">
-            <div class="content">
-                
-                <div class="footer-links">
-
-                    <h3>Welcome to Quantum Mobile!</h3><br>
-
-                    <div class="box"><a href="#">Products</a></div>
-                    <div class="box"><a href="#">Pricing</a></div>
-                    <div class="box"><a href="#">Solutions</a></div>
-                    <div class="box"><a href="#">Resources</a></div>
-
-                    <img src="pic2.jpg" alt="Company Image">
-                    
-                <p>We are committed to providing top-notch technical support solutions tailored to meet the needs of your business. Our team of experienced professionals is dedicated to ensuring your systems run smoothly, minimizing downtime, and maximizing productivity.</p>
-                <p>With our innovative tools and proactive approach, we strive to exceed your expectations and deliver exceptional customer service. Whether you need troubleshooting assistance, software updates, or system optimization, we've got you covered.</p>
-                <p>Contact us today to learn more about our services and how we can help your business thrive in today's digital landscape.</p>
+        <div class="faq">
+    <h2  style="margin-top:20px">Frequently Asked Questions</h2>
+    <!-- FAQ items -->
+    <div class="quest">
+        <?php foreach ($faqItems as $faqItem): ?>
+            <div class="quest-item">
+                <button id="quest-button-<?php echo $faqItem['faqId']; ?>" aria-expanded="false">
+                    <span class="quest-title"><?php echo $faqItem['title']; ?></span>
+                    <span class="icon" aria-hidden="true"></span>
+                </button>
+                <div class="quest-content">
+                    <p><?php echo $faqItem['content']; ?></p>
                 </div>
                 </div>
-      
-            </div>
+            <?php endforeach; ?>
         </div>
+    </div>
+      
         <!-- footer -->
-        <footer style="position:relative">
+        <footer >
             <div class="footer-content">
                 <!-- Social media icons -->
                 <ul class="socials">
@@ -87,12 +96,6 @@
     <script src="style.js"></script>
 </body>
 </html>
-
-
-
-
-           
-
 
 
 

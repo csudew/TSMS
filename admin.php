@@ -1,5 +1,31 @@
 <?php
-    include_once ('php/connection.php');
+session_start();
+
+if (!isset($_SESSION['adminId'])) {
+    header('Location: login/login.php?154654');
+    exit;
+}
+
+// Include the database connection file
+include 'php/connection.php';
+
+// Get the adminId from the session
+$adminId = $_SESSION['adminId'];
+
+// Query to check if the adminId exists in the database
+$checkAdminQuery = "SELECT * FROM admin WHERE adminId = ?";
+$checkAdminStmt = $pdo->prepare($checkAdminQuery);
+$checkAdminStmt->execute([$adminId]);
+$admin = $checkAdminStmt->fetch(PDO::FETCH_ASSOC);
+$adminName=$admin['name'];
+
+// If adminId does not exist in the database, redirect to the login page
+if (!$admin) {
+    header('Location: ../login/login.php');
+    exit;
+}
+
+
     $query = "SELECT ticket.*, customer.name 
               FROM ticket 
               INNER JOIN customer ON ticket.customerId = customer.customerId
@@ -22,6 +48,7 @@
             color: black;
         }
     </style>
+
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif;">
@@ -48,15 +75,15 @@
             <div style="margin-left: 350px;">
                 <ul id="topnav">
                     <a href="html/tickets.php"><li>Create Ticket</li></a>
-                    <li>Account</li>
+                    <a href="html/adminaccount.php"><li>Account</li></a>
                 </ul>
             </div>
     </div>
 
     <div class="frame1">
         <div>
-            <font style="font-size: 20px;">Admin Name - POST</font><br>
-            <font style="font-size: 10px;">Last Loging Date - Time</font>
+            <font style="font-size: 20px;">Welcome Admin <font style="color:  #188ec1"><?php echo $adminName; ?></font></font><br> <!--admin name -->
+        
         </div>
     </div>
 
@@ -79,10 +106,9 @@
         $replyCount = $replyResult['replyCount'];
     ?>
 
-    <div class="frame1" style="margin-left:280px;">
+    <div class="frame1" style="margin-left:380px;">
         <ul id="actionnav">
             <a href="admin.php"><li>All Ticket : <?php echo $totalCount; ?></li></a>
-            <li style="background-color:#188ec1;color:black;">Sign to Me</li>
             <a href="html/newfilterticket.php"><li>New Messages : <?php echo $newCount; ?></li></a>
             <a href="html/waitfilterticket.php"><li>Replied : <?php echo $replyCount; ?></li></a>
         </ul>

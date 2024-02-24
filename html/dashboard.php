@@ -1,3 +1,15 @@
+<?php
+// Start the session
+//session_start();
+
+// Check if the user is not logged in, redirect to the login page
+//if (!isset($_SESSION['customerId']) && !isset($_SESSION['adminId'])) {
+  //  header('Location: ../login/login.php');
+    //exit;
+//}
+?>
+
+
 <html>
 
 <head>
@@ -238,7 +250,7 @@
             <div style="margin-left: 350px;">
                 <ul id="topnav">
                     <a href="tickets.php"><li>Create Ticket</li></a>
-                    <li>Account</li>
+                    <a href="adminaccount.php"><li>Account</li></a>
                 </ul>
             </div>
     </div>

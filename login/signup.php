@@ -4,96 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the main CSS file -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('pic3.jpg'); /* Replace 'background-image.jpg' with your image path */
-            background-size: cover;
-            background-position: center;
-            color: #333;
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.5); /* Adjust opacity as needed */
-            z-index: -1;
-        }
-        .header {
-            background-color: #45B1E1;
-            padding: 20px 0;
-            text-align: center;
-            color: #fff;
-            margin-bottom: 30px;
-        }
-        .header h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-        .header p {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-        .signup-container {
-            max-width: 400px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .signup-container h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .signup-form input[type="text"],
-        .signup-form input[type="password"],
-        .signup-form input[type="email"],
-        .signup-form select,
-        .signup-form button {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-        .signup-form button {
-            background-color: #45B1E1;
-            color: #fff;
-            cursor: pointer;
-        }
-        .signup-form button:hover {
-            background-color: #2D72EO;
-        }
-        .signup-form p {
-            text-align: center;
-        }
-        .signup-form p a {
-            color: #45B1E1;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .signup-form p a:hover {
-            text-decoration: underline;
-        }
+       
+        
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="header">
-        <h1>Technical Support Management System</h1>
-        <p>Create your account</p>
-    </div>
-    <div class="signup-container">
+    <header class="header"> <!-- Header with navigation bar -->
+         
+        <a class="logo" href="#">
+            <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
+        </a>
+
+        <a class="logo" href="#">Quantum Mobile</a> <!-- Company logo and name -->
+        <input type="checkbox" id="check"> <!-- Checkbox for the mobile menu -->
+        <label for="check" class="icon">
+            <i class='bx bx-menu' id="menu-icon"></i> <!-- Menu icon -->
+            <i class='bx bx-x' id="close-icon"></i> <!-- Close icon -->
+        </label>
+        <nav class="navbar"> <!-- Navigation links -->
+            <a style="--i:0" href="index.html">Home</a>
+            <a style="--i:1" href="about.html">About</a>
+            <a style="--i:2" href="#">Support</a>
+           
+        </nav>
+    </header>
+
+    <div class="main">
+        <div class="content">
+            
+            <div class="footer-links">
+                <h3>Create your account.</h3>
+    <div class="login-container">
+
         <h2>Sign Up</h2>
-        <form class="signup-form" action="../php/signupphp.php" method="post" onsubmit="return validateForm()">
-            <input type="text" name="name" placeholder="Name" required>
+        <form class="login-form" action="../php/signupphp.php" method="POST">
+        <input type="text" name="name" placeholder="Name" required>
             <input type="text" name="username" placeholder="Username" required>
             <input type="text" name="phone" id="phone" placeholder="Phone Number" required>
             <input type="email" name="email" placeholder="Email" required>
@@ -123,10 +70,47 @@
             <input type="password" name="repassword" id="repassword" placeholder="Re-enter Password" required>
             <button type="submit">Sign Up</button>
         </form>
-        <p>Already have an account? <a href="login.php">Login</a></p>
+        <p>Already have an account?</p> <br>
+         <a class="login" href="login.html" style="color: rgb(76, 22, 42);">Log In</a></p>
+        
+
+    </div>
+    </div>
+    </div>
     </div>
 
-    <script>
+
+   <!-- footer -->
+   <footer>
+    <div class="footer-content">
+        <!-- Social media icons -->
+        <ul class="socials">
+            <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+            <li><a href="#"><ion-icon name="logo-youtube"></ion-icon></a></li>
+        </ul>
+        <!-- Footer menu -->
+        <ul class="footmenu">
+            <li><a href="#">item</a></li>
+            <li><a href="#">item</a></li>
+            <li><a href="#">item</a></li>
+            <li><a href="#">item</a></li>
+            <li><a href="#">item</a></li>
+        </ul>
+        <!-- Company copyright -->
+        <p>&copy; 2024 PrimeSK</p>
+    </div>
+</footer>
+</div>
+<!-- Footer icons pack -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<!-- JavaScript file -->
+<script src="style.js"></script>
+
+<script>
         function validateForm() {
             var phoneInput = document.getElementById("phone");
             var phonePattern = /^\d{10}$/;
@@ -150,5 +134,13 @@
             return true; 
         }
     </script>
+
 </body>
 </html>
+
+
+
+
+
+
+

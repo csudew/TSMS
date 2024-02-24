@@ -36,28 +36,11 @@
         <!-- main content -->
         <div class="main">
             <div class="content">
-                
-                <div class="footer-links">
-
-                    <h3>Welcome to Quantum Mobile!</h3><br>
-
-                    <div class="box"><a href="#">Products</a></div>
-                    <div class="box"><a href="#">Pricing</a></div>
-                    <div class="box"><a href="#">Solutions</a></div>
-                    <div class="box"><a href="#">Resources</a></div>
-
-                    <img src="pic2.jpg" alt="Company Image">
-                    
-                <p>We are committed to providing top-notch technical support solutions tailored to meet the needs of your business. Our team of experienced professionals is dedicated to ensuring your systems run smoothly, minimizing downtime, and maximizing productivity.</p>
-                <p>With our innovative tools and proactive approach, we strive to exceed your expectations and deliver exceptional customer service. Whether you need troubleshooting assistance, software updates, or system optimization, we've got you covered.</p>
-                <p>Contact us today to learn more about our services and how we can help your business thrive in today's digital landscape.</p>
-                </div>
-                </div>
-      
+              
             </div>
         </div>
         <!-- footer -->
-        <footer style="position:relative">
+        <footer style="position:fixed">
             <div class="footer-content">
                 <!-- Social media icons -->
                 <ul class="socials">

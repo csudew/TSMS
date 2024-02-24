@@ -155,9 +155,6 @@ th{
     height: 20px;  
 }
 
-
-
-
 .frame3 {
     display: flex;
     flex-direction: row;
@@ -241,6 +238,13 @@ textarea{
     border-color: #dadada;
 }
 
+.frame1 input{
+    margin-top: 10px;
+    padding: 10px 510px;
+    background-color: azure;
+    border-color: #dadada;
+}
+
 
 /* Footer CSS */
 
@@ -262,3 +266,4 @@ footer{
 footer a{
     color:#45b1e1
 }
+
