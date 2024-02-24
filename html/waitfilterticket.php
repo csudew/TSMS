@@ -44,6 +44,7 @@ if (!$admin) {
         Quatem Mobile - Admin
     </title>
     <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
     <script src="../js/validate.js"></script>
 </head>
 

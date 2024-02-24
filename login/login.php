@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to the main CSS file -->
-    <style>
-       
-        
-    </style>
+    <link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
 </head>
 <body>
     <header class="header"> <!-- Header with navigation bar -->
@@ -27,6 +24,7 @@
             <a style="--i:0" href="index.html">Home</a>
             <a style="--i:1" href="about.php">About</a>
             <a style="--i:2" href="#">Support</a>
+            <a style="--i:2" href="#">Team</a>
            
         </nav>
     </header>

@@ -8,6 +8,7 @@
     <style>
    
     </style>
+    <link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
 </head>
 <body>
     <div class="container">

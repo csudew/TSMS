@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             if ($existingCustomer && password_verify($Cpw, $existingCustomer['password'])) {
                 $_SESSION['customerId'] = $existingCustomer['customerId'];
-                header("Location: index.php?customerId=" . $existingCustomer['email']);
+                header("Location:../login/account.php?customerId=" . $existingCustomer['customerId']);
                 exit();
             } elseif ($existingAdmin && password_verify($Cpw, $existingAdmin['password'])) {
                 $_SESSION['adminId'] = $existingAdmin['adminId'];

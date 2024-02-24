@@ -46,6 +46,7 @@ if (!$admin) {
     </title>
     <link rel="stylesheet" href="../css/adminstyle.css">
     <script src="../js/validate.js"></script>
+    <link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif;">

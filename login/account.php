@@ -1,6 +1,35 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['customerId'])) {
+    header('Location: ../login/login.php?123');
+    exit;
+}
+
+include '../php/connection.php';
+
+// Get the adminId from the session
+$customerId = $_SESSION['customerId'];
+
+// Query to check if the adminId exists in the database
+$checkCustomerQuery = "SELECT * FROM customer WHERE customerId = ?";
+$checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
+$checkCustomerStmt->execute([$customerId]);
+$customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
+$customerName=$customer['name'];
+
+// If adminId does not exist in the database, redirect to the login page
+if (!$customer) {
+    header('Location:../login/login.php?321');
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
@@ -44,6 +73,17 @@
         }
         .form-group button {
             width: calc(100% - 20px); /* Adjusted width for better spacing */
+            display: block;
+            text-align: left;
+            width: 100%;
+            padding: 1em 0;
+            color: #7288a2;
+            font-size: 1.15rem;
+            font-weight: 400;
+            border: none;
+            background: none;
+            outline: none;
+            margin-left:10px;
         }
     </style>
 </head>
@@ -52,7 +92,7 @@
         <a class="logo" href="#">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
-        <a class="logo" href="#">Quantum Mobile</a>
+        <a class="logo" href="#" style="margin-left:-450px">Quantum Mobile</a>
         <input type="checkbox" id="check">
         <label for="check" class="icon">
             <i class="bx bx-menu" id="menu-icon"></i>
@@ -63,7 +103,7 @@
             <a href="">Services</a>
             <a href="">Contact us</a>
             <a href="#team"><u>Our team</u></a>
-            <a class="login" href="login.html">Login</a>
+            <a class="login" href="login.php">Login</a>
         </nav>
     </header>
     
@@ -72,44 +112,81 @@
         <div class="content">
             <div class="footer-links">
                 <h3>Welcome to your account.</h3><br>
+            </div>    
                 <div class="account-container">
                     <!-- Account details on the left side -->
                     <div class="account-details">
                         <h2>Account Details</h2><br>
                         <!-- Display user's account details here -->
-                        <p>User ID: <!-- User ID here --></p><br>
-                        <p>Name: <!-- User's name here --></p><br>
-                        <p>Username: <!-- User's username here --></p><br>
-                        <p>Phone Number: <!-- User's phone number here --></p><br>
-                        <p>Email: <!-- User's email here --></p><br>
-                        <p>Select Gender: <!-- User's gender here --></p><br>
+                        <p>Name: <?php echo $customerName; ?></p><br>
+                        <p>Username: <?php echo $customer['userName']; ?></p><br>
+                        <p>Phone Number: <?php echo $customer['phonenumber']; ?></p><br>
+                        <p>Email: <?php echo $customer['email']; ?></p><br>
                     </div>
                     <!-- Password reset form on the right side -->
                     <div class="password-reset">
                         <h2>Password Reset</h2><br>
+                        <div class="form-group">
+                        <?php
+                            if (isset($_GET['success'])) {
+                                echo "<p style='color: blue;'>"."Password Changed."."</p>"."
+                                <script>
+                                    setTimeout(()=> {var msg = document.getElementById('message').style.display = 'none';
+                                    }, 5000);
+                                </script>";
+                                //unset($_SESSION['success_message']);
+                            }
+                   
+                        ?>
+                        </div>
+
+                        <?php
+                            if (isset($_GET['fail'])) {
+                                echo "<p style='color: red;'>"."current password is wrong."."</p>"."
+                                <script>
+                                    setTimeout(()=> {var msg = document.getElementById('message').style.display = 'none';
+                                    }, 5000);
+                                </script>";
+                                //unset($_SESSION['success_message']);
+                            }
+                            
+                        ?>
                         <!-- Form to reset password -->
-                        <form class="password-reset-form" action="#" method="POST">
+                        <form class="password-reset-form" action="../php/cpwchange.php" method="POST" >
                             <div class="form-group">
                                 <label for="current-password">Current Password:</label>
-                                <input type="password" id="current-password" name="current-password" placeholder="Current Password" required>
+                                <input type="password" id="cpw" name="cpw" placeholder="Current Password" required>
                             </div>
                             <div class="form-group">
                                 <label for="new-password">New Password:</label>
-                                <input type="password" id="new-password" name="new-password" placeholder="New Password" required>
+                                <input type="password" id="npw" name="npw" placeholder="New Password" required>
                             </div>
                             <div class="form-group">
                                 <label for="confirm-password">Confirm Password:</label>
-                                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm New Password" required>
+                                <input type="password" id="rpw" name="rpw" placeholder="Confirm New Password" required>
                             </div>
                             <div class="form-group">
-                                <button type="submit">Reset Password</button>
+                                <button type="submit" style="">Reset Password</button>
                             </div>
                         </form>
                     </div>
                 </div>
-            </div>
+            
         </div>
     </div>
+
+    <script>
+        function validatePassword() {
+            var npw = document.getElementById("npw").value;
+            var rpw = document.getElementById("rpw").value;
+
+            if (npw != rpw) {
+                alert("New Passwords do not match!");
+                return false;
+            }
+            return true;
+        }
+    </script>
 
     <footer>
         <div class="footer-content">

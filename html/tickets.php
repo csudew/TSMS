@@ -33,11 +33,12 @@ if (!$admin) {
         Quatem Mobile - Admin
     </title>
     <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif;">
     <div class="container">
-        <div id="navdiv" style="height: 1000px;"> <!--side navigation-->
+        <div id="navdiv" style="height: 880px;"> <!--side navigation-->
             <ul id="ulid">
                 <a href="../admin.php"><li>Tickets</li></a>
                 <a style="text-decoration: none;color: black;" href="searchcustomer.php"><li>Search<br>Customer</li></a>
@@ -75,7 +76,7 @@ if (!$admin) {
 
                 <div id="message">
                 <?php
-                    session_start();
+                
 
                     if (isset($_GET['msg'])) {
                         echo "<p style='color: blue;'>"."Ticket add to database successfully"."</p>"."
@@ -100,12 +101,12 @@ if (!$admin) {
                 </div>
     
                 <div style="margin-top: 30px;">
-                    Customer Name<font style="color: red;">*</font> : <br><textarea name="CName"placeholder="Customer's Name" rows="2" cols="159"></textarea>
+                    Customer Name<font style="color: red;">*</font> : <br><textarea name="CName"placeholder="Customer's Name" rows="2" cols="155"></textarea>
                 </div>
 
                 <div id="fmessage">
                 <?php
-                    session_start();
+                    
 
                     if (isset($_GET['fmsg'])) {
                         echo "<p style='color: red;'>"."Customer not found in the database. Please make sure the customer exists."."</p>"."
@@ -140,17 +141,11 @@ if (!$admin) {
     
                 <div style="margin-top: 30px;">
                     Subject<font style="color: red;">*</font> : <br>
-                    <textarea name="subject"placeholder="Enter the Subject" rows="2" cols="159"></textarea>
+                    <textarea name="subject"placeholder="Enter the Subject" rows="2" cols="155"></textarea>
                 </div>
     
                 <div style="margin-top: 30px;">
-                    Message<font style="color: red;">*</font> : <br><textarea  name="message" rows="10" cols="159" placeholder="Enter the description"></textarea>
-                </div>
-    
-                
-    
-                <div style="margin-top: 30px;">
-                    Attachment :<input type="file" name="file" style="padding: 10px 5px;">
+                    Content<font style="color: red;">*</font> : <br><textarea  name="message" rows="10" cols="155" placeholder="Enter the description"></textarea>
                 </div>
     
                 <div style="margin-top: 30px;">

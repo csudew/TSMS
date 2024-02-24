@@ -37,6 +37,7 @@ if (!$admin) {
 <html>
 
 <head>
+<link rel="icon" href="icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
     <title>
         Quatem Mobile - Admin
     </title>
