@@ -184,7 +184,7 @@ if (!$customer) {
                 ?>
 
             <div style="margin-top:30px">
-            <form class="password-reset-form" action=".../php/addticket.php">
+            <form class="password-reset-form" action="../php/addticket.php" method="POST">
                 <div style="margin-top: 30px;">
                     Select Category<font style="color: red;">*</font> : 
                     <select name="Category" id="">
@@ -203,7 +203,7 @@ if (!$customer) {
                     <textarea type="text" id="content" name="content" placeholder="Enter the Content" required style="margin-top:10px" rows="10" cols="115"></textarea>
                  </div>
                  <div class="form-group">
-                    <button type="submit" >Submit</button>
+                    <button type="submit" name="submit" >Submit</button>
                 </div>
             </form>
             </div>

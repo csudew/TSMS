@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         $category = $_POST['Category'];
         $subject = $_POST['subject'];
-        $message = $_POST['message'];
+        $message = $_POST['content'];
 
         $sql = "SELECT * FROM customer WHERE customerId = :cid";
         $stmt = $pdo->prepare($sql);
@@ -34,6 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->bindParam(':subject', $subject);
             $stmt->bindParam(':message', $message);
             $stmt->execute();
+
+            header("Location:  ../login/ticket.php?msg=successs");
+            exit();
     
             //$_SESSION['success_message'] = "Ticket added to the database.";
 
@@ -42,11 +45,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo = null;
 
 
-        header("Location:  ../login/ticket.php?msg=successs");
-        exit();
+        
     } catch(PDOException $e) {
         $_SESSION['error_message'] = "Error: " . $e->getMessage();
-        header("Location: ../login/ticket.php");
+        header("Location: ../login/ticket.php?5555");
         exit();
     } finally {
         $pdo = null;
