@@ -1,3 +1,23 @@
+<?php
+session_start();
+
+// Include the database connection file
+include '../php/connection.php';
+
+// Fetch the customer's information if available
+$customerUName = isset($_SESSION['customerId']) ? $_SESSION['customerId'] : 'Guest';
+
+$customerId = $_SESSION['customerId'];
+
+$checkCustomerQuery = "SELECT * FROM customer WHERE customerId = ?";
+$checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
+$checkCustomerStmt->execute([$customerId]);
+$customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
+$customerName=$customer['name'];
+$customerUName=$customer['userName'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,9 +47,14 @@
                 <i class='bx bx-x' id="close-icon"></i>
             </label>
             <nav class="navbar">
-                <a style="--i:0" href="index.html">Home</a>
-                <a style="--i:2" href="#">Support</a>
-                <a class="login" href="login.php">Login</a>
+            <a href="index.php">Home</a>
+            <a href="about.php">About Us</a>
+            <a href="faq.php">FAQ</a>
+            <a href="team.php">Our team</a>
+            <a style="--i:2" href="ticket.php">Ticket</a>
+            <a href="contactus.php">Contact us</a>
+            <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? 'account.php' : 'login.php'; ?>">
+            <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?></a>
                
             </nav>
         </header>

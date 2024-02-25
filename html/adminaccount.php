@@ -96,7 +96,7 @@ $adminDetails = $fetchAdminStmt->fetch();
             <ul id="topnav">
                 <a href="tickets.php"><li>Create Ticket</li></a>
                 <a href="adminaccount.php"><li>Account</li></a>
-                <li><a href="?logout">Logout</a></li>
+                <li><a href="../php/logout.php">Logout</a></li>
             </ul>
         </div>
     </div>

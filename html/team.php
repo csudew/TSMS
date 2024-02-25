@@ -79,7 +79,9 @@ if (!$admin) {
 
     <div class="frame6">
         <ul id="actionnav2">
-            <li><a href="newmember.php">Add New Member</a></li>
+        <?php if($admin['type'] == 'DB Admin'): ?>
+            <a href="newmember.php"><li>Add Admin</li></a>
+        <?php endif; ?>
         </ul>
     </div>
 

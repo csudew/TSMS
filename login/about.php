@@ -1,3 +1,29 @@
+<?php
+session_start();
+
+// Include the database connection file
+include '../php/connection.php';
+
+// Initialize the customer username variable
+$customerUName = 'Guest';
+
+// Check if the 'customerId' index is set in the session
+if (isset($_SESSION['customerId'])) {
+    $customerId = $_SESSION['customerId'];
+
+    // Fetch the customer's information from the database
+    $checkCustomerQuery = "SELECT * FROM customer WHERE customerId = ?";
+    $checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
+    $checkCustomerStmt->execute([$customerId]);
+    $customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
+
+    // If the customer exists, update the customer username variable
+    if ($customer) {
+        $customerUName = $customer['userName'];
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +44,7 @@
           <a class="logo" href="#">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
-        <a class="logo" href="#" style="margin-left:-500px">Quantum Mobile - About us</a>
+        <a class="logo" href="#" style="margin-left:-300px">Quantum Mobile</a>
 
 
             <!-- click menu -->
@@ -28,9 +54,14 @@
                 <i class='bx bx-x' id="close-icon"></i>
             </label>
             <nav class="navbar">
-                <a style="--i:0" href="index.html">Home</a>
-                <a style="--i:2" href="#">Support</a>
-                <a class="login" href="login.php">Login</a>
+            <a href="index.php">Home</a>
+            <a href="about.php">About Us</a>
+            <a href="faq.php">FAQ</a>
+            <a href="team.php">Our team</a>
+            <a style="--i:2" href="ticket.php">Ticket</a>
+            <a href="contactus.php">Contact us</a>
+            <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? 'account.php' : 'login.php'; ?>">
+            <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?></a>
                
             </nav>
         </header>

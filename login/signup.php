@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +26,14 @@
             <i class='bx bx-menu' id="menu-icon"></i> <!-- Menu icon -->
             <i class='bx bx-x' id="close-icon"></i> <!-- Close icon -->
         </label>
-        <nav class="navbar"> <!-- Navigation links -->
-            <a style="--i:0" href="index.html">Home</a>
-            <a style="--i:1" href="about.html">About</a>
-            <a style="--i:2" href="#">Support</a>
+            <a href="index.php">Home</a>
+            <a href="about.php">About Us</a>
+            <a href="faq.php">FAQ</a>
+            <a href="team.php">Our team</a>
+            <a style="--i:2" href="ticket.php">Ticket</a>
+            <a href="contactus.php">Contact us</a>
+            <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? 'account.php' : 'login.php'; ?>">
+            <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?></a>
            
         </nav>
     </header>

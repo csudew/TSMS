@@ -67,7 +67,7 @@ if (!$admin) {
     </div>
 
     <form name="adminForm" action="../php/newadminhandler.php" method="post" onsubmit="return validateForm()">
-    <div class="frame7" style="height: 850px;">
+    <div class="frame7" style="height: 890px;">
         <div id="div1">
                 <div>
                     <font id="font1" style="font-size: x-large;font-weight: bold;">Add New Admin</font><br>
@@ -76,7 +76,7 @@ if (!$admin) {
 
                 <div id="message">
                 <?php
-                    session_start();
+                    
 
                     if (isset($_GET['msg'])) {
                         echo "<p style='color: blue;'>"."New admin added to database."."</p>"."
@@ -105,6 +105,14 @@ if (!$admin) {
 
                 <div style="margin-top: 30px;">
                     Email<font style="color: red;">*</font> : <br><input type="text" name="Aemail" placeholder="Admin Email">
+                </div>
+
+                <div style="margin-top: 30px;">
+                    Admin Type <font style="color: red;">*</font> : 
+                    <select name="Atype" id="">
+                        <option value="Ticket Admin">Ticket Admin</option>
+                        <option value="DB Admin">DB Admin</option>
+                    </select>
                 </div>
 
                 <div style="margin-top: 30px;">
@@ -138,11 +146,19 @@ if (!$admin) {
     </form>
     
     <div>
-        <footer >
+        <footer style="position:relative">
             <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
               <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
+
+    <script>
+    window.onload = function() {
+        var pageHeight = document.body.offsetHeight;
+
+        document.getElementById('navdiv').style.height = pageHeight + 'px';
+        };
+    </script>
     
 </body>
 

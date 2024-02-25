@@ -136,13 +136,14 @@ if (!$customer) {
             <i class="bx bx-x" id="close-icon"></i>
         </label>
         <nav class="navbar">
-            <a href="index.html">Home</a>
-            <a href="">Services</a>
-            <a href="">Contact us</a>
-            <a href="team"><u>Our team</u></a>
+            <a href="index.php">Home</a>
+            <a href="about.php">About Us</a>
+            <a href="faq.php">FAQ</a>
+            <a href="team.php">Our team</a>
             <a style="--i:2" href="ticket.php">Ticket</a>
+            <a href="contactus.php">Contact us</a>
             <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? 'account.php' : 'login.php'; ?>">
-            <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?>
+            <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?></a>
 </a>
         </nav>
     </header>

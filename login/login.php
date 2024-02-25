@@ -1,3 +1,26 @@
+<?php
+session_start();
+
+// Include the database connection file
+include '../php/connection.php';
+
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Perform login authentication and set session variables if login is successful
+    // (Assuming your login logic is handled in ../php/loginphp.php)
+    include '../php/loginphp.php';
+}
+
+// Check if the user is already logged in
+if (isset($_SESSION['customerId'])) {
+    // Redirect the user to the account page if they are already logged in
+    header('Location: account.php');
+    exit;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,17 +37,21 @@
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
 
-        <a class="logo" href="#" style="margin-left:-700px">Quantum Mobile</a>
+        <a class="logo" href="#" style="margin-left:-300px">Quantum Mobile</a>
         <input type="checkbox" id="check"> <!-- Checkbox for the mobile menu -->
         <label for="check" class="icon">
             <i class='bx bx-menu' id="menu-icon"></i> <!-- Menu icon -->
             <i class='bx bx-x' id="close-icon"></i> <!-- Close icon -->
         </label>
         <nav class="navbar"> <!-- Navigation links -->
-            <a style="--i:0" href="index.html">Home</a>
-            <a style="--i:1" href="about.php">About</a>
-            <a style="--i:2" href="#">Support</a>
-            <a style="--i:2" href="#">Team</a>
+            <a href="index.php">Home</a>
+            <a href="about.php">About Us</a>
+            <a href="faq.php">FAQ</a>
+            <a href="team.php">Our team</a>
+            <a style="--i:2" href="ticket.php">Ticket</a>
+            <a href="contactus.php">Contact us</a>
+            <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? 'account.php' : 'login.php'; ?>">
+            <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?></a>
            
         </nav>
     </header>
@@ -39,7 +66,7 @@
         <h2>Login</h2>
         <div id="fmessage">
             <?php
-                session_start();
+                
 
                 if (isset($_GET['error'])) {
                     echo "<p style='color: red;'>"."Invalid user name of password"."</p>"."

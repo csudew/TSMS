@@ -8,16 +8,19 @@ if (!isset($_SESSION['customerId'])) {
 
 include '../php/connection.php';
 
-// Get the adminId from the session
 $customerId = $_SESSION['customerId'];
 
-// Query to check if the adminId exists in the database
 $checkCustomerQuery = "SELECT * FROM customer WHERE customerId = ?";
 $checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
 $checkCustomerStmt->execute([$customerId]);
 $customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
 $customerName=$customer['name'];
 $customerUName=$customer['userName'];
+
+if (!$customer) {
+    header('Location:../login/login.php?321');
+    exit;
+}
 
 
 // Query to fetch tickets associated with the customer
@@ -26,11 +29,6 @@ $getTicketsStmt = $pdo->prepare($getTicketsQuery);
 $getTicketsStmt->execute([$customerId]);
 $tickets = $getTicketsStmt->fetchAll(PDO::FETCH_ASSOC);
 
-// If adminId does not exist in the database, redirect to the login page
-if (!$customer) {
-    header('Location:../login/login.php?321');
-    exit;
-}
 ?>
 
 
@@ -116,20 +114,21 @@ if (!$customer) {
         <a class="logo" href="#">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
-        <a class="logo" href="#" style="margin-left:-450px">Quantum Mobile</a>
+        <a class="logo" href="#" style="margin-left:-0px">Quantum Mobile</a>
         <input type="checkbox" id="check">
         <label for="check" class="icon">
             <i class="bx bx-menu" id="menu-icon"></i>
             <i class="bx bx-x" id="close-icon"></i>
         </label>
         <nav class="navbar">
-            <a href="index.html">Home</a>
-            <a href="">Services</a>
-            <a href="">Contact us</a>
-            <a href="team"><u>Our team</u></a>
+            <a href="index.php">Home</a>
+            <a href="about.php">About Us</a>
+            <a href="faq.php">FAQ</a>
+            <a href="team.php">Our team</a>
             <a style="--i:2" href="ticket.php">Ticket</a>
-            <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? '#' : 'login.php'; ?>">
-            <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?>
+            <a href="contactus.php">Contact us</a>
+            <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? 'account.php' : 'login.php'; ?>">
+            <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?></a>
 </a>
         </nav>
     </header>

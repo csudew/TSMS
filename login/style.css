@@ -39,6 +39,11 @@ header a {
     font-family: "Merriweather", serif;
     text-decoration: none;
 }
+
+a:active{
+  color:#2E3594;
+}
+
 .logo {
     font-size: 2rem;
     font-weight: 700;

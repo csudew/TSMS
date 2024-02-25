@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 24, 2024 at 03:34 PM
+-- Generation Time: Feb 25, 2024 at 08:24 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `name` varchar(20) NOT NULL,
   `userName` varchar(10) NOT NULL,
   `email` varchar(50) NOT NULL,
+  `type` varchar(20) NOT NULL,
   `gender` varchar(6) NOT NULL,
   `password` varchar(200) NOT NULL,
   `category` varchar(20) NOT NULL,
@@ -44,8 +45,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`adminId`, `name`, `userName`, `email`, `gender`, `password`, `category`, `phonenumber`) VALUES
-(12, 'UOC', 'UOC', 'UOC@gmail.com', 'male', '$2y$10$/346o6yhnM/mbUZ6OXx5juCb2yhjElDX9JOUHu98sao40fOw/Xcze', 'Call', 112581245);
+INSERT INTO `admin` (`adminId`, `name`, `userName`, `email`, `type`, `gender`, `password`, `category`, `phonenumber`) VALUES
+(12, 'UOC', 'UOC', 'UOC@gmail.com', 'DB Admin', 'male', '$2y$10$/346o6yhnM/mbUZ6OXx5juCb2yhjElDX9JOUHu98sao40fOw/Xcze', 'Call', 112581245);
 
 -- --------------------------------------------------------
 
@@ -134,14 +135,15 @@ CREATE TABLE IF NOT EXISTS `reply` (
   PRIMARY KEY (`replyid`),
   KEY `adminid` (`adminid`),
   KEY `ticketid` (`ticketid`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reply`
 --
 
 INSERT INTO `reply` (`replyid`, `ticketid`, `adminid`, `subject`, `message`, `date`) VALUES
-(17, 51, NULL, 'sdsadasd', 'asdasdas', '2024-02-21 18:52:55');
+(17, 51, NULL, 'sdsadasd', 'asdasdas', '2024-02-21 18:52:55'),
+(18, 57, NULL, 'then y ask', 'no ones care\r\n', '2024-02-24 22:01:25');
 
 -- --------------------------------------------------------
 
@@ -163,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   PRIMARY KEY (`ticketId`),
   KEY `adminId` (`adminId`),
   KEY `customerId` (`customerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ticket`
@@ -174,7 +176,9 @@ INSERT INTO `ticket` (`ticketId`, `category`, `subject`, `message`, `priority`, 
 (52, 'general', 'asdasdasd', 'asdadfadfdas', 'Low', 'New', NULL, 9, '2024-02-24 12:48:43'),
 (53, 'HBB', 'asdadasd', 'asdasdasdas', 'Low', 'New', NULL, 9, '2024-02-24 12:48:43'),
 (54, 'Call', 'call a friend', 'call a friend', 'Low', 'New', NULL, 9, '2024-02-24 12:48:43'),
-(55, 'Call', 'asdasd', 'asdasdas', 'Medium', 'New', NULL, 9, '2024-02-24 15:31:41');
+(55, 'Call', 'asdasd', 'asdasdas', 'Medium', 'New', NULL, 9, '2024-02-24 15:31:41'),
+(56, 'Call', 'asdasd', 'asdasdasd', 'Low', 'New', NULL, 9, '2024-02-24 16:29:36'),
+(57, 'TV', 'my tv is not workin', 'who cares\r\n', 'Medium', 'Replied', NULL, 9, '2024-02-24 16:31:25');
 
 --
 -- Constraints for dumped tables

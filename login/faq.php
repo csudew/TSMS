@@ -1,3 +1,27 @@
+<?php
+session_start();
+
+// Include the database connection file
+include '../php/connection.php';
+
+// Fetch the customer's information if available
+$customerUName = isset($_SESSION['customerId']) ? $_SESSION['customerId'] : 'Guest';
+
+$customerId = $_SESSION['customerId'];
+
+$checkCustomerQuery = "SELECT * FROM customer WHERE customerId = ?";
+$checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
+$checkCustomerStmt->execute([$customerId]);
+$customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
+$customerName=$customer['name'];
+$customerUName=$customer['userName'];
+
+// Query to fetch FAQ titles from the database
+$faqQuery = "SELECT * FROM faq";
+$stmt = $pdo->query($faqQuery);
+$faqItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +55,7 @@ $faqItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
 
-            <a class="logo" href="#" style="margin-left:-550px">Quantum Mobile</a>
+            <a class="logo" href="#" style="margin-left:-300px">Quantum Mobile</a>
 
             <!-- click menu -->
             <input type="checkbox" id="check">
@@ -41,30 +65,36 @@ $faqItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </label>
 
             <nav class="navbar">
-                <a style="--i:0"href="index.html">Home</a>
-                <a style="--i:1"href="about.php">About</a>
-                <a style="--i:2"href="#">Support</a>
-                <a style="--i:3"class="login" href="login.php">Log In</a>
+            <a href="index.php">Home</a>
+            <a href="about.php">About Us</a>
+            <a href="faq.php">FAQ</a>
+            <a href="team.php">Our team</a>
+            <a style="--i:2" href="ticket.php">Ticket</a>
+            <a href="contactus.php">Contact us</a>
+            <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? 'account.php' : 'login.php'; ?>">
+            <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?></a>
             </nav>
         </header>
         <!-- main content -->
         <div class="faq">
-    <h2  style="margin-top:20px">Frequently Asked Questions</h2>
-    <!-- FAQ items -->
-    <div class="quest">
-        <?php foreach ($faqItems as $faqItem): ?>
-            <div class="quest-item">
-                <button id="quest-button-<?php echo $faqItem['faqId']; ?>" aria-expanded="false">
-                    <span class="quest-title"><?php echo $faqItem['title']; ?></span>
-                    <span class="icon" aria-hidden="true"></span>
-                </button>
-                <div class="quest-content">
-                    <p><?php echo $faqItem['content']; ?></p>
+            <div style="margin-left:20px;margin-top:20px">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <!-- FAQ items -->
+            <div class="quest">
+                <?php foreach ($faqItems as $faqItem): ?>
+                    <div class="quest-item" style="margin-left:30px">
+                        <button id="quest-button-<?php echo $faqItem['faqId']; ?>" aria-expanded="false">
+                            <span class="quest-title"><?php echo $faqItem['title']; ?></span>
+                            <span class="icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="quest-content">
+                            <p><?php echo $faqItem['content']; ?></p>
+                        </div>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
+            </div>
       
         <!-- footer -->
         <footer >
