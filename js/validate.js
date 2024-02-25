@@ -23,8 +23,8 @@ function validateForm(){
     }else if (phoneNumber == "") {
         alert("Phone Number must be filled out");
         return false;
-    }else if (phoneNumber.length !== 10) {
-        alert("Phone number must be 10 digits long");
+    }else if (phoneNumber.length > 10) {
+        alert("Phone number must be less than 10 digits ");
         return false;
     }else if (category == "") {
         alert("Expert category must be filled out");

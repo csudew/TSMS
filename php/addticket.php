@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
     } catch(PDOException $e) {
         $_SESSION['error_message'] = "Error: " . $e->getMessage();
-        header("Location: ../login/ticket.php?5555");
+        header("Location: ../login/ticket.php");
         exit();
     } finally {
         $pdo = null;

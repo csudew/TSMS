@@ -129,7 +129,7 @@ if (!$customer) {
         <a class="logo" href="#">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
-        <a class="logo" href="#" style="margin-left:-350px">Quantum Mobile</a>
+        <a class="logo" href="#" style="margin-left:-300px">Quantum Mobile</a>
         <input type="checkbox" id="check">
         <label for="check" class="icon">
             <i class="bx bx-menu" id="menu-icon"></i>

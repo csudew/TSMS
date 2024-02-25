@@ -1,15 +1,20 @@
 <?php
 
+session_start(); // Start the session to access session variables
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include_once ('connection.php');
+    include_once('connection.php');
 
-    $ticketId=$_POST['ticketId'];
-    $reply=$_POST['reply'];
-    $subject=$_POST['subject'];
+    $ticketId = $_POST['ticketId'];
+    $reply = $_POST['reply'];
+    $subject = $_POST['subject'];
+    
+    // Retrieve adminId from session
+    $adminId = $_SESSION['adminId'];
 
-    $query = "INSERT INTO reply (ticketId, subject, message) VALUES (?, ?,?)";
+    $query = "INSERT INTO reply (ticketId, adminId, subject, message) VALUES (?, ?, ?, ?)";
     $stmt = $pdo->prepare($query);
-    $stmt->execute([$ticketId, $subject, $reply]);
+    $stmt->execute([$ticketId, $adminId, $subject, $reply]);
 
     $updateQuery = "UPDATE ticket SET status = 'Replied' WHERE ticketId = ?";
     $updateStmt = $pdo->prepare($updateQuery);

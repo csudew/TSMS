@@ -5,7 +5,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $AUname = $_POST["AUName"];
     $Agender = $_POST["gender"];
     $Aemail = $_POST["Aemail"];
-    $Atype = $_POST["Atype"];
     $APnum = $_POST["APnum"]; 
     $Acat = $_POST["Acategory"];
     $Apw = $_POST["Apw"];
@@ -23,11 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         require_once "connection.php";
 
-        $query = "INSERT INTO admin (name, userName, email, type, phonenumber, gender, password, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; 
+        $query = "INSERT INTO admin (name, userName, email, phonenumber, gender, password, category) VALUES (?, ?, ?, ?, ?, ?, ?)"; 
 
         $stmt = $pdo->prepare($query);
 
-        $stmt->execute([$Aname, $AUname, $Aemail, $Atype, $APnum, $Agender, $hashedPassword, $Acat]);
+        $stmt->execute([$Aname, $AUname, $Aemail, $APnum, $Agender, $hashedPassword, $Acat]);
 
         $pdo = NULL;
         $stmt = NULL;

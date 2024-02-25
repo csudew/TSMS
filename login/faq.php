@@ -4,17 +4,25 @@ session_start();
 // Include the database connection file
 include '../php/connection.php';
 
-// Fetch the customer's information if available
-$customerUName = isset($_SESSION['customerId']) ? $_SESSION['customerId'] : 'Guest';
+// Initialize the customer username variable
+$customerUName = 'Guest';
 
-$customerId = $_SESSION['customerId'];
+// Check if the 'customerId' index is set in the session
+if (isset($_SESSION['customerId'])) {
+    $customerId = $_SESSION['customerId'];
 
-$checkCustomerQuery = "SELECT * FROM customer WHERE customerId = ?";
-$checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
-$checkCustomerStmt->execute([$customerId]);
-$customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
-$customerName=$customer['name'];
-$customerUName=$customer['userName'];
+    // Fetch the customer's information from the database
+    $checkCustomerQuery = "SELECT * FROM customer WHERE customerId = ?";
+    $checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
+    $checkCustomerStmt->execute([$customerId]);
+    $customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
+
+    // If the customer exists, update the customer username variable
+    if ($customer) {
+        $customerUName = $customer['userName'];
+    }
+}
+
 
 // Query to fetch FAQ titles from the database
 $faqQuery = "SELECT * FROM faq";

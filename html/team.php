@@ -79,7 +79,7 @@ if (!$admin) {
 
     <div class="frame6">
         <ul id="actionnav2">
-        <?php if($admin['type'] == 'DB Admin'): ?>
+        <?php if($admin['category'] == 'Web Admin'): ?>
             <a href="newmember.php"><li>Add Admin</li></a>
         <?php endif; ?>
         </ul>

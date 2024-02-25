@@ -187,58 +187,45 @@ if (!$admin) {
     ?>
 
 
-    <script>/* bar chart - daily registration*/
-    google.charts.load('current', {'packages': ['corechart', 'bar']});
-    google.charts.setOnLoadCallback(drawChart);
+<!--donut bar chart php-->
+<?php
+include '../php/connection.php';
 
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable(<?php echo $jsonData; ?>);
+$categoryQuery = "SELECT category, COUNT(*) as ticket_count FROM ticket GROUP BY category";
+$stmt = $pdo->query($categoryQuery);
+$categoryResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        var options = {
-            title: 'New Registrations Over the Past 7 Days',
-            hAxis: {
-                title: 'Date'
-            },
-            vAxis: {
-                title: 'Number of Registrations'
-            }
-        };
+$categoryData = [['Category', 'Ticket Count']];
+foreach ($categoryResult as $row) {
+    $categoryData[] = [$row['category'], (int)$row['ticket_count']];
+}
 
-        var chart = new google.visualization.ColumnChart(
-            document.getElementById('barchart_div'));
-        chart.draw(data, options);
-    }
+$categoryJsonData = json_encode($categoryData);
+?>
+
+
+<!--donut bar chart-->
+<script type="text/javascript">
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+    // Convert JSON data to DataTable format
+    var data = google.visualization.arrayToDataTable(<?php echo $categoryJsonData; ?>);
+
+    // Set chart options
+    var options = {
+        title: 'Number of Tickets by Category',
+        pieHole: 0.4,
+    };
+
+    // Create a new PieChart object
+    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+
+    // Draw the chart with the specified options
+    chart.draw(data, options);
+}
 </script>
-
-    <!-- Pie Chart: Number of Tickets by Category -->
-    <?php
-      $categoryQuery = "SELECT category, COUNT(*) as ticket_count FROM ticket GROUP BY category";
-      $stmt = $pdo->query($categoryQuery);
-      $categoryResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-      $categoryData = [];
-      foreach ($categoryResult as $row) {
-          $categoryData[] = [$row['category'], (int)$row['ticket_count']];
-      }
-
-      $categoryJsonData = json_encode($categoryData);
-    ?>
-
-    <script>
-        google.charts.load('current', {'packages': ['corechart', 'bar']});
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable(<?php echo $categoryJsonData; ?>);
-
-            var options = {
-                title: 'Number of Tickets by Category'
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
-    </script>
 
 
 </head>
@@ -305,21 +292,47 @@ if (!$admin) {
 
     <div class="frame1" id="barchart_div" style="margin-right:20px"></div><!-- bar chart-->
     <div class="frame1" id="columnchart_material" style="margin-right:20px"></div><!--ticket bar chart-->
-    <div class="frame1" id="chart_div" ></div><!-- pie chart-->
+    <div class="frame1" id="donutchart" style="width: 600px; height: 500px;"></div><!-- pie chart-->
 
-   <!-- <div id="ttable" class="frame1" style="float:right;margin-top:-240px;margin-right:100px;">
-        <table style="width:500px;min-height:100px;">
-            <thead>
-                <th>Admin Id</th>
-                <th>Admin Name</th>
-                <th>#Replied Tickets</th>
-            </thead>
-            <tr>
 
-            </tr>
-        </table>
-    </div> -->
+    
+           <!-- Admin table -->
+           <div class="frame1" style="float:right;margin-top:-440px;margin-right:100px;">
+           <b>Number of Admin Replied</b>
+           </div>
+           <div class="frame1" style="float:right;margin-top:-410px;margin-right:100px;">
+           
+            <div id="ttable">
+                <table style="width:500px;min-height:100px;">
+                    <thead>
+                        <th>Admin Id</th>
+                        <th>Admin Name</th>
+                        <th>Category</th>
+                        <th>#Replied Tickets</th>
+                    </thead>
+                    <?php
+                    // Fetch data from the admin and reply tables
+                    $adminDataQuery = "SELECT admin.adminId, admin.name, admin.category, COUNT(reply.adminId) AS replied_tickets
+                                       FROM admin
+                                       LEFT JOIN reply ON admin.adminId = reply.adminId
+                                       WHERE admin.category != 'web admin' 
+                                       GROUP BY admin.adminId";
+                    $adminDataStmt = $pdo->query($adminDataQuery);
+                    $adminDataResult = $adminDataStmt->fetchAll(PDO::FETCH_ASSOC);
 
+                    // Display admin information in table rows
+                    foreach ($adminDataResult as $row) {
+                        echo "<tr>";
+                        echo "<td>" . $row['adminId'] . "</td>";
+                        echo "<td>" . $row['name'] . "</td>";
+                        echo "<td>" . $row['category'] . "</td>";
+                        echo "<td>" . $row['replied_tickets'] . "</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </table>
+            </div>
+        </div>
 
     <div>
         <footer style="position:relative">

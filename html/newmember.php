@@ -108,20 +108,13 @@ if (!$admin) {
                 </div>
 
                 <div style="margin-top: 30px;">
-                    Admin Type <font style="color: red;">*</font> : 
-                    <select name="Atype" id="">
-                        <option value="Ticket Admin">Ticket Admin</option>
-                        <option value="DB Admin">DB Admin</option>
-                    </select>
-                </div>
-
-                <div style="margin-top: 30px;">
                     Phone Number<font style="color: red;">*</font> : <br><input type="text" name="APnum" placeholder="Admin Phone Number">
                 </div>
     
                 <div style="margin-top: 30px;">
                     Expert Category<font style="color: red;">*</font> : 
                     <select name="Acategory" id="">
+                        <option value="Web Admin">Web Admin</option>
                         <option value="Call">Call</option>
                         <option value="Internet">Internet</option>
                         <option value="HBB">HBB</option>

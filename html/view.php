@@ -18,6 +18,7 @@ $checkAdminStmt = $pdo->prepare($checkAdminQuery);
 $checkAdminStmt->execute([$adminId]);
 $admin = $checkAdminStmt->fetch(PDO::FETCH_ASSOC);
 $adminName=$admin['name'];
+$adminCategory = $admin['category'];
 
 // If adminId does not exist in the database, redirect to the login page
 if (!$admin) {
@@ -203,6 +204,7 @@ if (!$admin) {
         <?php
             if($ticket){
                 if($ticket['status']!=='Replied'){
+                    if ($ticket['category'] == $adminCategory) {
                     ?>
                     
                     <!-- Add Reply form -->
@@ -217,7 +219,7 @@ if (!$admin) {
                         echo "<p style='color: blue;'>"."Reply Sent"."</p>"."
                         <script>
                             setTimeout(()=> {var msg = document.getElementById('fmessage').style.display = 'none';
-                            }, 5000);
+                            }, 2000);
                         </script>";
                         //unset($_SESSION['success_message']);
                     }
@@ -240,6 +242,7 @@ if (!$admin) {
             </div>
 
             <?php
+                    }
                 }else{
                     $queryReplies = "SELECT * FROM reply WHERE ticketId = ?";
                     $stmtReplies = $pdo->prepare($queryReplies);
