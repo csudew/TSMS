@@ -6,20 +6,16 @@ if (!isset($_SESSION['adminId'])) {
     exit;
 }
 
-// Include the database connection file
 include '../php/connection.php';
 
-// Get the adminId from the session
 $adminId = $_SESSION['adminId'];
 
-// Query to check if the adminId exists in the database
 $checkAdminQuery = "SELECT * FROM admin WHERE adminId = ?";
 $checkAdminStmt = $pdo->prepare($checkAdminQuery);
 $checkAdminStmt->execute([$adminId]);
 $admin = $checkAdminStmt->fetch(PDO::FETCH_ASSOC);
 $adminName=$admin['name'];
 
-// If adminId does not exist in the database, redirect to the login page
 if (!$admin) {
     header('Location:../login/login.php');
     exit;
@@ -27,13 +23,12 @@ if (!$admin) {
 
 // Function to logout
 function logout() {
-    // Unset all of the session variables
+    // Unset all of the session
     $_SESSION = [];
 
     // Destroy the session
     session_destroy();
 
-    // Redirect to login page
     header('Location: ../login/login.php');
     exit;
 }
@@ -49,13 +44,10 @@ if (!isset($_SESSION['adminId'])) {
     exit;
 }
 
-// Include the database connection file
 include '../php/connection.php';
 
-// Get the adminId from the session
 $adminId = $_SESSION['adminId'];
 
-// Query to retrieve admin details based on adminId from session
 $fetchAdminQuery = "SELECT * FROM admin WHERE adminId = ?";
 $fetchAdminStmt = $pdo->prepare($fetchAdminQuery);
 $fetchAdminStmt->execute([$adminId]);
@@ -108,10 +100,7 @@ $adminDetails = $fetchAdminStmt->fetch();
     
 
     <?php
-    // Include your database connection file
-    require_once "../php/connection.php";
-
-    // Fetch admin details based on adminId from session
+ 
     $adminId = $_SESSION['adminId'];
     $fetchAdminQuery = "SELECT * FROM admin WHERE adminId = ?";
     $fetchAdminStmt = $pdo->prepare($fetchAdminQuery);

@@ -1,19 +1,15 @@
 <?php
 session_start();
 
-// Include the database connection file
 include '../php/connection.php';
 
-// Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Perform login authentication and set session variables if login is successful
-    // (Assuming your login logic is handled in ../php/loginphp.php)
+
     include '../php/loginphp.php';
 }
 
-// Check if the user is already logged in
+
 if (isset($_SESSION['customerId'])) {
-    // Redirect the user to the account page if they are already logged in
     header('Location: account.php');
     exit;
 }
@@ -27,21 +23,21 @@ if (isset($_SESSION['customerId'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to the main CSS file -->
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
 </head>
 <body>
-    <header class="header"> <!-- Header with navigation bar -->
+    <header class="header">
          
-        <a class="logo" href="#">
+        <a class="logo" href="index.php">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
 
-        <a class="logo" href="#" style="margin-left:-300px">Quantum Mobile</a>
-        <input type="checkbox" id="check"> <!-- Checkbox for the mobile menu -->
+        <a class="logo" href="index.php" style="margin-left:-300px">Quantum Mobile</a>
+        <input type="checkbox" id="check">
         <label for="check" class="icon">
-            <i class='bx bx-menu' id="menu-icon"></i> <!-- Menu icon -->
-            <i class='bx bx-x' id="close-icon"></i> <!-- Close icon -->
+            <i class='bx bx-menu' id="menu-icon"></i> 
+            <i class='bx bx-x' id="close-icon"></i>
         </label>
         <nav class="navbar"> <!-- Navigation links -->
             <a href="index.php">Home</a>
@@ -106,14 +102,11 @@ if (isset($_SESSION['customerId'])) {
         </ul>
         <!-- Footer menu -->
         <ul class="footmenu">
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-            <li><a href="#">item</a></li>
-        </ul>
-        <!-- Company copyright -->
-        <p>&copy; 2024 PrimeSK</p>
+                <li><a href="#">Privacy Policies</a></li>
+                <li><a href="#">Terms and Services</a></li>
+            </ul>
+            <!-- Company copyright -->
+            <p>&copy; 2024 Quantem Mobile Coperation</p>
     </div>
 </footer>
 </div>

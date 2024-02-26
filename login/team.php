@@ -1,23 +1,24 @@
 <?php
 session_start();
 
-// Include the database connection file
 include '../php/connection.php';
 
-// Initialize the customer username variable
 $customerUName = 'Guest';
 
-// Check if the 'customerId' index is set in the session
+$fetchAdminsQuery = "SELECT * FROM admin WHERE category != 'Web Admin'";
+$fetchAdminsStmt = $pdo->query($fetchAdminsQuery);
+$admins = $fetchAdminsStmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
 if (isset($_SESSION['customerId'])) {
     $customerId = $_SESSION['customerId'];
 
-    // Fetch the customer's information from the database
     $checkCustomerQuery = "SELECT * FROM customer WHERE customerId = ?";
     $checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
     $checkCustomerStmt->execute([$customerId]);
     $customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
 
-    // If the customer exists, update the customer username variable
     if ($customer) {
         $customerUName = $customer['userName'];
     }
@@ -30,7 +31,8 @@ if (isset($_SESSION['customerId'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Team</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to the main CSS file -->
+    <link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
+    <link rel="stylesheet" href="style.css"> 
     <style>
         .h1 {
             font-size:25px;
@@ -75,14 +77,16 @@ if (isset($_SESSION['customerId'])) {
         .member .imga:hover p {
             background-color: rgba(255, 255, 255, 1);
         }
+
+        
     </style>
 </head>
 <body>
     <header class="header">
-        <a class="logo" href="#">
+        <a class="logo" href="index.php">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
-        <a class="logo" href="#" style="margin-left:-300px">Quantum Mobile</a>
+        <a class="logo" href="index.php" style="margin-left:-300px">Quantum Mobile</a>
         <input type="checkbox" id="check">
         <label for="check" class="icon">
             <i class="bx bx-menu" id="menu-icon"></i>
@@ -104,33 +108,19 @@ if (isset($_SESSION['customerId'])) {
         <div class="content">
             <div class="footer-links">
                 <h2>Meet our Team</h2>
-                <h3 style="color: rgb(86, 58, 156);">"some quotes like team motive"</h3>
+                <h3 style="color: rgb(86, 58, 156);">"A successful team is a group of many hands and one mind." - Bill Bethel</h3>
 
             </div>
         </div>
     </div>
 
     <div class="member">
-        <div class="imga">
-            <img src="userProfile.jpg">
-            <p>Name <br> job </p>
-        </div>
-        <div class="imga">
-            <img src="userProfile.jpg">
-            <p>Name <br> job </p>
-        </div>
-        <div class="imga">
-            <img src="userProfile.jpg">
-            <p>Name <br> job </p>
-        </div>
-        <div class="imga">
-            <img src="userProfile.jpg">
-            <p>Name <br> job </p>
-        </div>
-        <div class="imga">
-            <img src="userProfile.jpg">
-            <p>Name <br> job </p>
-        </div>
+        <?php foreach ($admins as $admin): ?>
+            <div class="imga">
+                <img src="userProfile.jpg"> 
+                <p><?php echo $admin['userName'] ?><br><?php echo $admin['category']." Expert" ?></p>
+            </div>
+        <?php endforeach; ?>
     </div> <br><br>
 
     <footer>
@@ -143,13 +133,10 @@ if (isset($_SESSION['customerId'])) {
                 <li><a href="#"><ion-icon name="logo-youtube"></ion-icon></a></li>
             </ul>
             <ul class="footmenu">
-                <li><a href="#">item</a></li>
-                <li><a href="#">item</a></li>
-                <li><a href="#">item</a></li>
-                <li><a href="#">item</a></li>
-                <li><a href="#">item</a></li>
+                <li><a href="#">Privacy Policies</a></li>
+                <li><a href="#">Terms and Services</a></li>
             </ul>
-            <p>&copy; 2024 Company Name</p>
+            <p>&copy; 2024 Quantem Mobile Coperation</p>
         </div>
     </footer>
 

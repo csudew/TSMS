@@ -31,17 +31,16 @@ if (!$customer) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to the main CSS file -->
+    <link rel="stylesheet" href="style.css"> 
     <style>
-        /* Additional CSS styles specific to the account page */
         .account-container {
             display: flex;
             justify-content: space-between;
-            margin-top: 50px; /* Adjusted margin for better spacing */
+            margin-top: 50px; 
         }
         .account-details,
         .password-reset {
-            width: 48%; /* Adjusted width for better spacing */
+            width: 48%; 
             padding: 20px;
             background-color: #f9f9f9;
             border-radius: 10px;
@@ -49,7 +48,7 @@ if (!$customer) {
         }
         .account-details h2,
         .password-reset h2 {
-            margin-top: 0; /* Remove top margin for consistency */
+            margin-top: 0; 
         }
         .password-reset {
             margin-left: 20px;
@@ -63,14 +62,14 @@ if (!$customer) {
             margin-bottom: 5px;
         }
         .form-group input {
-            width: calc(100% - 20px); /* Adjusted width for better spacing */
+            width: calc(100% - 20px); 
             padding: 10px;
             border: 1px solid #cabff4;
             border-radius: 5px;
             box-sizing: border-box;
         }
         .form-group button {
-            width: calc(100% - 20px); /* Adjusted width for better spacing */
+            width: calc(100% - 20px); 
             display: block;
             text-align: left;
             width: 100%;
@@ -87,10 +86,10 @@ if (!$customer) {
 </head>
 <body>
     <header class="header">
-        <a class="logo" href="#">
+        <a class="logo" href="index.php">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
-        <a class="logo" href="#" style="margin-left:-200px">Quantum Mobile</a>
+        <a class="logo" href="index.php" style="margin-left:-200px">Quantum Mobile</a>
         <input type="checkbox" id="check">
         <label for="check" class="icon">
             <i class="bx bx-menu" id="menu-icon"></i>
@@ -116,16 +115,13 @@ if (!$customer) {
                 <h3>Welcome to your account.</h3><br>
             </div>    
                 <div class="account-container">
-                    <!-- Account details on the left side -->
                     <div class="account-details">
                         <h2>Account Details</h2><br>
-                        <!-- Display user's account details here -->
                         <p>Name: <?php echo $customerName; ?></p><br>
                         <p>Username: <?php echo $customer['userName']; ?></p><br>
                         <p>Phone Number: <?php echo $customer['phonenumber']; ?></p><br>
                         <p>Email: <?php echo $customer['email']; ?></p><br>
                     </div>
-                    <!-- Password reset form on the right side -->
                     <div class="password-reset">
                         <h2>Password Reset</h2><br>
                         <div class="form-group">
@@ -153,7 +149,6 @@ if (!$customer) {
                             }
                             
                         ?>
-                        <!-- Form to reset password -->
                         <form class="password-reset-form" action="../php/cpwchange.php" method="POST" >
                             <div class="form-group">
                                 <label for="current-password">Current Password:</label>
@@ -202,21 +197,17 @@ if (!$customer) {
             </ul>
             <!-- Footer menu -->
             <ul class="footmenu">
-                <li><a href="#">item</a></li>
-                <li><a href="#">item</a></li>
-                <li><a href="#">item</a></li>
-                <li><a href="#">item</a></li>
-                <li><a href="#">item</a></li>
+                <li><a href="#">Privacy Policies</a></li>
+                <li><a href="#">Terms and Services</a></li>
             </ul>
             <!-- Company copyright -->
-            <p>&copy; 2024 PrimeSK</p>
+            <p>&copy; 2024 Quantem Mobile Coperation</p>
         </div>
     </footer>
 
-    <!-- Footer icons pack -->
+    <!-- Footer icons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <!-- JavaScript file -->
     <script src="style.js"></script>
 </body>
 </html>

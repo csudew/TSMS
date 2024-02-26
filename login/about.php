@@ -1,23 +1,18 @@
 <?php
 session_start();
 
-// Include the database connection file
 include '../php/connection.php';
 
-// Initialize the customer username variable
 $customerUName = 'Guest';
 
-// Check if the 'customerId' index is set in the session
 if (isset($_SESSION['customerId'])) {
     $customerId = $_SESSION['customerId'];
 
-    // Fetch the customer's information from the database
     $checkCustomerQuery = "SELECT * FROM customer WHERE customerId = ?";
     $checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
     $checkCustomerStmt->execute([$customerId]);
     $customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
 
-    // If the customer exists, update the customer username variable
     if ($customer) {
         $customerUName = $customer['userName'];
     }
@@ -41,10 +36,10 @@ if (isset($_SESSION['customerId'])) {
         <!-- navigation bar -->
         <header class="header">
              
-          <a class="logo" href="#">
+          <a class="logo" href="index.php">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
-        <a class="logo" href="#" style="margin-left:-300px">Quantum Mobile</a>
+        <a class="logo" href="index.php" style="margin-left:-300px">Quantum Mobile</a>
 
 
             <!-- click menu -->
@@ -71,18 +66,17 @@ if (isset($_SESSION['customerId'])) {
                 
                 <div class="footer-links">
 
-                    <h3>Welcome to Quantum Mobile!</h3><br>
-
-                    <div class="box"><a href="#">Products</a></div>
-                    <div class="box"><a href="#">Pricing</a></div>
-                    <div class="box"><a href="#">Solutions</a></div>
-                    <div class="box"><a href="#">Resources</a></div>
+                    <h1>Welcome to Quantum Mobile!</h1><br>
 
                     <img src="pic2.jpg" alt="Company Image">
-                    
-                <p>We are committed to providing top-notch technical support solutions tailored to meet the needs of your business. Our team of experienced professionals is dedicated to ensuring your systems run smoothly, minimizing downtime, and maximizing productivity.</p>
-                <p>With our innovative tools and proactive approach, we strive to exceed your expectations and deliver exceptional customer service. Whether you need troubleshooting assistance, software updates, or system optimization, we've got you covered.</p>
-                <p>Contact us today to learn more about our services and how we can help your business thrive in today's digital landscape.</p>
+                <font style="font-size:23px">    
+                <p><b>Quantum Mobile</b> is a dynamic mobile network company that's committed to providing exceptional connectivity solutions.<br> We specialize in offering reliable <b>voice calls, high-speed internet, television, and home broadband services.</b></p><br>
+
+                <p>Our goal is simple: to keep you connected, whether you're making calls, streaming your favorite shows, or browsing the web. <br>With a focus on innovation and customer satisfaction, we're dedicated to delivering a seamless mobile experience tailored to your needs.</p><br>
+
+                <p>
+                Join us as we redefine connectivity and bring you closer to what matters most.<br>Quantum Mobile - Connecting You Always..</p>
+                </font>
                 </div>
                 </div>
       
@@ -101,14 +95,11 @@ if (isset($_SESSION['customerId'])) {
                 </ul>
                 <!-- Footer menu -->
                 <ul class="footmenu">
-                    <li><a href="#">item</a></li>
-                    <li><a href="#">item</a></li>
-                    <li><a href="#">item</a></li>
-                    <li><a href="#">item</a></li>
-                    <li><a href="#">item</a></li>
-                </ul>
-                <!-- Company copyright -->
-                <p>&copy; 2024 Quantum Mobile</p>
+                <li><a href="#">Privacy Policies</a></li>
+                <li><a href="#">Terms and Services</a></li>
+            </ul>
+            <!-- Company copyright -->
+            <p>&copy; 2024 Quantem Mobile Coperation</p>
             </div>
         </footer>
     </div>

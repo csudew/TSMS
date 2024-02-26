@@ -1,30 +1,23 @@
 <?php
 session_start();
 
-// Include the database connection file
 include '../php/connection.php';
 
-// Initialize the customer username variable
 $customerUName = 'Guest';
 
-// Check if the 'customerId' index is set in the session
 if (isset($_SESSION['customerId'])) {
     $customerId = $_SESSION['customerId'];
 
-    // Fetch the customer's information from the database
     $checkCustomerQuery = "SELECT * FROM customer WHERE customerId = ?";
     $checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
     $checkCustomerStmt->execute([$customerId]);
     $customer = $checkCustomerStmt->fetch(PDO::FETCH_ASSOC);
 
-    // If the customer exists, update the customer username variable
     if ($customer) {
         $customerUName = $customer['userName'];
     }
 }
 
-
-// Query to fetch FAQ titles from the database
 $faqQuery = "SELECT * FROM faq";
 $stmt = $pdo->query($faqQuery);
 $faqItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -43,27 +36,17 @@ $faqItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
 </head>
 
-<?php
-// Include the database connection file
-include '../php/connection.php';
-
-// Query to fetch FAQ titles from the database
-$faqQuery = "SELECT * FROM faq";
-$stmt = $pdo->query($faqQuery);
-$faqItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
 <body>
     <div class="container">
         <!-- navigation bar -->
         <header class="header">
 
           
-          <a class="logo" href="#">
+          <a class="logo" href="index.php">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
 
-            <a class="logo" href="#" style="margin-left:-300px">Quantum Mobile</a>
+            <a class="logo" href="index.php" style="margin-left:-300px">Quantum Mobile</a>
 
             <!-- click menu -->
             <input type="checkbox" id="check">
@@ -117,14 +100,11 @@ $faqItems = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </ul>
                 <!-- Footer menu -->
                 <ul class="footmenu">
-                    <li><a href="#">item</a></li>
-                    <li><a href="#">item</a></li>
-                    <li><a href="#">item</a></li>
-                    <li><a href="#">item</a></li>
-                    <li><a href="#">item</a></li>
-                </ul>
-                <!-- Company copyright -->
-                <p>&copy; 2024 Quantum Mobile</p>
+                <li><a href="#">Privacy Policies</a></li>
+                <li><a href="#">Terms and Services</a></li>
+            </ul>
+            <!-- Company copyright -->
+            <p>&copy; 2024 Quantem Mobile Coperation</p>
             </div>
         </footer>
     </div>

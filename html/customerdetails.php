@@ -6,20 +6,16 @@ if (!isset($_SESSION['adminId'])) {
     exit;
 }
 
-// Include the database connection file
 include '../php/connection.php';
 
-// Get the adminId from the session
 $adminId = $_SESSION['adminId'];
 
-// Query to check if the adminId exists in the database
 $checkAdminQuery = "SELECT * FROM admin WHERE adminId = ?";
 $checkAdminStmt = $pdo->prepare($checkAdminQuery);
 $checkAdminStmt->execute([$adminId]);
 $admin = $checkAdminStmt->fetch(PDO::FETCH_ASSOC);
 $adminName=$admin['name'];
 
-// If adminId does not exist in the database, redirect to the login page
 if (!$admin) {
     header('Location: ../login/login.php');
     exit;
@@ -27,26 +23,20 @@ if (!$admin) {
 ?>
 
 <?php
-// customerdetails.php
-include_once('../php/connection.php');
 
-// Retrieve data from URL parameters
 $CName = $_GET['CName'] ?? '';
 $CUName = $_GET['CUName'] ?? '';
 $Cemail = $_GET['Cemail'] ?? '';
 $CPnum = $_GET['CPnum'] ?? '';
 
-// Prepare the query
 $query = "SELECT * FROM customer WHERE name = :CName OR userName = :CUName OR email = :Cemail OR phonenumber = :CPnum";
 $stmt = $pdo->prepare($query);
 
-// Bind parameters
 $stmt->bindParam(':CName', $CName);
 $stmt->bindParam(':CUName', $CUName);
 $stmt->bindParam(':Cemail', $Cemail);
 $stmt->bindParam(':CPnum', $CPnum);
 
-// Execute the query
 $stmt->execute();
 $result = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
