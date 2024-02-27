@@ -39,7 +39,7 @@ if (isset($_SESSION['customerId'])) {
           <a class="logo" href="index.php">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
-        <a class="logo" href="index.php" style="margin-left:-300px">Quantum Mobile</a>
+        <a class="logo" href="index.php" style="margin-left:-200px">Quantum Mobile</a>
 
 
             <!-- click menu -->
@@ -53,8 +53,9 @@ if (isset($_SESSION['customerId'])) {
             <a href="about.php">About Us</a>
             <a href="faq.php">FAQ</a>
             <a href="team.php">Our team</a>
+            <a href="help.php">Help</a>
             <a style="--i:2" href="ticket.php">Ticket</a>
-            <a href="contactus.php">Contact us</a>
+            <a href="contactus/contact.php">Contact us</a>
             <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? 'account.php' : 'login.php'; ?>">
             <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?></a>
                
@@ -66,9 +67,9 @@ if (isset($_SESSION['customerId'])) {
                 
                 <div class="footer-links">
 
-                    <h1>Welcome to Quantum Mobile!</h1><br>
+                    <h1>Welcome to <font style="color:#434DC8">Quantum Mobile</font></h1><br>
 
-                    <img src="pic2.jpg" alt="Company Image">
+                    <img src="pic2.jpg" alt="Company Image" style="height:500px;width:700px">
                 <font style="font-size:23px">    
                 <p><b>Quantum Mobile</b> is a dynamic mobile network company that's committed to providing exceptional connectivity solutions.<br> We specialize in offering reliable <b>voice calls, high-speed internet, television, and home broadband services.</b></p><br>
 
@@ -95,8 +96,8 @@ if (isset($_SESSION['customerId'])) {
                 </ul>
                 <!-- Footer menu -->
                 <ul class="footmenu">
-                <li><a href="#">Privacy Policies</a></li>
-                <li><a href="#">Terms and Services</a></li>
+                <li><a href="../html/privacy_policy.php"> Privacy Policy</a></li>
+                <li><a href="../html/term_and_conditions.php">Terms of Service</a></li>
             </ul>
             <!-- Company copyright -->
             <p>&copy; 2024 Quantem Mobile Coperation</p>

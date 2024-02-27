@@ -74,6 +74,22 @@ if (!$admin) {
         <font style="font-size: x-large;margin-top: 30px;font-weight: bold;">Manage Knowledge</font>
     </div>
 
+    <div class="frame1" id="message">
+    <?php
+                
+
+                    if (isset($_GET['message'])) {
+                        echo "<p style='color: blue;'>"."Deleted successfully"."</p>"."
+                        <script>
+                            setTimeout(()=> {var msg = document.getElementById('message').style.display = 'none';
+                            }, 2000);
+                        </script>";
+                        //unset($_SESSION['success_message']);
+                    }
+                    session_abort();
+     ?>
+     </div>
+
     <div class="frame6">
         <ul id="actionnav2">
             <li><a href="faq.php">Add New FAQ</a></li>
@@ -113,7 +129,7 @@ if (!$admin) {
                 <td><?php echo $row['faqId']?></td>
                 <td><?php echo $row['title']?></td>
                 <td><?php echo $row['type']?></td>
-                <td>Function</td>
+                <td> <button onclick="viewFaq(<?php echo $row['faqId']; ?>)">View</button></td>
             </tr>
             <?php
                 }
@@ -124,7 +140,7 @@ if (!$admin) {
     <div>
         <footer style="position:fixed;">
             <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
-              <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
+            <a href="privacy_policy.php">  Privacy Policy </a>| <a href="term_and_conditions.php">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
 
@@ -135,7 +151,31 @@ if (!$admin) {
         document.getElementById('navdiv').style.height = pageHeight + 'px';
         };
     </script>
-    
+
+<script>
+    function viewFaq(faqId) {
+        window.location = 'viewfaq.php?faqId=' + faqId;
+    }
+</script>
+
+<script>
+    if (document.getElementById('message')) {
+        setTimeout(function() {
+            document.getElementById('message').style.display = 'none';
+        }, 2000);
+    }
+</script>
+
+<script>
+        setTimeout(function() {
+            var msg = document.getElementById('fmessage');
+            if (msg) {
+                msg.style.display = 'none';
+            }
+        }, 2000);
+    </script>
+
+
 </body>
 
 

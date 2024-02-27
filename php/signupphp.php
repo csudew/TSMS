@@ -8,31 +8,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $CPnum = $_POST["phone"];
     $Cpw = $_POST["password"];
 
-    // Hash the password
     $hashedPassword = password_hash($Cpw, PASSWORD_DEFAULT);
 
     try {
         require_once "connection.php";
 
-        // Check if the email exists in the customer table
-        $checkCustomerQuery = "SELECT * FROM customer WHERE email = ? ";
+        $checkCustomerQuery = "SELECT * FROM customer WHERE email = ? OR userName = ? OR name = ?";
         $checkCustomerStmt = $pdo->prepare($checkCustomerQuery);
-        $checkCustomerStmt->execute([$Cemail]);
+        $checkCustomerStmt->execute([$Cemail, $CUname, $Cname]);
         $existingCustomer = $checkCustomerStmt->fetch();
 
-        // Check if the email exists in the admin table
-        $checkAdminQuery = "SELECT * FROM admin WHERE email = ? ";
+        $checkAdminQuery = "SELECT * FROM admin WHERE email = ? OR userName = ? OR name = ?";
         $checkAdminStmt = $pdo->prepare($checkAdminQuery);
-        $checkAdminStmt->execute([$Cemail]);
+        $checkAdminStmt->execute([$Cemail, $CUname, $Cname]);
         $existingAdmin = $checkAdminStmt->fetch();
 
-        // If email exists in either table, redirect with error
         if ($existingCustomer || $existingAdmin) {
             header("Location:../login/signup.php?error=exists");
             exit();
         }
 
-        // Insert into customer table if email doesn't exist in either table
         $insertQuery = "INSERT INTO customer (name, userName, email, phonenumber, Gender, password) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $pdo->prepare($insertQuery);
         $stmt->execute([$Cname, $CUname, $Cemail, $CPnum, $Cgender, $hashedPassword]);

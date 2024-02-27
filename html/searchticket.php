@@ -104,19 +104,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $keyword = $_POST['data'];
 
         try {
-            // Search for tickets using the keyword in the subject or content
             $sql = "SELECT * FROM ticket WHERE subject LIKE :keyword OR message LIKE :keyword";
             $stmt = $pdo->prepare($sql);
             $stmt->bindValue(':keyword', '%' . $keyword . '%', PDO::PARAM_STR);
             $stmt->execute();
 
             if ($stmt->rowCount() > 0) {
-                // Tickets found, fetch and display them
                 $ticket_rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } else {
-                // Redirect back to the search page with a failure message
                 header("Location:searchticket.php?fmsg=failed");
-                exit(); // Terminate the script after redirection
+                exit(); 
             }
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
@@ -170,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div>
         <footer>
             <p style="text-align: center;margin-left: 410px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
-                <a href="">Privacy Policy</a> | <a href="">Terms of Service</a> | <a href="">Contact Us</a></p>
+            <a href="privacy_policy.php">  Privacy Policy </a>| <a href="term_and_conditions.php">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
 

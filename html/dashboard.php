@@ -36,131 +36,7 @@ if (!$admin) {
     <link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
 
     
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <!-- First Bar Chart: New Registrations -->
-      <?php
-      include '../php/connection.php';
-
-      $startDate = date('Y-m-d', strtotime('-7 days'));
-      $endDate = date('Y-m-d');
-
-      $query = "SELECT DATE(regDate) as regDate, COUNT(*) as new_registrations 
-                FROM customer 
-                WHERE DATE(regDate) BETWEEN '$startDate' AND '$endDate'
-                GROUP BY DATE(regDate)";
-
-      $stmt = $pdo->query($query);
-      $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-      $newRegistrationsData = [];
-      $currentDate = $startDate;
-      while ($currentDate <= $endDate) {
-          $newRegistrationsData[$currentDate] = 0;
-          $currentDate = date('Y-m-d', strtotime($currentDate . ' +1 day'));
-      }
-
-      foreach ($result as $row) {
-          $date = $row['regDate'];
-          $newRegistrationsData[$date] = (int)$row['new_registrations'];
-      }
-
-      $newRegistrationsArray = [['Date', 'New Registrations']];
-      foreach ($newRegistrationsData as $date => $count) {
-          $newRegistrationsArray[] = [$date, $count];
-      }
-      $newRegistrationsJsonData = json_encode($newRegistrationsArray);
-      ?>
-
-      <script>
-      google.charts.load('current', {'packages': ['corechart', 'bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-          var data = google.visualization.arrayToDataTable(<?php echo $newRegistrationsJsonData; ?>);
-
-          var options = {
-              title: 'New Registrations Over the Past 7 Days',
-              hAxis: {
-                  title: 'Date'
-              },
-              vAxis: {
-                  title: 'Number of Registrations'
-              }
-          };
-
-          var chart = new google.visualization.ColumnChart(
-              document.getElementById('barchart_div'));
-          chart.draw(data, options);
-      }
-      </script>
-
-    <!-- Second Bar Chart: Tickets Added and Replied -->
-    <?php
-    $startDate = date('Y-m-d', strtotime('-7 days'));
-    $endDate = date('Y-m-d');
-
-    $ticketsQuery = "SELECT DATE(date) as creation_date, COUNT(*) as tickets_added 
-                    FROM ticket 
-                    WHERE DATE(date) BETWEEN '$startDate' AND '$endDate'
-                    GROUP BY DATE(creation_date)";
-
-    $stmt = $pdo->query($ticketsQuery);
-    $ticketsResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    $repliesQuery = "SELECT DATE(date) as reply_date, COUNT(*) as tickets_replied 
-                    FROM reply 
-                    WHERE DATE(date) BETWEEN '$startDate' AND '$endDate'
-                    GROUP BY DATE(reply_date)";
-
-    $stmt = $pdo->query($repliesQuery);
-    $repliesResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    $ticketData = [];
-    $currentDate = $startDate;
-    while ($currentDate <= $endDate) {
-        $ticketData[$currentDate] = ['tickets_added' => 0, 'tickets_replied' => 0];
-        $currentDate = date('Y-m-d', strtotime($currentDate . ' +1 day'));
-    }
-
-    foreach ($ticketsResult as $row) {
-        $date = $row['creation_date'];
-        $ticketData[$date]['tickets_added'] = (int)$row['tickets_added'];
-    }
-
-    foreach ($repliesResult as $row) {
-        $date = $row['reply_date'];
-        $ticketData[$date]['tickets_replied'] = (int)$row['tickets_replied'];
-    }
-
-    $ticketDataArray = [['Date', 'Tickets Added', 'Tickets Replied']];
-    foreach ($ticketData as $date => $counts) {
-        $ticketDataArray[] = [$date, $counts['tickets_added'], $counts['tickets_replied']];
-    }
-    $ticketDataJsonData = json_encode($ticketDataArray);
-    ?>
-
-    <script>
-    google.charts.load('current', {'packages': ['corechart', 'bar']});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable(<?php echo $ticketDataJsonData; ?>);
-
-        var options = {
-            title: 'Tickets Added and Replied Over the Past 7 Days',
-            hAxis: {
-                title: 'Date'
-            },
-            vAxis: {
-                title: 'Number of Tickets'
-            }
-        };
-
-        var chart = new google.visualization.ColumnChart(
-            document.getElementById('columnchart_material'));
-        chart.draw(data, options);
-    }
-    </script>
+    
 
      <!--ticket bar chart-->
      <?php
@@ -203,29 +79,6 @@ foreach ($categoryResult as $row) {
 $categoryJsonData = json_encode($categoryData);
 ?>
 
-
-<!--donut bar chart-->
-<script type="text/javascript">
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-    // Convert JSON data to DataTable format
-    var data = google.visualization.arrayToDataTable(<?php echo $categoryJsonData; ?>);
-
-    // Set chart options
-    var options = {
-        title: 'Number of Tickets by Category',
-        pieHole: 0.4,
-    };
-
-    // Create a new PieChart object
-    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-
-    // Draw the chart with the specified options
-    chart.draw(data, options);
-}
-</script>
 
 
 </head>
@@ -274,37 +127,149 @@ function drawChart() {
     </div>
 
     <?php
-    // Include the database connection file
     include '../php/connection.php';
 
-    // Query to get the count of registered users
-    $userCountQuery = "SELECT COUNT(*) as userCount FROM customer";
-    $stmt = $pdo->query($userCountQuery);
-    $userCountResult = $stmt->fetch(PDO::FETCH_ASSOC);
-    $userCount = $userCountResult['userCount'];
+    $countCustomersQuery = "SELECT COUNT(*) AS customerCount FROM customer";
+    $countCustomersStmt = $pdo->query($countCustomersQuery);
+    $customerCountResult = $countCustomersStmt->fetch(PDO::FETCH_ASSOC);
+    $customerCount = $customerCountResult['customerCount'];
     ?>
 
-    <div class="frame1" style="margin-left:190px;"> 
-        <ul id="actionnav3">
-            <li style="background-color:#45b1e1">Number of registered Users : <?php echo $userCount; ?></li>
-        </ul>
+    <div class="frame1" style="margin-top:20px;margin-bottom:20px;"><b>
+    Number of registed customers in the system : <font style="color:#74a9ff"><?php echo $customerCount; ?></b></font>
     </div>
 
-    <div class="frame1" id="barchart_div" style="margin-right:20px"></div><!-- bar chart-->
-    <div class="frame1" id="columnchart_material" style="margin-right:20px"></div><!--ticket bar chart-->
-    <div class="frame1" id="donutchart" style="width: 600px; height: 500px;"></div><!-- pie chart-->
+    <?php
+        include '../php/connection.php';
 
+        $countCustomersWeekQuery = "SELECT DATE(regdate) AS regday, COUNT(*) AS customerCount 
+                                    FROM customer
+                                    WHERE regdate BETWEEN DATE_SUB(NOW(), INTERVAL 1 WEEK) AND NOW()
+                                    GROUP BY DATE(regdate)
+                                    ORDER BY DATE(regdate) DESC";
+        $countCustomersWeekStmt = $pdo->query($countCustomersWeekQuery);
+        $customerWeekResult = $countCustomersWeekStmt->fetchAll(PDO::FETCH_ASSOC);
+    ?>
 
-    
-           <!-- Admin table -->
-           <div class="frame1" style="float:right;margin-top:-440px;margin-right:100px;">
-           <b>Number of Admin Replied</b>
-           </div>
-           <div class="frame1" style="float:right;margin-top:-410px;margin-right:100px;">
+        <!-- new customers in past week-->
+           <div class="frame1" style="float:left;margin-top:20px;margin-left:220px;">
            
             <div id="ttable">
                 <table style="width:500px;min-height:100px;">
                     <thead>
+                        <tr>
+                            <th colspan="2">Number of registed New Customers in past week</th>
+                        </tr>
+                        <th>Date</th>
+                        <th>#New Customers</th>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($customerWeekResult as $row): ?>
+                            <tr>
+                                <td><?php echo $row['regday']; ?></td>
+                                <td><?php echo $row['customerCount']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+            
+        <?php
+            include '../php/connection.php';
+
+            $countTicketsActivitiesQuery = "SELECT DATE(ticket.date) AS activity_date,
+                                            COUNT(DISTINCT ticket.ticketId) AS new_tickets,
+                                            COUNT(DISTINCT reply.ticketId) AS replied_tickets
+                                            FROM ticket
+                                            LEFT JOIN reply ON ticket.ticketId = reply.ticketId
+                                            WHERE ticket.date BETWEEN DATE_SUB(NOW(), INTERVAL 1 WEEK) AND NOW()
+                                            GROUP BY DATE(ticket.date)
+                                            ORDER BY activity_date DESC";
+
+            $countTicketsActivitiesStmt = $pdo->query($countTicketsActivitiesQuery);
+            $ticketsActivitiesResult = $countTicketsActivitiesStmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+
+                <!-- ticket activities in past week-->
+           <div class="frame1" style="float:left;margin-top:20px;margin-left:220px;">
+           
+            <div id="ttable">
+                <table style="width:500px;min-height:100px;">
+                    <thead>
+                        <tr>
+                            <th colspan="3">Number of ticket activities in past week</th>
+                        </tr>
+                        <th>Date</th>
+                        <th>#New Tickets</th>
+                        <th>#Replys</th>
+                        <tbody>
+                            <?php foreach ($ticketsActivitiesResult as $row): ?>
+                                <tr>
+                                    <td><?php echo $row['activity_date']; ?></td>
+                                    <td><?php echo $row['new_tickets']; ?></td>
+                                    <td><?php echo $row['replied_tickets']; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <?php
+        include '../php/connection.php';
+
+        $countTicketsCategoryQuery = "SELECT category, COUNT(*) AS ticket_count 
+                                    FROM ticket 
+                                    GROUP BY category";
+
+        $countTicketsCategoryStmt = $pdo->query($countTicketsCategoryQuery);
+        $ticketsCategoryResult = $countTicketsCategoryStmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+
+          <!-- number of ticket in each category-->
+         <div class="frame1" style="float:left;margin-top:20px;margin-left:220px;">
+           
+           <div id="ttable">
+               <table style="width:500px;min-height:100px;">
+                   <thead>
+                       <tr>
+                           <th colspan="2">Number of tickets in each category</th>
+                       </tr>
+                       <th>Category</th>
+                       <th>#New Tickets</th>
+                       <tbody>
+                            <?php
+                            $categories = ['Call', 'Internet', 'HBB', 'TV'];
+                            foreach ($categories as $category) {
+                                $ticketCount = 0;
+                                foreach ($ticketsCategoryResult as $row) {
+                                    if ($row['category'] === $category) {
+                                        $ticketCount = $row['ticket_count'];
+                                        break;
+                                    }
+                                }
+                                echo "<tr>";
+                                echo "<td>$category</td>";
+                                echo "<td>$ticketCount</td>";
+                                echo "</tr>";
+                            }
+                            ?>
+                        </tbody>
+               </table>
+           </div>
+       </div>
+
+    
+        <div style="margin-top:40px">
+           <!-- Admin table -->
+           
+            <div id="ttable">
+                <table style="width:500px;min-height:100px;">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Number of Admin Replied</th>
+                        </tr>
                         <th>Admin Id</th>
                         <th>Admin Name</th>
                         <th>Category</th>
@@ -333,11 +298,12 @@ function drawChart() {
                 </table>
             </div>
         </div>
+        </div>
 
     <div>
         <footer style="position:relative">
             <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
-              <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
+            <a href="privacy_policy.php">  Privacy Policy </a>| <a href="term_and_conditions.php">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
 

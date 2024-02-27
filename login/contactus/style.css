@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700;1,900&family=Ubuntu:ital,wght@0,300;0,400;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Hind:300,400&display=swap');
+html{
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    transition: .1s;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+body {
+    min-height: 100vh;
+}
+
+/* header */
+header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: .8rem 5%;
+    background: linear-gradient(to right, #2E3594, #434DC8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 .05rem 1rem #434DC8;
+}
+header a {
+    font-family: "Merriweather", serif;
+    text-decoration: none;
+}
+.logo {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.logo img {
+    margin-right: 10px; 
+    width: 30px; 
+}
+
+.navbar a {
+    font-size: 1.15rem;
+    opacity: .7;
+    color: white;
+    margin-left: 1.5rem;
+    transition: all .5s;
+}
+.navbar a:hover {
+    opacity: 1;
+    transition: all .5s;
+}
+a.login {
+    padding: 3px 10px;
+    opacity: .8;
+    background: transparent;
+    border: 2px white solid;
+    color: white;
+    border-radius: 50px;
+}
+a.login:hover{
+    background: white;
+    border: 2px rgb(225, 225, 225) solid;
+    color: black;
+}
+#check {
+    display: none;
+}
+.icon {
+    position: absolute;
+    right: 5%;
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+    display: none;
+}
+@media (max-width: 800px){
+    .icon {
+        display: inline-flex;
+    }
+    #check:checked~.icon #menu-icon {
+        display: none;
+    }
+    .icon #close-icon {
+        display: none;
+    }
+    #check:checked~.icon #close-icon {
+        display: block;
+    }
+    .navbar {
+        position: absolute;
+        top: 99%;
+        left: 0;
+        width: 100%;
+        /* max-height: 0; */
+        height: 0;
+        background: linear-gradient(to bottom, #2E3594, #434DC8);
+        overflow: hidden;
+        box-shadow: 0 .5rem 1rem #434DC8;
+        transition: 0.2s ease;
+    }
+    #check:checked~.navbar {
+        /* max-height: 1000px; */
+        height: 225px;
+        transition: 0.2s ease;
+    }
+    .navbar a {
+        display: block;
+        opacity: 0;
+        font-size: 1.2rem;
+        margin: 1.5rem;
+        text-align: center;
+        transform: translateY(-50px);
+        transition: .2s ease;
+    }
+    #check:checked~.navbar a{
+        transition: .2s ease;
+        transform: translateY(0);
+        opacity: 0.7;
+        transition-delay: calc(.15s * var(--i));
+    }
+    #check:checked~.navbar a:hover{
+        transition-delay: 0ms;
+        opacity: 1;
+    }
+    a.login {
+        padding: 3px 10px;
+        opacity: 0;
+        background: transparent;
+        border: 0;
+        color: white;
+    }
+    a.login:hover{
+        padding: 3px 10px;
+        opacity: 1;
+        background: transparent;
+        border: 0;
+        color: white;
+    }
+}
+/* header end */
+
+/* back to top button */
+#scrbtn{
+    background-color: #2E3594;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: none;
+    place-items: center;
+    cursor: pointer;
+    z-index: 100;
+}
+#scrbtn-value{
+    display: block;
+    height: calc(100% - 12px);
+    width: calc(100% - 12px);
+    background-color: white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: black;
+
+}
+/* main area */
+.main {
+    flex: 1; 
+    margin: 1.5rem;
+}
+
+/* footer */
+footer {
+    width: 100%;
+    background: linear-gradient(to right, #77C1E0, #A046E0);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.socials,
+.footmenu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+.socials li {
+    font-size: 2em;
+    padding: 0px 5px;
+    white-space: nowrap;
+}
+
+.socials li a {
+    color: white;
+    display: inline-block;
+    transition: 0.5s;
+}
+
+.socials li a:hover {
+    transform: translateY(-5px);
+}
+
+.footmenu li {
+    padding: 10px 10px;
+    white-space: nowrap;
+}
+
+.footmenu li a {
+    text-decoration: none;
+    opacity: 0.8;
+    color: white;
+    transition: 0.5s;
+    display: inline-block;
+}
+
+.footmenu li a:hover {
+    opacity: 1;
+}
+
+footer p {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    font-size: 0.7em;
+    user-select: none;
+}
+/* footer end */
+
+/* main content */
+
+.faq {
+  	margin: 0 auto;
+  	width: 100%;
+}
+.quest{
+  	margin: 1rem;
+}
+.quest .quest-item {
+  	border-bottom: 1px solid #e5e5e5;
+}
+.quest .quest-item button[aria-expanded='true'] {
+  	border-bottom: 1px solid #03b5d2;
+}
+.quest button {
+	position: relative;
+	display: block;
+	text-align: left;
+	width: 100%;
+	padding: 1em 0;
+	color: #7288a2;
+	font-size: 1.15rem;
+	font-weight: 400;
+	border: none;
+	background: none;
+	outline: none;
+}
+.quest button:hover,
+.quest button:focus {
+	cursor: pointer;
+	color: #03b5d2;
+}
+.quest button:hover::after,
+.quest button:focus::after {
+	cursor: pointer;
+	color: #03b5d2;
+	border: 1px solid #03b5d2;
+}
+.quest button .quest-title {
+  	padding: 1em 1.5em 1em 0;
+}
+.quest button .icon {
+	display: inline-block;
+	position: absolute;
+	top: 18px;
+	right: 0;
+	width: 22px;
+	height: 22px;
+	border: 1px solid;
+	border-radius: 22px;
+}
+.quest button .icon::before {
+	display: block;
+	position: absolute;
+	content: '';
+	top: 9px;
+	left: 5px;
+	width: 10px;
+	height: 2px;
+	background: currentColor;
+}
+.quest button .icon::after {
+	display: block;
+	position: absolute;
+	content: '';
+	top: 5px;
+	left: 9px;
+	width: 2px;
+	height: 10px;
+	background: currentColor;
+}
+.quest button[aria-expanded='true'] {
+  	color: #03b5d2;
+}
+.quest button[aria-expanded='true'] .icon::after {
+  	width: 0;
+}
+.quest button[aria-expanded='true'] + .quest-content {
+	opacity: 1;
+	max-height: 9em;
+	transition: all 200ms linear;
+	will-change: opacity, max-height;
+}
+.quest .quest-content {
+	opacity: 0;
+	max-height: 0;
+	overflow: hidden;
+	transition: opacity 200ms linear, max-height 200ms linear;
+	will-change: opacity, max-height;
+}
+.quest .quest-content p {
+	font-size: 1rem;
+	font-weight: 300;
+	margin: 2em 0;
+}

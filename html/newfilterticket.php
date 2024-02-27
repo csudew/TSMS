@@ -80,10 +80,9 @@ if (!$admin) {
             <font style="font-size: 10px;">Last Loging Date - Time</font>
         </div>
     </div>
-    <div class="frame1" style="margin-left:280px;">
+    <div class="frame1" style="margin-left:380px;">
         <ul id="actionnav">
             <a href="../admin.php"><li>All Ticket</li></a>
-            <li style="background-color:#188ec1;color:black;">Sign to Me</li>
             <a href="newfilterticket.php"><li>New Messages</li></a>
             <a href="waitfilterticket.php"><li>Replied</li></a>
         </ul>
@@ -131,7 +130,7 @@ if (!$admin) {
     <div>
         <footer style="position: fixed;">
             <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
-              <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
+            <a href="privacy_policy.php">  Privacy Policy </a>| <a href="term_and_conditions.php">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
     

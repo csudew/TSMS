@@ -24,8 +24,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         } else {
 
-            
-    
             $query = "INSERT INTO ticket (category, customerid,  subject, message) 
                       VALUES (:category, :customerid,  :subject, :message)";
             $stmt = $pdo->prepare($query);
@@ -37,8 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             header("Location:  ../login/ticket.php?msg=successs");
             exit();
-    
-            //$_SESSION['success_message'] = "Ticket added to the database.";
 
         }
 

@@ -21,24 +21,19 @@ if (!$admin) {
     exit;
 }
 
-// Function to logout
 function logout() {
-    // Unset all of the session
     $_SESSION = [];
 
-    // Destroy the session
     session_destroy();
 
     header('Location: ../login/login.php');
     exit;
 }
 
-// Check if logout button is clicked
 if (isset($_GET['logout'])) {
     logout();
 }
 
-// Check if adminId is not set, then redirect to login page
 if (!isset($_SESSION['adminId'])) {
     header('Location:../login/login.php?154654');
     exit;
@@ -178,7 +173,7 @@ $adminDetails = $fetchAdminStmt->fetch();
     <div>
         <footer style="position:relative">
             <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
-              <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
+              <a href="privacy_policy.php">  Privacy Policy </a>| <a href="term_and_conditions.php">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
 

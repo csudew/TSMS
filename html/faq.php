@@ -89,9 +89,6 @@ if (!$admin) {
                     Content<font style="color: red;">*</font> : <br><textarea  name="kcontent" rows="15.5" cols="159"></textarea>
                 </div>
     
-                <div style="margin-top: 30px;">
-                    Files :<input type="file" name="kfile" style="padding: 10px 5px;">
-                </div>
     
                 <div style="margin-top: 30px;">
                     <input type="submit" value="submit" name="submit" style="padding: 10px 5%;">
@@ -101,13 +98,20 @@ if (!$admin) {
     </form>
 
     <div>
-        <footer>
+        <footer style="position:relative">
             <p style="text-align: center;margin-left: 400px;">© 2024 Quantem Mobile Corporation. All rights reserved.<br>
-              <a href="">  Privacy Policy </a>| <a href="">Terms of Service</a> |<a href=""> Contact Us </a></p>
+            <a href="privacy_policy.php">  Privacy Policy </a>| <a href="term_and_conditions.php">Terms of Service</a> |<a href=""> Contact Us </a></p>
         </footer>
     </div>
     
-    
+    <script>
+        setTimeout(function() {
+            var msg = document.getElementById('fmessage');
+            if (msg) {
+                msg.style.display = 'none';
+            }
+        }, 2000);
+    </script>
 </body>
 
 

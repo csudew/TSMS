@@ -24,6 +24,7 @@ if (isset($_SESSION['customerId'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
     <title>About Us</title>
@@ -66,16 +67,18 @@ if (isset($_SESSION['customerId'])) {
 </head>
 <body>
     <div class="container">
+
+            
+
         <!-- navigation bar -->
         <header class="header">
              
           <a class="logo" href="index.php">
             <img src="QuantumMobileLogo.png" alt="Company Logo" style="width: auto; height: 60px;">
         </a>
-        <a class="logo" href="index.php" style="margin-left:-300px">Quantum Mobile</a>
+        <a class="logo" href="index.php" style="margin-left:-200px">Quantum Mobile</a>
 
 
-            <!-- click menu -->
             <input type="checkbox" id="check">
             <label for="check" class="icon">
                 <i class='bx bx-menu' id="menu-icon"></i>
@@ -86,8 +89,9 @@ if (isset($_SESSION['customerId'])) {
             <a href="about.php">About Us</a>
             <a href="faq.php">FAQ</a>
             <a href="team.php">Our team</a>
+            <a href="help.php">Help</a>
             <a style="--i:2" href="ticket.php">Ticket</a>
-            <a href="contactus.php">Contact us</a>
+            <a href="contactus/contact.php">Contact us</a>
             <a class="login.php" href="<?php echo isset($_SESSION['customerId']) ? 'account.php' : 'login.php'; ?>">
             <?php echo isset($_SESSION['customerId']) ? $customerUName : 'Login'; ?></a>
                
@@ -96,6 +100,10 @@ if (isset($_SESSION['customerId'])) {
         <!-- main content -->
         <div class="main">
             <div class="content">
+
+            <!--<div id="scrbtn">
+				<span id="scrbtn-value">&#x1F815;</span>
+			</div>-->
                 
     <div id="post1">
 
@@ -166,8 +174,8 @@ if (isset($_SESSION['customerId'])) {
                 </ul>
                 <!-- Footer menu -->
                 <ul class="footmenu">
-                <li><a href="#">Privacy Policies</a></li>
-                <li><a href="#">Terms and Services</a></li>
+                <li><a href="../html/privacy_policy.php"> Privacy Policy</a></li>
+                <li><a href="../html/term_and_conditions.php">Terms of Service</a></li>
             </ul>
             <p>&copy; 2024 Quantem Mobile Coperation</p>
             </div>
