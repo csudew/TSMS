@@ -37,6 +37,29 @@ if (isset($_SESSION['customerId'])) {
         }
     </style>
     <link rel="icon" href="..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
+    <script>
+        let calcScrollValue = () => {
+	let scrollProgress = document.getElementById("scrbtn");
+	let progressValue = document.getElementById("scrbtn-value");
+	let pos = document.documentElement.scrollTop;
+	let calcHeight =
+	  document.documentElement.scrollHeight -
+	  document.documentElement.clientHeight;
+	let scrollValue = Math.round((pos * 100) / calcHeight);
+	if (pos > 100) {
+	  scrollProgress.style.display = "grid";
+	} else {
+	  scrollProgress.style.display = "none";
+	}
+	scrollProgress.addEventListener("click", () => {
+	  document.documentElement.scrollTop = 0;
+	});
+	scrollProgress.style.background = `conic-gradient(#77C1E0 ${scrollValue}%, #d7d7d7 ${scrollValue}%)`;
+  };
+  
+  window.onscroll = calcScrollValue;
+  window.onload = calcScrollValue;
+    </script>
 </head>
 <body>
     <div class="container">
@@ -70,6 +93,9 @@ if (isset($_SESSION['customerId'])) {
         </header>
         <!-- main content -->
         <div class="main">
+        <div id="scrbtn">
+				<span id="scrbtn-value">&#x1F815;</span>
+			</div>
             <div class="content">
                 <h1>Need a Help?</h1>
                 <div style="margin-top:30px;margin-left:20px">
@@ -142,6 +168,22 @@ if (isset($_SESSION['customerId'])) {
                 <b style="color:#434DC8">Step 3 : </b>The status "New" means, you don't have a reply yet. The status "Replied" mean you have a reply. To view reply click the view button of the ticket row <br>
                 <img src="../image/viewticket.png" alt="viewticket" style="width:600px;height:350px;margin-top:20px">
                 In the view page, You can see your submitted ticket and the reply you got.
+                </div>
+                </div>
+            </div>
+
+            <div style="margin-top:30px;margin-left:20px">
+                <div class="account-details">
+                <div style="color:#006a98">
+                    <h3>How to view FAQ?</h3>
+                </div>
+                <div style="margin-left:20px;margin-top:20px">
+                <b style="color:#434DC8">Step 1 : </b>In the navigation bar,click the FAQ button. <br>
+                <img src="../image/faqbtn.png" alt="faqbtn" style="width:500px;height:50px;margin-top:20px">
+                </div>
+                <div style="margin-left:20px;margin-top:20px">
+                <b style="color:#434DC8">Step 2 : </b>In here you can find FAQ. <br>
+                <img src="../image/faq.png" alt="faq" style="width:500px;height:150px;margin-top:20px">
                 </div>
                 </div>
             </div>

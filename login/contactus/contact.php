@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="..\..\icons\logo.png" type="image/png" sizes="16x16 32x32 48x48">
     <style>
         .content{
             width: 80%;
@@ -111,7 +112,7 @@
                 <div class="card">
                         <img src="phone.png" alt="phone"><br>
                         Call Us <br>
-                        <i>011 2 224 448</i>
+                        <i>011 2581245</i>
         
                 </div>
                 <div class="card">
@@ -124,7 +125,7 @@
                 <div class="card">
                         <img src="location.png" alt="location"><br>
                         No. 420, <br>
-                        <i>Galle Road, Colombo</i>
+                        <i>Reid Avenue, Colombo 7</i>
                 </div>
                 <div class="card">
                     <a class="button" href="../ticket.php">
@@ -133,6 +134,9 @@
                         Ticket<br>
                         <i>Send your Issue</i>
                 </div>
+            </div>
+            <div class="content">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.90418526119!2d79.8588817248224!3d6.90206109309725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25963120b1509%3A0x2db2c18a68712863!2sUniversity%20of%20Colombo%20School%20of%20Computing%20(UCSC)!5e0!3m2!1sen!2slk!4v1709087086692!5m2!1sen!2slk" width="80%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
         <!-- footer -->

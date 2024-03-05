@@ -186,7 +186,7 @@ if (!$customer) {
         }
     </script>
 
-    <footer>
+    <footer style="position:relative">
         <div class="footer-content">
             <!-- Social media icons -->
             <ul class="socials">

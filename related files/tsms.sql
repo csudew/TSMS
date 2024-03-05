@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Feb 25, 2024 at 01:11 PM
+-- Generation Time: Mar 05, 2024 at 09:36 AM
 -- Server version: 5.7.31
--- PHP Version: 7.3.21
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,28 +38,20 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `category` varchar(20) NOT NULL,
   `phonenumber` int(10) NOT NULL,
   PRIMARY KEY (`adminId`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`adminId`, `name`, `userName`, `email`, `gender`, `password`, `category`, `phonenumber`) VALUES
-(12, 'UOC', 'UOC', 'UOC@gmail.com', 'male', '$2y$10$/346o6yhnM/mbUZ6OXx5juCb2yhjElDX9JOUHu98sao40fOw/Xcze', 'Web Admin', 112581245),
-(13, 'UCSC', 'UCSC', 'UCSC@gmail.com', 'male', '$2y$10$gj.gUbTPQMdSfQSJh8I31OsU.OKaXO2G9nXfsoXkbF0qL3VWUMuFW', 'Call', 112587239);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `category`
---
-
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE IF NOT EXISTS `category` (
-  `categoryId` int(3) NOT NULL AUTO_INCREMENT,
-  `Category Type` varchar(20) NOT NULL,
-  PRIMARY KEY (`categoryId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(13, 'UCSC', 'UCSC', 'UCSC@gmail.com', 'male', '$2y$10$gj.gUbTPQMdSfQSJh8I31OsU.OKaXO2G9nXfsoXkbF0qL3VWUMuFW', 'Call', 112587239),
+(14, 'Saneesha Tharindi', 'Saneesha', 'saneeshatharindi@gmail.com', 'female', '$2y$10$5IiKjDuhmt53mYMvz/wKXOj8pcGiOtXXSA93letFInDcioil1Yo8S', 'Call', 74095638),
+(15, 'Shakila Thathsara', 'Shakila', 'Kstgalle@gmail.com', 'male', '$2y$10$Lj4IK5oFkLVLou6RMUlPsuG1QllXl0bn2/o18Q3PSKKUHZh2dSgGK', 'Internet', 702284211),
+(16, 'Anbashayan', 'Anbashayan', 'anbashayan12@gmail.com', 'male', '$2y$10$oByzYEBh7ACpXKlvMVSYAeUTCGZG7IkTnDTNTbANoyR.69EKITBZK', 'HBB', 705689123),
+(17, 'Thagshan', 'Thagshan', 'arulthags01@gmail.com', 'male', '$2y$10$z.L0zLcsdYaD4yw4tCZs..YHnCBxkOD2JlomRWkh7zvHehqwuFAPm', 'TV', 704558945),
+(18, 'Dilki Hansika', 'Dilki', 'dilkihansika97@gmail.com', 'female', '$2y$10$UV8YmBpXyNFQicki.mhd8.2hWI6rScWPvhM8vT13O1piF1oqizdQm', 'HBB', 726835015),
+(20, 'Charitha Sudewa', 'Charitha', 'charithasudewa22@gmail.com', 'male', '$2y$10$Gv8BlgWhOHSa2rv791aohuoDufxuTCNKpjqeku2TcKAzamGmgpiDy', 'Web Admin', 705799233);
 
 -- --------------------------------------------------------
 
@@ -79,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `regDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`customerId`),
   UNIQUE KEY `userName` (`userName`,`email`,`phonenumber`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
@@ -87,7 +79,9 @@ CREATE TABLE IF NOT EXISTS `customer` (
 
 INSERT INTO `customer` (`customerId`, `name`, `userName`, `email`, `phonenumber`, `Gender`, `password`, `regDate`) VALUES
 (8, 'dilki hansika', 'dilki', 'dilkihansika97@gmail.com', 726835015, 'female', '$2y$10$6VGss9Ypby.CgKnnQ6bRK.e0D6gW4sFMYXt1wnXCOYw/LMMW.6ZfG', '2024-02-22 21:03:41'),
-(9, 'charitha sudewa', 'sudewa', 'charithasudewa@gmail.com', 705799233, 'male', '$2y$10$qXkW3FclfUDCKyYU4dU9f.TeV72VhA6G9r1yyZUo9mmuH3QXCmJ3e', '2024-02-24 16:23:27');
+(9, 'charitha sudewa', 'sudewa', 'charithasudewa@gmail.com', 705799233, 'male', '$2y$10$qXkW3FclfUDCKyYU4dU9f.TeV72VhA6G9r1yyZUo9mmuH3QXCmJ3e', '2024-02-24 16:23:27'),
+(10, 'Manilka Rajapaksha', 'Manilka', 'melisdakendrick1983@gmail.com', 707894561, 'male', '$2y$10$N22vPXkFKMgKQXVRZrcole3fF4FPApj6G5OCk/fAgIffcqXj7zSoe', '2024-03-05 08:21:53'),
+(11, 'uoc', 'uoc', 'uoc@gmail.com', 112581245, 'male', '$2y$10$TahxS84Ho32l3D/T0JSda.n7h1U/3uoPh6ateKdJ/cKlVL093ujJS', '2024-03-05 15:05:15');
 
 -- --------------------------------------------------------
 
@@ -104,19 +98,17 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `type` varchar(10) NOT NULL,
   PRIMARY KEY (`faqId`),
   KEY `adminid` (`adminid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `faq`
 --
 
 INSERT INTO `faq` (`faqId`, `title`, `content`, `adminid`, `type`) VALUES
-(1, 'testing2', 'content testing 2', NULL, 'general'),
-(2, 'hgasAS', 'SDADASD', NULL, 'support'),
-(3, 'asdadasfdfs', 'sdfvsdfihasdad', NULL, 'ads'),
-(4, 'testting 4', 'testing 4', NULL, 'ads'),
-(5, 'newfaq test', 'new faq test content', NULL, 'general'),
-(6, 'newfaq test', 'new faq test content', NULL, 'general');
+(7, ' What is HSPA?', 'HSPA (High Speed Packet Access) combines the features of HSDPA (High Speed Downlink Packet Access) and HSUPA (High Speed Uplink Packet Access) enabling you to access data at speeds up to 14.4 Mbps Downlink and up to 1.98 Mbps Uplink, on devices supporting HSPA.', NULL, 'HBB'),
+(9, 'Will I have to pay for the time I am logged on to the network or only for the actual data usage?', 'You will only have to pay for the actual data usage, irrespective of the time you have spent logged on.', NULL, 'HBB'),
+(10, 'The data usage is calculated for Downloading or Uploading or for both?', 'On selected packages, rental will be charged from the date of connection, up to the date of your bill. The data usage is calculated both for uploading and downloading', NULL, 'HBB'),
+(11, 'How do I increase my credit limit?', 'Your initial credit limit on a post-paid connection is equal to the Refundable Deposit. However the credit limit can be enhanced by:\r\nKeeping an additional deposit (refundable) at the time of subscription or laterProviding any of the following financial statements within the last 3 months: Current account statement, Salary slip, Credit card statement, Your last 3 months\' mobile bills with your previous service provider', NULL, 'Call');
 
 -- --------------------------------------------------------
 
@@ -135,19 +127,14 @@ CREATE TABLE IF NOT EXISTS `reply` (
   PRIMARY KEY (`replyid`),
   KEY `adminid` (`adminid`),
   KEY `ticketid` (`ticketid`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reply`
 --
 
 INSERT INTO `reply` (`replyid`, `ticketid`, `adminid`, `subject`, `message`, `date`) VALUES
-(17, 51, NULL, 'sdsadasd', 'asdasdas', '2024-02-21 18:52:55'),
-(18, 57, NULL, 'then y ask', 'no ones care\r\n', '2024-02-24 22:01:25'),
-(19, 56, 12, 'asdasdad', 'asdasdasdasd', '2024-02-25 17:50:28'),
-(20, 55, 12, 'sadasd', 'sadasdsad', '2024-02-25 17:55:44'),
-(21, 53, 12, 'sadasd', 'sadasd', '2024-02-25 17:56:24'),
-(22, 52, 12, 'sadsad', 'sadsada', '2024-02-25 17:58:55');
+(23, 61, 13, 'Visit Our Store', 'to activate your e-sim again, you have to visit our store at working days', '2024-02-27 07:16:18');
 
 -- --------------------------------------------------------
 
@@ -169,21 +156,18 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   PRIMARY KEY (`ticketId`),
   KEY `adminId` (`adminId`),
   KEY `customerId` (`customerId`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `ticket`
 --
 
 INSERT INTO `ticket` (`ticketId`, `category`, `subject`, `message`, `priority`, `status`, `adminId`, `customerId`, `date`) VALUES
-(51, 'general', 'bjaskjhdSDLASKJDS', 'DASKDLKASJDKASHDASD', 'Critical', 'Replied', NULL, 9, '2024-02-24 12:48:21'),
-(52, 'general', 'asdasdasd', 'asdadfadfdas', 'Low', 'Replied', NULL, 9, '2024-02-25 12:28:55'),
-(53, 'HBB', 'asdadasd', 'asdasdasdas', 'Low', 'Replied', NULL, 9, '2024-02-25 12:26:24'),
-(54, 'Call', 'call a friend', 'call a friend', 'Low', 'New', NULL, 9, '2024-02-24 12:48:43'),
-(55, 'Call', 'asdasd', 'asdasdas', 'Medium', 'Replied', NULL, 9, '2024-02-25 12:25:44'),
-(56, 'Call', 'asdasd', 'asdasdasd', 'Low', 'Replied', NULL, 9, '2024-02-25 12:20:28'),
-(57, 'TV', 'my tv is not workin', 'who cares\r\n', 'Medium', 'Replied', NULL, 9, '2024-02-24 16:31:25'),
-(58, 'HBB', 'asdasdasd', 'asdasdasd', 'High', 'New', NULL, 9, '2024-02-25 12:41:15');
+(59, 'TV', 'Credit spark loan app customer numbar 8981906323.', 'Credit spark loan app customer numbar 8981906323.Credit spark loan app customer numbar 8981906323.', 'Low', 'New', NULL, 9, '2024-02-27 01:31:33'),
+(60, 'HBB', 'How do i reset router password', 'How do i reset router password\r\n\r\n', 'Low', 'New', NULL, 9, '2024-02-27 01:34:23'),
+(61, 'Call', 'My e sim is deactivate', 'I changed my original phone so i need to get e sim card for new phone please deactivate e sim card or give other solution', 'Low', 'Replied', NULL, 9, '2024-02-27 01:46:18'),
+(62, 'Call', 'Signal Issue', 'There is lack of signal in my area. Location : Horopathana', 'Low', 'New', NULL, 9, '2024-02-27 01:51:51'),
+(63, 'HBB', 'doesnt work', 'doesnt work my hbb', 'Low', 'New', NULL, 10, '2024-03-05 02:52:28');
 
 --
 -- Constraints for dumped tables

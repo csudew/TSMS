@@ -100,17 +100,17 @@ if (isset($_SESSION['customerId'])) {
         <!-- main content -->
         <div class="main">
             <div class="content">
-
-            <!--<div id="scrbtn">
-				<span id="scrbtn-value">&#x1F815;</span>
-			</div>-->
+                
+            <div id="scrbtn">
+                <span id="scrbtn-value">&#x1F815;</span>
+            </div>
                 
     <div id="post1">
 
 <div class="grid-block" style="background-color:#434DC8">
     <div class="grid-item">
         <div style="float: left;margin-top:70px"><p style="font-size:50px; font-weight: 700;"><font style="color:white">Unable to engage in vocalizations,<br> may I not initiate calls</p></font>
-        <div style="margin-top:20px">
+        <div style="margin-top:20px;z-index:1000">
             <a href="ticket.php" class="my-button">Send Your Issue</a>
         </div>
         </div>
@@ -158,11 +158,13 @@ if (isset($_SESSION['customerId'])) {
         </div>
         </div>
      </div>
-</div>
+    </div>
             </div>
         </div>
-        <!-- footer -->
-        <footer style="position:relative">
+    </div>
+
+    <!-- footer -->
+    <footer style="position:relative">
             <div class="footer-content">
                 <!-- Social media icons -->
                 <ul class="socials">
@@ -177,10 +179,10 @@ if (isset($_SESSION['customerId'])) {
                 <li><a href="../html/privacy_policy.php"> Privacy Policy</a></li>
                 <li><a href="../html/term_and_conditions.php">Terms of Service</a></li>
             </ul>
+            <!-- Company copyright -->
             <p>&copy; 2024 Quantem Mobile Coperation</p>
             </div>
         </footer>
-    </div>
     <!-- Footer icons pack -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

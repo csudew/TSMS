@@ -86,6 +86,22 @@ if (!$admin) {
                 ?>
                 </div>
 
+                <div id="message">
+                <?php
+                    
+
+                    if (isset($_GET['error'])) {
+                        echo "<p style='color: red;'>"."Email or User Name already in use."."</p>"."
+                        <script>
+                            setTimeout(()=> {var msg = document.getElementById('message').style.display = 'none';
+                            }, 5000);
+                        </script>";
+                        //unset($_SESSION['success_message']);
+                    }
+                    session_abort();
+                ?>
+                </div>
+
                 <div style="margin-top: 30px;">
                     Admin Name<font style="color: red;">*</font> : <br><input type="text" name="AName"placeholder="Admin Name">
                 </div>

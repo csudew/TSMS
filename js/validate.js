@@ -59,8 +59,8 @@ function customersearchvalidation(event) {
 function faqvalidation() {
     var category = document.forms["faqvali"]["category"].value;
     var subject = document.forms["faqvali"]["ksubject"].value;
-    var message = document.forms["faqvali"]["kcontent"].value; // Corrected typo here
-
+    var message = document.forms["faqvali"]["kcontent"].value; 
+    
     if (category == "") {
         alert("Category must be selected");
         return false;

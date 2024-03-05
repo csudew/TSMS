@@ -276,7 +276,6 @@ $categoryJsonData = json_encode($categoryData);
                         <th>#Replied Tickets</th>
                     </thead>
                     <?php
-                    // Fetch data from the admin and reply tables
                     $adminDataQuery = "SELECT admin.adminId, admin.name, admin.category, COUNT(reply.adminId) AS replied_tickets
                                        FROM admin
                                        LEFT JOIN reply ON admin.adminId = reply.adminId
@@ -285,7 +284,6 @@ $categoryJsonData = json_encode($categoryData);
                     $adminDataStmt = $pdo->query($adminDataQuery);
                     $adminDataResult = $adminDataStmt->fetchAll(PDO::FETCH_ASSOC);
 
-                    // Display admin information in table rows
                     foreach ($adminDataResult as $row) {
                         echo "<tr>";
                         echo "<td>" . $row['adminId'] . "</td>";

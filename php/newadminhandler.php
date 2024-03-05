@@ -15,11 +15,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
+    require_once "connection.php";
+
+    $query = "SELECT * FROM admin WHERE email = ? OR userName = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$Aemail, $AUname]);
+    $adminExists = $stmt->fetch();
+
+    $query = "SELECT * FROM customer WHERE email = ? OR userName = ?";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([$Aemail, $AUname]);
+    $customerExists = $stmt->fetch();
+
+    if ($adminExists || $customerExists) {
+        header("Location:../html/newmember.php?error=exists");
+        exit();
+    }
+
     $hashedPassword = password_hash($Apw, PASSWORD_DEFAULT);
 
     try {
-        require_once "connection.php";
-
         $query = "INSERT INTO admin (name, userName, email, phonenumber, gender, password, category) VALUES (?, ?, ?, ?, ?, ?, ?)"; 
         $stmt = $pdo->prepare($query);
         $stmt->execute([$Aname, $AUname, $Aemail, $APnum, $Agender, $hashedPassword, $Acat]);

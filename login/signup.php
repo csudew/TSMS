@@ -48,7 +48,7 @@
     <div class="login-container">
 
         <h2>Sign Up</h2>
-        <form class="login-form" action="../php/signupphp.php" method="POST">
+        <form class="login-form" action="../php/signupphp.php" method="POST" onsubmit="return validateForm();">
         <input type="text" name="name" placeholder="Name" required>
             <input type="text" name="username" placeholder="Username" required>
             <input type="text" name="phone" id="phone" placeholder="Phone Number" required>
